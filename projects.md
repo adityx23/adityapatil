@@ -22,8 +22,7 @@ Physics-based simulation of an industrial manipulator to study control behavior 
 ---
 
 ## 3) SLAM-Based Autonomous Navigation Robot
-**What it is:** Mobile robot autonomy pipeline with mapping/localization/navigation and system-level testing.  
-**Focus:** integration, failure modes, robustness.  
-**Tools:** ROS2, Nav2, EKF, Raspberry Pi, ESP32.
+End-to-end mobile robot platform with ROS2-based SLAM, navigation, and system integration.
 
-> Coming soon: node graph + pipeline diagram.
+👉 [Read more](projects/slam-navigation-robot.md)
+
