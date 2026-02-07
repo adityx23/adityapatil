@@ -6,85 +6,82 @@ title: MuJoCo-Based Robotic Manipulator Simulation
 # MuJoCo-Based Robotic Manipulator Simulation (UR10e)
 
 ## Overview
-This project focuses on building a physics-based simulation of a 6-DOF industrial robotic manipulator (UR10e) in MuJoCo to study controller behavior, system dynamics, and stability under different control strategies. The goal was to evaluate control performance in simulation and build intuition for simulation-to-real transfer.
+This project explores kinematic control behavior of a 6-DOF industrial robotic manipulator (UR10e) using MuJoCo. The goal was to study how forward and inverse kinematics-based control strategies behave in a physics-based simulation, and to analyze stability, convergence, and motion quality under position and velocity control modes.
+
+The work focused on implementing and comparing four control configurations (FK/IK × position/velocity) and using visualization to understand end-effector motion in task space.
 
 ---
 
-## Problem Statement
-Industrial manipulators operate under complex nonlinear dynamics, gravity effects, and actuator limits. Before deploying control strategies on real hardware, it is critical to understand how controllers behave in a physically accurate simulation environment. This project explores joint-space control strategies and evaluates their stability, responsiveness, and robustness through simulation rollouts.
+## System Setup
+- **Robot:** UR10e (6-DOF serial manipulator)
+- **Simulation Engine:** MuJoCo
+- **Control Interfaces:** Joint-space position commands and joint-space velocity commands
+- **Kinematic Modes:** Forward Kinematics (FK) and Inverse Kinematics (IK)
+- **Implementation:** Python-based simulation loop with trajectory visualization
 
 ---
 
-## System Architecture
-**Manipulator:** UR10e (6-DOF)  
-**Simulation Engine:** MuJoCo  
-**Control Mode:** Joint-space torque and velocity control  
-**Compute:** Python-based simulation loop  
-
-**High-level flow:**
-1. Desired joint targets provided to controller
-2. Control torques computed using feedback laws
-3. MuJoCo physics engine simulates dynamics
-4. Joint states logged and analyzed over time
-
-*(A system block diagram is provided below.)*
+## Control Experiments and Simulation Results
+Four control configurations were implemented and evaluated to study the behavior of the UR10e manipulator under different kinematic formulations and command interfaces.
 
 ---
 
-## Control Strategy
-Two baseline controllers were implemented and evaluated:
+### Forward Kinematics (FK) — Position Control
+Joint positions are commanded directly, and the resulting end-effector motion is observed through the robot’s kinematic chain. This mode is useful for validating joint-level stability and convergence.
 
-### 1. Joint-Space PD Torque Control
-- Proportional and derivative feedback on joint position and velocity
-- Gravity and passive forces compensated using MuJoCo inverse dynamics (`mj_inverse`)
-- Used as a baseline for stability and convergence behavior
-
-### 2. Velocity Control
-- Direct velocity commands to joints
-- Evaluated for responsiveness and smoothness
-- Compared against torque-based control for tracking accuracy
-
-These controllers provided a reference point for evaluating stability, transient response, and sensitivity to disturbances.
+![FK Position Control](../assets/mujoco/ur10e_FK_position.gif)
 
 ---
 
-## Simulation and Rollout Evaluation
-Simulation rollouts were performed to evaluate:
-- Joint tracking accuracy
-- Convergence time
-- Stability under different gain values
-- Effects of gravity compensation
+### Forward Kinematics (FK) — Velocity Control
+Joint velocities are commanded instead of absolute positions, resulting in smoother motion and improved dynamic behavior compared to position control.
 
-Joint trajectories, velocities, and control torques were logged and analyzed to understand system behavior over time.
+![FK Velocity Control](../assets/mujoco/ur10e_FK_velocity.gif)
 
 ---
 
-## Key Results
-- Gravity compensation significantly improved tracking performance and reduced steady-state error
-- Torque-based control provided smoother and more stable convergence than velocity-only control
-- Improper gain selection led to oscillations, highlighting the importance of tuning and physical realism in simulation
+### Inverse Kinematics (IK) — Position Control
+Desired end-effector positions are mapped to joint targets using inverse kinematics. This enables intuitive task-space motion but introduces sensitivity to solver stability and joint constraints.
+
+![IK Position Control](../assets/mujoco/ur10e_IK_position.gif)
+
+---
+
+### Inverse Kinematics (IK) — Velocity Control
+End-effector velocity commands are mapped to joint velocities (e.g., via Jacobian-based relationships), producing smooth task-space trajectories.  
+The cyan line visualizes the end-effector path in Cartesian space.
+
+![IK Velocity Control](../assets/mujoco/ur10e_IK_velocity.gif)
+
+---
+
+## Key Observations
+- IK-based control enables intuitive end-effector motion but is more sensitive to solver behavior and joint constraints than FK control.
+- Velocity control produced smoother motion profiles compared to direct position commands.
+- FK control provided a stable baseline for validating joint-level behavior, while IK control better matched task-space objectives.
+- Trajectory visualization was highly effective for debugging and verifying motion quality.
 
 ---
 
 ## Lessons Learned
-- Physically accurate simulation is essential for understanding controller behavior before real-world deployment
-- Gravity and passive forces cannot be ignored in manipulator control
-- Simulation rollouts are an effective tool for identifying instability and tuning control gains
-- MuJoCo provides valuable insight into real-world dynamics when used carefully
+- Separating joint-space vs task-space control logic is critical for debugging robotic systems.
+- IK controllers require careful handling of numerical stability, constraints, and joint limits.
+- Physics-based simulation can reveal motion artifacts that do not appear in purely kinematic models.
+- Visualizing end-effector trajectories dramatically reduces iteration time during controller development.
 
 ---
 
-## Tools and Technologies
+## Tools \& Technologies
 - MuJoCo
 - Python
-- Control Theory
-- Numerical Simulation
-- Data Logging and Analysis
+- Robot Kinematics (FK/IK)
+- Velocity and Position Control Interfaces
+- Trajectory Visualization
 
 ---
 
-## Future Work
-- Extend to Cartesian-space control
-- Introduce external disturbances and contact interactions
-- Compare classical controllers against learning-based policies
-- Validate simulation results against real manipulator hardware
+## Future Extensions
+- Add torque-based control and compare against position/velocity command modes.
+- Evaluate IK behavior under different constraints and solver configurations.
+- Introduce contact interactions and object manipulation tasks.
+- Benchmark tracking error and stability across multiple trajectories.
