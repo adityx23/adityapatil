@@ -28,8 +28,8 @@ A strong emphasis was placed on simulation-to-hardware transfer, using the Turtl
 
 **Mechanical Design**
 - Custom chassis using 3D-printed plates inspired by TurtleBot3 Waffle geometry
-- Plates designed for modular mounting of compute, sensors, and motor drivers
-- Components mounted using standoffs and fasteners for mechanical stability and serviceability
+- Plates redesigned to accommodate non-proprietary components available on hand
+- Modular mounting using standoffs and fasteners for mechanical stability and serviceability
 
 ---
 
@@ -75,7 +75,7 @@ Simulation was used extensively to validate this pipeline before hardware integr
 
 ### Mechanical & Hardware Integration
 - Designed and fabricated a custom mobile robot chassis using 3D-printed plates
-- Integrated motors, drivers, compute, and sensors into a compact, modular platform
+- Reworked TurtleBot3 Waffle-inspired geometry to fit available motors, drivers, compute, and sensors
 - Routed power and communication interfaces to simplify debugging and maintenance
 
 ### Embedded Motor Control
@@ -112,26 +112,42 @@ Validating transform consistency across this tree was essential for reliable loc
 
 ---
 
-## Failure Modes and Debugging
+## Real-World Challenges and Debugging
 
-Several common failure modes were encountered and resolved during development:
+Several non-trivial system-level challenges were encountered during development:
 
-- **Localization drift:** Caused by timing mismatches between odometry and LiDAR updates
-- **Navigation instability:** Resulting from overly aggressive control parameters
-- **Transform inconsistencies:** Missing or misaligned TF links leading to incorrect pose estimates
-- **Frontier exploration inefficiency:** Naive frontier selection resulting in redundant exploration paths
+- **Compute resource limitations:**  
+  Careful consideration was required to avoid exceeding the computational limits of the Raspberry Pi 4B. This influenced decisions around node selection, sensor update rates, and the extent of on-robot processing.
 
-Issues were addressed through parameter tuning, TF validation, subsystem isolation testing, and incremental reintegration.
+- **Sensor driver and SDK compatibility:**  
+  Significant effort was spent ensuring LiDAR and IMU drivers and SDKs were compatible with Ubuntu 22.04 and ROS2. This required modifying, rebuilding, and reconfiguring packages to resolve dependency and API mismatches.
+
+- **Localization framework selection:**  
+  Initial confusion arose between AMCL and `robot_localization` due to overlapping localization functionality. `robot_localization` was selected because it emphasizes IMU-driven state estimation, allowing LiDAR data to be used primarily for navigation and mapping rather than pose correction.
+
+- **Mechanical redesign constraints:**  
+  The TurtleBot3 Waffle chassis design had to be reinterpreted due to the absence of proprietary components. Custom plates were redesigned to accommodate available hardware while maintaining structural rigidity and sensor alignment.
+
+- **Frontier exploration implementation:**  
+  Implementing a basic frontier exploration algorithm required careful handling of map representation, frontier detection, and goal selection to avoid redundant exploration and unstable navigation behavior.
+
+These challenges were addressed through iterative testing, redesign, parameter tuning, and simulation-first validation.
 
 ---
 
 ## Design Decisions
 
+**Managing compute constraints**  
+The Raspberry Pi 4B imposed practical limits on computation, requiring thoughtful tradeoffs between autonomy complexity and real-time performance. Simulation was used to assess feasibility before deployment.
+
+**Choosing `robot_localization` over AMCL**  
+`robot_localization` was chosen to emphasize IMU-based state estimation, while LiDAR was used primarily for mapping and navigation. This separation simplified estimator behavior and debugging.
+
 **Simulation-first development**  
-Using the TurtleBot3 Gazebo simulation environment enabled rapid iteration on SLAM and navigation behavior while minimizing hardware risk.
+Using the TurtleBot3 Gazebo environment enabled rapid iteration on SLAM and navigation behavior while minimizing hardware risk.
 
 **Separation of autonomy and actuation**  
-High-level planning and localization ran on the Raspberry Pi, while low-level motor control was handled by an ESP32, improving determinism and simplifying debugging.
+High-level planning and localization ran on the Raspberry Pi, while low-level motor control ran on an ESP32, improving determinism and simplifying debugging.
 
 ---
 
@@ -159,10 +175,10 @@ This approach reduced debugging complexity and improved system robustness.
 
 ## Lessons Learned
 
-- SLAM performance depends heavily on integration quality, not just algorithms
-- Simulation is critical for reducing risk in mobile robotics
+- SLAM performance depends heavily on system integration quality, not just algorithms
+- Compute constraints directly influence autonomy design choices
+- Simulation is essential for reducing risk in mobile robotics
 - Clear separation of system layers simplifies debugging and iteration
-- Visualization and logging are essential for diagnosing autonomy failures
 
 ---
 
@@ -182,5 +198,5 @@ This approach reduced debugging complexity and improved system robustness.
 
 - Quantitative benchmarking of localization drift and path tracking error
 - Improved frontier selection and recovery behaviors
-- Better sensor calibration and time synchronization
+- Enhanced sensor calibration and time synchronization
 - Automated regression tests for navigation stability in simulation
