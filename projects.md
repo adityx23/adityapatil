@@ -5,11 +5,10 @@ layout: default
 # Projects
 
 ## 1) MuJoCo-Based Robotic Manipulator Simulation (UR10e)
-**What it is:** Physics-based simulation to study manipulator control behavior and rollout stability.  
-**Focus:** dynamics, control, rollout analysis, simulation-to-real thinking.  
-**Tools:** MuJoCo, Python, control theory.
+Physics-based simulation of an industrial manipulator to study control behavior and system dynamics.
 
-> Coming soon: architecture diagram, controller notes, rollout plots.
+👉 [Read more](projects/mujoco-manipulator.md)
+
 
 ---
 
