@@ -71,7 +71,7 @@ The cyan line visualizes the end-effector path in Cartesian space.
 
 ---
 
-## Tools \& Technologies
+## Tools & Technologies
 - MuJoCo
 - Python
 - Robot Kinematics (FK/IK)
