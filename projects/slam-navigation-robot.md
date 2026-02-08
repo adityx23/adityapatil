@@ -60,7 +60,7 @@ A strong emphasis was placed on simulation-to-hardware transfer, using the Turtl
 
 ## System Architecture (High-Level)
 
-![SLAM System Architecture](/adityapatil/assets/slam/slam_system_architecture.png.png)
+![SLAM System Architecture](/assets/slam/slam_system_architecture.png.png)
 
 *System architecture showing the on-board autonomy stack (ROS2 on Raspberry Pi), deterministic low-level motor control (ESP32), and simulation-first validation in Gazebo.*
 
