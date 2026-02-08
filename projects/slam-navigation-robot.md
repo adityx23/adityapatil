@@ -60,6 +60,10 @@ A strong emphasis was placed on simulation-to-hardware transfer, using the Turtl
 
 ## System Architecture (High-Level)
 
+![SLAM System Architecture](/adityapatil/assets/slam/slam_system_architecture.png)
+
+*System architecture showing the on-board autonomy stack (ROS2 on Raspberry Pi), deterministic low-level motor control (ESP32), and simulation-first validation in Gazebo.*
+
 1. LiDAR and IMU publish sensor data to ROS2 topics on the Raspberry Pi
 2. SLAM generates a map and estimates robot pose
 3. `robot_localization` fuses IMU and odometry
