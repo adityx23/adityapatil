@@ -12,12 +12,24 @@ Physics-based simulation of an industrial manipulator to study control behavior 
 
 ---
 
-## 2) Closed-Loop Thermostat Control System (TMP117)
-**What it is:** Discrete-time feedback control using weighted temperature history (non-PID) implemented on embedded hardware.  
-**Focus:** control equation, hysteresis logic, stability and noise behavior.  
-**Tools:** Embedded C/C++, TMP117 sensor.
+## 2) Closed-Loop Thermostat Control System (TMP117)https://github.com/adityx23/adityapatil/blob/main/projects.md
+## Closed-Loop Temperature Control (Peltier + TMP117)
 
-> Coming soon: control equation + response plots.
+A closed-loop thermostat system for a 30×30×30 cm acrylic enclosure using 4× Peltier modules driven by PWM through an H-bridge. Designed a continuous-time compensator, discretized it using Tustin (500 ms loop), and implemented the resulting difference equation on an Arduino Mega. Sensor was suspended mid-air at the enclosure midpoint to reduce boundary bias.
+
+**Highlights**
+- Discrete-time controller with memory (non-PID), implemented as a difference equation at 500 ms sampling
+- Stability and response validated via Bode and step-response analysis
+- Hardware actuation via PWM + H-bridge, with saturation and anti-chatter logic
+
+<p align="center">
+  <a href="{{ site.baseurl }}/projects/thermostat-closed-loop-control">
+    <img src="{{ site.baseurl }}/assets/thermostat/thermostat_build.jpg" alt="Thermostat build" width="700">
+  </a>
+</p>
+
+➡️ **Read more:** [Closed-Loop Temperature Control (Peltier + TMP117)]({{ site.baseurl }}/projects/thermostat-closed-loop-control)
+
 
 ---
 
