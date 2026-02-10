@@ -40,12 +40,6 @@ Closed-loop thermostat system for a **30×30×30 cm acrylic enclosure** using **
 - Stability + response validated via Bode and step response analysis
 - PWM saturation + practical anti-chatter logic for real hardware constraints
 
-<p align="center">
-  <a href="{{ site.baseurl }}/projects/thermostat-closed-loop-control">
-    <img src="{{ site.baseurl }}/assets/thermostat/thermostat_build.jpg" alt="Thermostat build" width="720">
-  </a>
-</p>
-
 👉 **Read more:** [Closed-Loop Temperature Control (Peltier + TMP117)]({{ site.baseurl }}/projects/thermostat-closed-loop-control)
 
 ---
