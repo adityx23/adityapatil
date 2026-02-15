@@ -6,206 +6,141 @@ title: SLAM-Based Autonomous Navigation Robot
 # SLAM-Based Autonomous Navigation Robot
 
 ## Overview
-This project involved designing and integrating a mobile robot platform capable of autonomous indoor mapping and navigation. The focus was on full-system development: mechanical design, embedded motor control, sensor integration, simulation-based validation, and ROS2-based autonomy.
+Designed and integrated a ROS2-based autonomous mobile robot capable of indoor mapping and navigation using LiDAR and IMU sensor fusion. The project covered full-stack development: mechanical design, embedded motor control, sensor integration, simulation validation, and autonomy pipeline implementation.
 
-A strong emphasis was placed on simulation-to-hardware transfer, using the TurtleBot3 software ecosystem to validate SLAM and navigation behavior before deployment.
+**Key Contributions**
+- Built complete ROS2 autonomy stack: SLAM → localization → planning → motor execution
+- Integrated LiDAR, IMU, encoder feedback, and motor control across Raspberry Pi and ESP32
+- Designed custom TurtleBot3-inspired chassis adapted to non-proprietary hardware
+- Validated full navigation pipeline in Gazebo before hardware integration
+
+---
+
+## System Architecture
+
+<p align="center">
+  <img src="{{ site.baseurl }}/assets/slam/slam_system_architecture.png" alt="SLAM System Architecture" width="850">
+</p>
+<p align="center">
+  <em>ROS2 autonomy stack running on Raspberry Pi with deterministic motor control offloaded to ESP32.</em>
+</p>
+
+**Data Flow**
+- `/scan` (LiDAR) and `/imu/data` (IMU) provide sensor input
+- Cartographer generates map and pose estimate
+- `robot_localization` fuses IMU and encoder odometry
+- Nav2 computes velocity commands (`/cmd_vel`)
+- ESP32 executes closed-loop motor control
+- Encoder feedback generates odometry (`/odom`)
+
+Simulation in Gazebo was used to validate this pipeline prior to deployment.
 
 ---
 
 ## Hardware Platform
 
 **Compute & Control**
-- Raspberry Pi 4B running Ubuntu 22.04 and ROS2
-- ESP32 used as a dedicated low-level motor controller
+- Raspberry Pi 4B (Ubuntu 22.04, ROS2)
+- ESP32 dedicated motor controller
 
 **Sensors**
 - YDLiDAR X2 (360° 2D LiDAR)
-- BNO055 IMU (orientation and angular velocity)
+- BNO055 IMU
 
 **Actuation**
-- 2 × 500 RPM DC encoder motors
-- 2 × Cytron MD10C motor drivers
+- 2 × 500 RPM encoder DC motors
+- Cytron MD10C motor drivers
 
 **Mechanical Design**
-- Custom chassis using 3D-printed plates inspired by TurtleBot3 Waffle geometry
-- Plates redesigned to accommodate non-proprietary components available on hand
-- Modular mounting using standoffs and fasteners for mechanical stability and serviceability
+- Custom 3D-printed chassis inspired by TurtleBot3 Waffle
+- Redesigned geometry to fit available components
+- Modular mounting for serviceability and sensor alignment
 
 ---
 
 ## Software Stack
 
-**Operating System & Middleware**
-- Ubuntu 22.04
-- ROS2
+**Core Autonomy**
+- ROS2 middleware
+- Nav2 navigation stack
+- Google Cartographer SLAM
+- `robot_localization` EKF state estimator
 
 **Simulation**
-- Gazebo
-- TurtleBot3 simulation environment
+- Gazebo using TurtleBot3 simulation environment
 
-**Navigation & Localization**
-- Nav2 for path planning and navigation
-- `robot_localization` for sensor fusion
-- Google Cartographer (via TurtleBot3 SLAM stack)
-
-**Autonomy**
-- Basic frontier exploration algorithm for autonomous mapping
-
-**Drivers & Integration**
+**Integration**
 - YDLiDAR SDK integrated into ROS2
-- Adafruit BNO055 drivers
+- BNO055 ROS2 driver integration
 - Custom ESP32 firmware for motor control and encoder feedback
 
----
-
-## System Architecture (High-Level)
-
-<p align="center">
-  <img src="{{ site.baseurl }}/assets/slam/slam_system_architecture.png" alt="SLAM System Architecture" width="850">
-</p>
-<p align="center">
-  <em>System architecture showing the on-board autonomy stack (ROS2 on Raspberry Pi), deterministic low-level motor control (ESP32), and simulation-first validation in Gazebo.</em>
-</p>
-
-*System architecture showing the on-board autonomy stack (ROS2 on Raspberry Pi), deterministic low-level motor control (ESP32), and simulation-first validation in Gazebo.*
-
-1. LiDAR and IMU publish sensor data to ROS2 topics on the Raspberry Pi
-2. SLAM generates a map and estimates robot pose
-3. `robot_localization` fuses IMU and odometry
-4. Nav2 computes velocity commands
-5. ESP32 receives commands and executes closed-loop motor control
-6. Encoder feedback is used for odometry and debugging
-
-Simulation was used extensively to validate this pipeline before hardware integration.
+**Autonomous Behavior**
+- Frontier exploration for autonomous map coverage
 
 ---
 
-## Key Technical Contributions
+## Engineering Challenges and Solutions
 
-### Mechanical & Hardware Integration
-- Designed and fabricated a custom mobile robot chassis using 3D-printed plates
-- Reworked TurtleBot3 Waffle-inspired geometry to fit available motors, drivers, compute, and sensors
-- Routed power and communication interfaces to simplify debugging and maintenance
+**Compute limitations (Raspberry Pi 4B)**
+- Full autonomy stack pushed CPU limits
+- Solution: separated low-level control to ESP32 and optimized node execution
 
-### Embedded Motor Control
-- Implemented motor control on ESP32 using encoder feedback
-- Separated high-level planning (Raspberry Pi) from low-level actuation (ESP32)
-- Enabled clean abstraction between autonomy logic and hardware execution
+**Sensor driver compatibility (ROS2 + Ubuntu 22.04)**
+- LiDAR and IMU drivers required rebuilding and API adaptation
+- Resolved dependency and SDK compatibility issues
 
-### Simulation-Based Validation
-- Used TurtleBot3 Gazebo simulation to validate SLAM and navigation behavior
-- Tuned Nav2 and localization parameters in simulation
-- Tested autonomous frontier exploration for map coverage and navigation logic
+**Localization architecture selection**
+- Evaluated AMCL vs `robot_localization`
+- Selected `robot_localization` for IMU-integrated state estimation
+- Allowed LiDAR to focus on mapping rather than pose correction
 
-### SLAM & Navigation
-- Configured Cartographer-based SLAM for indoor mapping
-- Integrated LiDAR and IMU data into localization pipeline
-- Debugged transform consistency, sensor update rates, and command latency issues
+**Mechanical design constraints**
+- TurtleBot3 hardware unavailable
+- Redesigned chassis plates to accommodate available motors, drivers, and compute
 
----
-
-## ROS2 Data Flow and Coordinate Frames
-
-Understanding data flow and coordinate frames was critical for stable SLAM and navigation.
-
-**Primary ROS2 topics:**
-- `/scan` — LiDAR data from YDLiDAR X2
-- `/imu/data` — orientation data from BNO055
-- `/odom` — wheel odometry derived from encoder feedback
-- `/cmd_vel` — velocity commands generated by Nav2
-
-**Coordinate frame hierarchy:**
-- `map → odom → base_link → base_scan`
-
-Validating transform consistency across this tree was essential for reliable localization and path planning.
+**Frontier exploration integration**
+- Implemented goal selection and frontier detection logic
+- Tuned exploration behavior to avoid redundant navigation
 
 ---
 
-## Real-World Challenges and Debugging
+## Simulation and Validation Strategy
 
-Several non-trivial system-level challenges were encountered during development:
+Followed staged integration approach:
 
-- **Compute resource limitations:**  
-  Careful consideration was required to avoid exceeding the computational limits of the Raspberry Pi 4B. This influenced decisions around node selection, sensor update rates, and the extent of on-robot processing.
+1. Validate individual sensor drivers
+2. Verify TF tree and coordinate consistency (`map → odom → base_link`)
+3. Validate SLAM and localization in simulation
+4. Integrate Nav2 navigation stack
+5. Test autonomous exploration behavior
 
-- **Sensor driver and SDK compatibility:**  
-  Significant effort was spent ensuring LiDAR and IMU drivers and SDKs were compatible with Ubuntu 22.04 and ROS2. This required modifying, rebuilding, and reconfiguring packages to resolve dependency and API mismatches.
-
-- **Localization framework selection:**  
-  Initial confusion arose between AMCL and `robot_localization` due to overlapping localization functionality. `robot_localization` was selected because it emphasizes IMU-driven state estimation, allowing LiDAR data to be used primarily for navigation and mapping rather than pose correction.
-
-- **Mechanical redesign constraints:**  
-  The TurtleBot3 Waffle chassis design had to be reinterpreted due to the absence of proprietary components. Custom plates were redesigned to accommodate available hardware while maintaining structural rigidity and sensor alignment.
-
-- **Frontier exploration implementation:**  
-  Implementing a basic frontier exploration algorithm required careful handling of map representation, frontier detection, and goal selection to avoid redundant exploration and unstable navigation behavior.
-
-These challenges were addressed through iterative testing, redesign, parameter tuning, and simulation-first validation.
+Simulation-first validation significantly reduced hardware debugging time.
 
 ---
 
-## Design Decisions
+## Results
 
-**Managing compute constraints**  
-The Raspberry Pi 4B imposed practical limits on computation, requiring thoughtful tradeoffs between autonomy complexity and real-time performance. Simulation was used to assess feasibility before deployment.
-
-**Choosing `robot_localization` over AMCL**  
-`robot_localization` was chosen to emphasize IMU-based state estimation, while LiDAR was used primarily for mapping and navigation. This separation simplified estimator behavior and debugging.
-
-**Simulation-first development**  
-Using the TurtleBot3 Gazebo environment enabled rapid iteration on SLAM and navigation behavior while minimizing hardware risk.
-
-**Separation of autonomy and actuation**  
-High-level planning and localization ran on the Raspberry Pi, while low-level motor control ran on an ESP32, improving determinism and simplifying debugging.
+- Successfully deployed full autonomy stack capable of mapping and navigation
+- Achieved stable SLAM and localization behavior in simulation
+- Demonstrated autonomous frontier-based exploration
+- Established reproducible architecture for simulation-to-hardware transfer
 
 ---
 
-## System Validation Approach
+## Technical Stack
 
-Validation followed a staged integration strategy:
-1. Validate individual sensors and drivers independently
-2. Verify TF tree consistency and topic update rates
-3. Test SLAM and localization in isolation
-4. Integrate Nav2 and frontier exploration
-5. Perform end-to-end autonomous navigation tests
-
-This approach reduced debugging complexity and improved system robustness.
-
----
-
-## Results (Qualitative)
-
-- Achieved stable SLAM and navigation behavior in simulation
-- Successfully integrated hardware components into a deployable mobile robot platform
-- Demonstrated autonomous exploration using frontier-based mapping
-- Established a repeatable simulation-first autonomy development workflow
-
----
-
-## Lessons Learned
-
-- SLAM performance depends heavily on system integration quality, not just algorithms
-- Compute constraints directly influence autonomy design choices
-- Simulation is essential for reducing risk in mobile robotics
-- Clear separation of system layers simplifies debugging and iteration
-
----
-
-## Tools & Technologies
-- ROS2, Nav2
+- ROS2, Nav2, Cartographer, robot_localization
 - Gazebo simulation
-- Google Cartographer
-- `robot_localization`
 - Raspberry Pi 4B, ESP32
-- YDLiDAR X2, BNO055
-- Embedded motor control with encoders
-- 3D printing for robotic chassis design
+- YDLiDAR X2, BNO055 IMU
+- Embedded motor control with encoder feedback
+- Custom 3D-printed robot chassis
 
 ---
 
 ## Future Improvements
 
-- Quantitative benchmarking of localization drift and path tracking error
-- Improved frontier selection and recovery behaviors
-- Enhanced sensor calibration and time synchronization
-- Automated regression tests for navigation stability in simulation
+- Quantitative evaluation of localization accuracy and drift
+- Improved exploration efficiency and recovery behaviors
+- Sensor time synchronization and calibration improvements
+- Extension to multi-robot mapping or manipulation tasks
