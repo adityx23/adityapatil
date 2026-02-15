@@ -1,49 +1,52 @@
 ---
 layout: default
-title: Aditya Patil | Robotics & Mechatronics
+title: Aditya Patil
 ---
 
-## Robotics & Mechatronics Graduate Student
+# Aditya Patil
 
-I design and integrate robotic systems across **simulation, control, and embedded hardware**, with a focus on full-stack autonomy — from physics-based modeling to real-time deployment.
+Robotics & Mechatronics Graduate Student at NYU Tandon specializing in autonomous systems, robot control, and simulation-to-hardware deployment. My work spans full-stack robotics development including SLAM, embedded control, and physics-based simulation.
 
-My work spans:
-
-- Mobile robot autonomy (ROS2, SLAM, Nav2)
-- Manipulator simulation and kinematic control (MuJoCo)
-- Embedded control systems implemented on real hardware
+<div class="hero-links">
+  <a href="{{ site.baseurl }}/projects">Projects</a>
+  <a href="{{ site.baseurl }}/resume.pdf">Resume</a>
+  <a href="mailto:aditya.a.patil2@gmail.com">Email</a>
+  <a href="https://www.linkedin.com/in/aditya-patil-4a5735217" target="_blank">LinkedIn</a>
+</div>
 
 ---
-
-<hr>
 
 ## Highlights
 
-**Mobile Robotics Autonomy (ROS2 + SLAM + Nav2)**  
-Designed and integrated a full mobile robot autonomy stack using LiDAR, IMU, encoder feedback, Cartographer SLAM, Nav2 navigation, and ESP32-based motor control. Validated architecture in Gazebo simulation prior to hardware deployment.
+- **SLAM-Based Autonomous Navigation Robot (ROS2 + Nav2 + Cartographer)**  
+  Designed and integrated a full mobile robot autonomy stack using LiDAR, IMU, encoder feedback, and ESP32 motor control. Implemented SLAM, localization, and autonomous exploration with simulation-first validation in Gazebo.
 
-**Embedded Closed-Loop Control on Hardware (Non-PID Controller)**  
-Modeled thermal dynamics, designed a continuous-time compensator, discretized it using Tustin transform, and implemented the resulting difference-equation controller on Arduino Mega controlling Peltier modules via PWM.
+- **Embedded Closed-Loop Temperature Control System (Discrete-Time Compensator)**  
+  Modeled enclosure thermal dynamics, designed a continuous-time compensator, discretized using Tustin transform, and deployed a difference-equation controller on Arduino Mega controlling PWM-driven Peltier modules.
 
-**Manipulator Simulation and Kinematic Control (MuJoCo, UR10e)**  
-Implemented and evaluated forward and inverse kinematics control strategies under position and velocity command modes in a physics-based simulation, analyzing motion stability and trajectory behavior.
+- **MuJoCo-Based Robotic Manipulator Simulation (UR10e, FK/IK Control)**  
+  Implemented forward and inverse kinematics controllers under position and velocity modes in MuJoCo, analyzing trajectory convergence, stability, and task-space motion behavior.
 
 ---
-
-<hr>
 
 ## Featured Projects
 
 - [SLAM-Based Autonomous Navigation Robot]({{ site.baseurl }}/projects/slam-navigation-robot)
+
 - [Closed-Loop Temperature Control (Peltier + TMP117)]({{ site.baseurl }}/projects/thermostat-closed-loop-control)
-- [MuJoCo-Based Robotic Manipulator Simulation (UR10e)]({{ site.baseurl }}/projects/mujoco-manipulator)
+
+- [MuJoCo-Based Robotic Manipulator Simulation]({{ site.baseurl }}/projects/mujoco-manipulator)
 
 ---
 
-<hr>
+## About This Portfolio
 
-## Contact
+This site documents selected robotics projects demonstrating system design, control implementation, and full-stack autonomy integration across simulation and real hardware platforms.
 
-Email: aditya.a.patil2@gmail.com  
-LinkedIn: https://www.linkedin.com/in/aditya-patil-4a5735217  
-Resume: [Download PDF]({{ site.baseurl }}/resume.pdf)
+Core focus areas:
+
+- Mobile robotics and SLAM  
+- Robot control systems (continuous and discrete)  
+- Embedded motor control and hardware integration  
+- Physics-based robotic simulation (MuJoCo, Gazebo)  
+- ROS2 autonomy stack development
