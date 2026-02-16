@@ -57,6 +57,26 @@ main{
 }
 
 /* ============================= */
+/* Remove theme toggle button */
+/* ============================= */
+
+/* Common selectors used by theme toggles */
+.theme-toggle,
+.theme-toggle-button,
+.dark-toggle,
+.mode-toggle,
+.color-mode-toggle,
+button[aria-label*="theme"],
+button[aria-label*="mode"]{
+  display: none !important;
+}
+
+/* Your screenshot shows a simple floating body button ("Dark") */
+body > button{
+  display: none !important;
+}
+
+/* ============================= */
 /* Typography */
 /* ============================= */
 
