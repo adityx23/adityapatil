@@ -6,9 +6,11 @@ title: Aditya Patil
 <div class="hero" markdown="0">
   <h1>Aditya Patil</h1>
   <p class="hero-sub">
-    Robotics &amp; Mechatronics Graduate Student at NYU Tandon. I build end-to-end robotic systems across
-    <strong>simulation</strong>, <strong>controls</strong>, and <strong>embedded autonomy</strong>—from kinematic control
-    studies in MuJoCo to ROS2 navigation stacks and real-time closed-loop hardware.
+    Robotics &amp; Mechatronics graduate student at NYU Tandon School of Engineering with a focus on 
+    <strong>autonomous systems</strong>, <strong>controls</strong>, and <strong>simulation-to-hardware deployment</strong>. 
+    I build end-to-end robotic systems spanning state estimation, navigation, and embedded actuation. 
+    My work includes MuJoCo-based manipulation and control studies, ROS2 SLAM and navigation pipelines, 
+    and real-time closed-loop control implementations on embedded hardware.
   </p>
 
   <div class="hero-links">
@@ -22,9 +24,11 @@ title: Aditya Patil
 <div class="card" markdown="1">
 ## Highlights
 
-- **SLAM-Based Autonomous Navigation Robot (ROS2 + Nav2 + Cartographer):** Full-stack autonomy pipeline with LiDAR/IMU integration, `robot_localization`, and ESP32 motor control; validated simulation-first in Gazebo.
-- **Closed-Loop Temperature Control (Peltier + TMP117):** Continuous-time compensator discretized via Tustin (500 ms loop) and deployed as a difference-equation controller on Arduino Mega driving a PWM H-bridge.
-- **MuJoCo UR10e Manipulator Simulation:** Compared FK/IK under position vs velocity control and visualized task-space behavior to analyze convergence, stability, and trajectory quality.
+- **SLAM-Based Autonomous Navigation Robot (ROS2 + Nav2 + Cartographer):** Designed a full autonomy stack integrating LiDAR, IMU, localization, and planning, with ESP32-based motor control and simulation-first validation in Gazebo.
+  
+- **Closed-Loop Temperature Control System (Peltier + TMP117):** Designed a continuous-time compensator, discretized via Tustin transform, and deployed a real-time difference-equation controller on Arduino Mega controlling thermal dynamics via PWM.
+
+- **MuJoCo UR10e Manipulator Simulation:** Implemented and analyzed FK and IK control under position and velocity interfaces, validating controller stability, convergence, and task-space trajectory behavior in physics simulation.
 </div>
 
 <div class="card" markdown="1">
@@ -33,4 +37,5 @@ title: Aditya Patil
 - [SLAM-Based Autonomous Navigation Robot]({{ site.baseurl }}/projects/slam-navigation-robot)
 - [Closed-Loop Temperature Control (Peltier + TMP117)]({{ site.baseurl }}/projects/thermostat-closed-loop-control)
 - [MuJoCo-Based Robotic Manipulator Simulation]({{ site.baseurl }}/projects/mujoco-manipulator)
+
 </div>
