@@ -6,36 +6,35 @@ title: Closed-Loop Temperature Control (Peltier + TMP117)
 # Closed-Loop Temperature Control (Peltier + TMP117)
 
 ## Overview
+Designed and implemented a closed-loop thermal regulation system for a custom acrylic enclosure using Peltier thermoelectric modules and a discrete-time controller deployed on an embedded microcontroller. The controller was derived from a continuous-time compensator using the Tustin transform, enabling stable real-time temperature regulation.
 
-Designed and implemented a closed-loop temperature regulation system for a custom acrylic enclosure using Peltier thermoelectric modules and a discrete-time controller derived from continuous-time control theory.
+This project demonstrates full-stack control system development, including physical system modeling, controller design, discretization, and embedded deployment.
 
-Unlike conventional PID-based thermostats, this system uses a **custom compensator discretized using the Tustin transform and deployed on an embedded microcontroller**, demonstrating full-stack integration of physical modeling, control design, and real-time embedded implementation.
-
-**Key Contributions**
-- Modeled enclosure thermal dynamics using lumped parameter approximation
-- Designed continuous-time compensator and discretized for embedded execution
-- Implemented real-time controller on Arduino Mega at 500 ms sampling
-- Integrated PWM-controlled Peltier actuation with closed-loop feedback
+**Key contributions**
+- Modeled enclosure thermal dynamics using lumped parameter approximation  
+- Designed continuous-time compensator and discretized it for digital implementation  
+- Implemented real-time discrete-time controller on Arduino Mega (500 ms sampling)  
+- Integrated PWM-controlled Peltier actuation with closed-loop temperature feedback  
 
 ---
 
 ## Physical System
 
-**Enclosure**
-- 30 × 30 × 30 cm acrylic thermal chamber
+**Thermal chamber**
+- 30 × 30 × 30 cm acrylic enclosure  
 
 **Actuation**
-- 4 × Peltier (TEC) modules
-- Hot side facing inward, cold side outward
-- Heat rejection via external heatsinks
-- PWM control through H-bridge driver
+- 4 × Peltier thermoelectric modules  
+- Hot side oriented inward for heating  
+- Cold side connected to external heatsinks for heat rejection  
+- Actuated via PWM-controlled H-bridge  
 
-**Sensing**
-- TMP117 precision temperature sensor
-- Suspended at geometric center to minimize boundary bias
+**Temperature sensing**
+- TMP117 precision temperature sensor  
+- Suspended at geometric center of enclosure to minimize measurement bias  
 
-**Controller Hardware**
-- Arduino Mega executing real-time control loop (500 ms)
+**Embedded controller**
+- Arduino Mega executing discrete-time control loop  
 
 <p align="center">
   <img src="{{ site.baseurl }}/assets/thermostat/thermostat_build.jpg" width="750">
@@ -43,37 +42,41 @@ Unlike conventional PID-based thermostats, this system uses a **custom compensat
 
 ---
 
-## Control Architecture
+## Control System Architecture
 
-Closed-loop feedback structure:
+Closed-loop feedback system structure:
 
 <p align="center">
   <img src="{{ site.baseurl }}/assets/thermostat/feedback_block_diagram.png" width="750">
 </p>
 
-**Control loop**
-1. TMP117 measures enclosure temperature
-2. Controller computes actuation command
-3. PWM drives H-bridge and Peltier modules
-4. Thermal dynamics determine next temperature
+**Control loop execution**
+1. TMP117 measures enclosure temperature  
+2. Controller computes control effort  
+3. PWM signal drives H-bridge and Peltier modules  
+4. Thermal system responds, producing next temperature state  
+
+This architecture enables continuous temperature regulation through feedback control.
 
 ---
 
 ## Thermal System Modeling
 
-The enclosure was modeled as a lumped thermal system with effective resistance and capacitance:
+The enclosure was approximated as a lumped thermal system characterized by effective thermal resistance and capacitance:
 
 <p align="center">
   <img src="{{ site.baseurl }}/assets/thermostat/thermal_lumped_model.png" width="650">
 </p>
 
-This abstraction captures dominant thermal dynamics while remaining computationally tractable for controller design.
+This abstraction captures dominant thermal dynamics while remaining computationally tractable for controller design and embedded implementation.
 
 ---
 
-## Controller Design
+## Controller Design and Discretization
 
-### Continuous-Time Compensator
+### Continuous-Time Controller
+
+A compensator was designed in continuous time:
 
 \[
 C(s) = 300\frac{(s + 0.05)}{(s + 0.35)}
@@ -83,19 +86,19 @@ C(s) = 300\frac{(s + 0.05)}{(s + 0.35)}
   <img src="{{ site.baseurl }}/assets/thermostat/controller_tf.png" width="420">
 </p>
 
-This compensator improves system responsiveness while maintaining stability margins appropriate for slow thermal dynamics.
+This formulation improves system responsiveness while maintaining stability appropriate for slow thermal dynamics.
 
 ---
 
-### Discretization (Tustin Transform)
+### Discrete-Time Implementation
 
-Controller was discretized using the bilinear transform for digital execution:
+The controller was discretized using the Tustin (bilinear) transform to enable execution on embedded hardware.
 
 <p align="center">
   <img src="{{ site.baseurl }}/assets/thermostat/tustin_discretization.png" width="520">
 </p>
 
-Resulting difference equation implemented at 500 ms sampling:
+Resulting difference equation:
 
 \[
 C[k] = 0.9656\,C[k-1] + 295\,(x[k]-x[k-1])
@@ -105,13 +108,29 @@ C[k] = 0.9656\,C[k-1] + 295\,(x[k]-x[k-1])
   <img src="{{ site.baseurl }}/assets/thermostat/discrete_equation.png" width="520">
 </p>
 
-This structure provides smooth control action without relying on PID formulation.
+This discrete formulation provides smooth control behavior without relying on conventional PID structure.
 
 ---
 
-## Stability and Performance Analysis
+## Embedded Controller Implementation
 
-Frequency and time-domain analysis validated controller behavior:
+Controller was deployed on Arduino Mega with real-time execution:
+
+- Control loop executed every 500 ms  
+- Persistent state variables maintained previous system state  
+- PWM output used to drive H-bridge and Peltier modules  
+- Output saturation applied to maintain safe actuator limits  
+- Hysteresis logic implemented to prevent actuator chatter  
+
+<p align="center">
+  <img src="{{ site.baseurl }}/assets/thermostat/arduino_snippet.png" width="680">
+</p>
+
+---
+
+## System Validation and Analysis
+
+Controller performance validated using both frequency and time-domain analysis:
 
 <p align="center">
   <img src="{{ site.baseurl }}/assets/thermostat/bode_plot.png" width="720">
@@ -121,65 +140,59 @@ Frequency and time-domain analysis validated controller behavior:
   <img src="{{ site.baseurl }}/assets/thermostat/step_response.png" width="720">
 </p>
 
-Analysis confirmed stable operation and appropriate transient response for thermal system dynamics.
+Analysis confirmed:
 
----
-
-## Embedded Implementation
-
-Controller deployed on Arduino Mega with real-time execution:
-
-- 500 ms control loop
-- Persistent state variables for discrete equation
-- PWM output saturation to ensure safe operation
-- Hysteresis logic to prevent actuator chatter
-
-<p align="center">
-  <img src="{{ site.baseurl }}/assets/thermostat/arduino_snippet.png" width="680">
-</p>
+- Stable closed-loop system behavior  
+- Appropriate transient response for thermal dynamics  
+- Successful preservation of continuous-time controller behavior after discretization  
 
 ---
 
 ## Engineering Challenges and Solutions
 
 **Thermal system latency**
-- Slow thermal dynamics required stability-focused controller design
-- Addressed through compensator design rather than aggressive gain tuning
+- Thermal systems exhibit slow response and high inertia  
+- Solution: designed compensator emphasizing stability and smooth response  
 
-**Discrete implementation fidelity**
-- Tustin discretization preserved continuous-time controller behavior
+**Continuous-to-discrete controller conversion**
+- Discrete implementation must preserve continuous-time behavior  
+- Solution: used Tustin transform for stable and accurate discretization  
 
-**Sensor placement accuracy**
-- Center placement avoided wall-induced thermal bias
+**Measurement accuracy**
+- Temperature readings near enclosure walls introduce bias  
+- Solution: suspended sensor at enclosure center for representative measurement  
 
-**Actuator constraints**
-- PWM saturation and switching logic ensured safe and stable operation
-
----
-
-## Results
-
-- Successfully deployed physics-based controller on embedded hardware
-- Demonstrated stable closed-loop temperature regulation
-- Validated continuous-to-discrete control design workflow
-- Established reproducible embedded controls architecture
+**Actuator limitations**
+- Peltier modules require bounded actuation to avoid instability  
+- Solution: implemented PWM saturation and switching logic  
 
 ---
 
 ## Technical Stack
 
-- Control theory (continuous and discrete-time systems)
-- Tustin transform discretization
-- Embedded C++ (Arduino)
-- PWM motor control
-- Thermal system modeling
-- TMP117 sensor integration
+**Control theory**
+- Continuous-time control systems  
+- Discrete-time control systems  
+- Tustin transform discretization  
+
+**Embedded systems**
+- Arduino Mega (C++ embedded implementation)  
+- Real-time discrete control loop  
+
+**Hardware integration**
+- Peltier thermoelectric modules  
+- PWM H-bridge motor driver  
+- TMP117 precision temperature sensor  
+
+**System modeling and validation**
+- Thermal system modeling  
+- Frequency-domain and time-domain analysis  
 
 ---
 
 ## Future Improvements
 
-- Multi-point temperature sensing for spatial validation
-- Automated performance logging and analysis
-- Comparative evaluation against PID control
-- Improved actuator thermal monitoring
+- Add multiple temperature sensors for spatial thermal analysis  
+- Implement automated performance logging and controller evaluation  
+- Compare controller performance against PID-based implementation  
+- Add actuator thermal monitoring and protection mechanisms  
