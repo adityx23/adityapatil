@@ -9,134 +9,67 @@ title: SLAM-Based Autonomous Navigation Robot
 <strong>Type:</strong> Autonomous Mobile Robot (ROS2)<br>
 <strong>Focus:</strong> SLAM, localization, navigation, sensor integration, embedded motor control<br>
 <strong>Platform:</strong> ROS2, Nav2, Cartographer, robot_localization, Raspberry Pi 4B, ESP32<br>
-<strong>Outcome:</strong> Integrated full autonomy pipeline and validated end-to-end behavior in Gazebo prior to hardware deployment
+<strong>Outcome:</strong> Full autonomy pipeline integrated and validated end-to-end in Gazebo prior to hardware deployment
 </div>
 
 <div class="project-links" markdown="0">
   <a class="btn" href="{{ site.baseurl }}/projects">← Back to Projects</a>
-  <a class="btn" href="{{ site.baseurl }}/assets/slam/slam_system_architecture.png">System Architecture</a>
 </div>
 
+---
+
 ## Overview
-Designed and integrated a ROS2-based autonomous mobile robot capable of indoor mapping and navigation using LiDAR and IMU sensor fusion. The project involved full-stack robotics development spanning mechanical design, embedded motor control, sensor integration, simulation validation, and autonomy pipeline implementation.
+
+A full-stack ROS2 autonomous mobile robot capable of indoor mapping and navigation using LiDAR and IMU sensor fusion — spanning embedded motor control, state estimation, SLAM, and autonomous exploration.
 
 **Key contributions**
-- Built full autonomy pipeline: SLAM → state estimation → planning → motor execution  
-- Integrated LiDAR, IMU, and encoder feedback into ROS2 navigation stack  
-- Designed and fabricated custom TurtleBot3-inspired robot chassis adapted to available hardware  
-- Validated the navigation pipeline in Gazebo using a simulation-first workflow  
+- Full autonomy pipeline: SLAM → state estimation → planning → motor execution
+- EKF-based sensor fusion of IMU and wheel odometry via `robot_localization`
+- Custom TurtleBot3-inspired chassis redesigned for non-proprietary components
+- Simulation-first validation in Gazebo before hardware deployment
 
 ---
 
-## Autonomy Software Architecture
+## System Architecture
 
 <p align="center">
-  <img src="{{ site.baseurl }}/assets/slam/slam_system_architecture.png" alt="SLAM System Architecture" width="850">
+  <img src="{{ site.baseurl }}/assets/slam/slam_robot_system_architecture.svg"
+       alt="SLAM Robot System Architecture"
+       width="100%"
+       style="max-width: 860px;">
 </p>
 <p align="center">
-  <em>Distributed autonomy architecture with ROS2 on Raspberry Pi and deterministic low-level motor control on ESP32.</em>
+  <em>Distributed autonomy architecture — ROS2 stack on Raspberry Pi 4B with deterministic motor control offloaded to ESP32.</em>
 </p>
 
-**Core data flow**
-- `/scan` (LiDAR) + `/imu/data` (IMU) provide sensor inputs  
-- Cartographer generates map and pose estimate  
-- `robot_localization` EKF fuses IMU + encoder odometry into `/odom`  
-- Nav2 computes `/cmd_vel` commands  
-- ESP32 executes closed-loop motor control and publishes encoder-based odometry  
+LiDAR scans feed Cartographer for occupancy mapping; IMU and encoder odometry are fused by the EKF into `/odom`. Nav2 computes `/cmd_vel` commands, which the ESP32 executes as closed-loop PWM motor control, with encoder feedback looping back into the EKF.
 
 ---
 
-## Hardware Platform
-**Compute and control**
-- Raspberry Pi 4B (Ubuntu 22.04, ROS2)
-- ESP32 used as dedicated real-time motor controller
+## Hardware
 
-**Sensors**
-- YDLiDAR X2 (360° 2D LiDAR)
-- BNO055 IMU
-
-**Actuation**
-- 2 × 500 RPM DC encoder motors
-- Cytron MD10C motor drivers
-
-**Mechanical design**
-- Custom 3D-printed chassis inspired by TurtleBot3 Waffle geometry  
-- Redesigned plates to accommodate non-proprietary components  
-- Modular mounting using standoffs for maintainability and sensor alignment  
+| Component | Role |
+|---|---|
+| Raspberry Pi 4B (Ubuntu 22.04) | Main compute — all ROS2 nodes |
+| ESP32 | Real-time motor controller |
+| YDLiDAR X2 | 360° 2D scan |
+| BNO055 IMU | Angular velocity + orientation |
+| 2× 500 RPM DC encoder motors | Actuation + odometry source |
+| Cytron MD10C | H-bridge PWM driver |
+| Custom 3D-printed chassis | TurtleBot3 Waffle-inspired, redesigned for available parts |
 
 ---
 
-## Autonomy Pipeline Implementation
-### SLAM
-- Configured Cartographer SLAM using LiDAR scans for occupancy grid mapping and pose estimation  
+## Key Engineering Decisions
 
-### State estimation
-- Used `robot_localization` EKF to fuse IMU and wheel odometry, emphasizing IMU-informed state estimation  
+**Offloading motor control to ESP32** — dedicating the ESP32 to closed-loop actuation freed up Raspberry Pi headroom for SLAM and Nav2.
 
-### Navigation
-- Integrated Nav2 for planning and execution using velocity commands  
-- Implemented basic frontier exploration for autonomous map coverage  
+**`robot_localization` over AMCL** — weights IMU estimation more heavily, reserving LiDAR primarily for mapping.
 
-### Motor execution
-- ESP32 executed low-level closed-loop motor control using encoder feedback  
-- Offloaded actuation to improve determinism and reduce computational load on the Raspberry Pi  
-
----
-
-## Simulation and System Validation
-Simulation-first development used TurtleBot3 Gazebo environment to reduce hardware risk and accelerate iteration.
-
-**Validation approach**
-1. Validate sensor drivers and ROS2 topic publishing  
-2. Verify TF tree consistency (`map → odom → base_link`)  
-3. Validate SLAM and localization independently  
-4. Integrate Nav2 planning and execution  
-5. Validate exploration behavior (frontier selection + navigation)  
-
----
-
-## Engineering Challenges and Solutions
-**Compute limitations (Raspberry Pi 4B)**
-- Running SLAM + navigation pushed CPU limits  
-- Mitigation: offloaded motor control to ESP32 and optimized node execution / update rates  
-
-**Driver compatibility (Ubuntu 22.04 + ROS2)**
-- LiDAR and IMU SDKs required rebuilds and adaptation  
-- Resolved dependency conflicts and ensured stable data publishing  
-
-**Localization architecture selection**
-- Evaluated AMCL vs `robot_localization`  
-- Selected `robot_localization` to emphasize IMU-driven estimation and use LiDAR primarily for mapping/navigation  
-
-**Mechanical constraints**
-- Proprietary TurtleBot3 parts unavailable  
-- Redesigned chassis plates to fit available components while maintaining rigidity and sensor alignment  
-
-**Frontier exploration**
-- Implemented frontier detection and goal selection logic  
-- Tuned behavior to reduce redundant exploration and unstable navigation loops  
-
----
-
-## Results
-- Built a reproducible autonomy architecture integrating sensing, estimation, planning, and embedded actuation  
-- Achieved stable SLAM + navigation behavior in simulation  
-- Demonstrated autonomous frontier-based exploration workflow and staged integration methodology  
+**Custom chassis** — TurtleBot3 plates redesigned in CAD to fit available hardware while preserving sensor alignment.
 
 ---
 
 ## Technical Stack
-- ROS2, Nav2, Cartographer, robot_localization (EKF)
-- Gazebo (TurtleBot3 simulation environment)
-- Raspberry Pi 4B, ESP32
-- YDLiDAR X2, BNO055 IMU
-- Encoder-based motor control + odometry
-- Custom 3D-printed chassis design
 
----
-
-## Future Improvements
-- Quantitative evaluation of localization drift and path tracking error  
-- Improve exploration efficiency and recovery behaviors  
-- Improve sensor calibration and time synchronization  
-- Extend architecture to multi-robot mapping / coordination  
+ROS2 · Nav2 · Cartographer · robot_localization (EKF) · Gazebo · Raspberry Pi 4B · ESP32 · YDLiDAR X2 · BNO055 IMU · Cytron MD10C · Python · C++
