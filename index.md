@@ -36,6 +36,7 @@ title: Aditya Patil
 <div class="card" markdown="1">
 ## Featured Projects
 
+- [Stereo Visual-Inertial SLAM]({{ site.baseurl }}/projects/lk-stereo-visual-slam)
 - [Closed-Loop Temperature Control (Peltier + TMP117)]({{ site.baseurl }}/projects/thermostat-closed-loop-control)
 - [MuJoCo-Based Robotic Manipulator Simulation (UR10e)]({{ site.baseurl }}/projects/mujoco-manipulator)
 
