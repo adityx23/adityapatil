@@ -5,9 +5,20 @@ title: Projects
 
 # Projects
 
-A curated set of robotics projects spanning **simulation**, **embedded control**, and **perception-driven autonomy**.
+A curated set of robotics projects spanning **perception**, **simulation**, and **embedded control**, with a focus on building complete systems from estimation and planning to real-time deployment.
 
 <div class="project-grid">
+
+  <div class="project-card">
+    <img src="{{ site.baseurl }}/assets/lk_slam/slam_result_final.png" alt="Stereo Visual-Inertial SLAM preview">
+    <div class="project-card-body">
+      <div class="project-card-title">Stereo Visual-Inertial SLAM</div>
+      <div class="project-card-desc">
+        Built a stereo visual-inertial SLAM system on EuRoC MAV using LK tracking, IMU fusion, bundle adjustment, loop closure, and sparse 3D mapping.
+      </div>
+      <a class="btn" href="{{ site.baseurl }}/projects/lk-stereo-visual-slam">View Project →</a>
+    </div>
+  </div>
 
   <div class="project-card">
     <img src="{{ site.baseurl }}/assets/thermostat/thermostat_build.jpg" alt="Thermostat project preview">
@@ -39,6 +50,5 @@ A curated set of robotics projects spanning **simulation**, **embedded control**
 
 Additional perception and navigation projects currently being prepared for the site:
 
-- LK-Based Stereo Visual SLAM
 - ORB-Based Vision Navigation
 - Vision-Language-Action Navigation Evaluation
