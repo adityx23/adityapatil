@@ -10,7 +10,7 @@ A curated set of robotics projects spanning **perception**, **simulation**, and 
 <div class="project-grid">
 
   <div class="project-card">
-    <img src="{{ site.baseurl }}/assets/lk_slam/slam_result_final.png" alt="Stereo Visual-Inertial SLAM preview">
+    <img src="{{ site.baseurl }}/assets/lk_slam/slam_final_result.png" alt="Stereo Visual-Inertial SLAM preview">
     <div class="project-card-body">
       <div class="project-card-title">Stereo Visual-Inertial SLAM</div>
       <div class="project-card-desc">
