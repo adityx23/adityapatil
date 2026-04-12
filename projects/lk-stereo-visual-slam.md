@@ -23,7 +23,7 @@ Built a stereo visual-inertial SLAM pipeline on the EuRoC MAV dataset, starting 
 The goal was to move beyond a baseline visual odometry pipeline and progressively improve trajectory quality using backend optimization and visual-inertial fusion. The final system combined stereo tracking, PnP-based motion estimation, IMU-informed pose refinement, bundle adjustment, and graph-based loop closure.
 
 <p align="center">
-  <img src="{{ site.baseurl }}/assets/lk_slam/slam_result_final.png" alt="Final SLAM result summary" width="900">
+  <img src="{{ site.baseurl }}/assets/lk_slam/slam_final_result.png" alt="Final SLAM result summary" width="900">
 </p>
 <p align="center">
   <em>Final result summary showing trajectory alignment, error trends, and visual-inertial performance improvement.</em>
@@ -118,7 +118,7 @@ The baseline VO pipeline worked, but showed clear drift and accumulated trajecto
 To improve rotational stability and overall trajectory consistency, IMU information was incorporated into the pipeline. This significantly improved alignment with ground truth and reduced drift relative to the baseline visual-only estimate.
 
 <p align="center">
-  <img src="{{ site.baseurl }}/assets/lk_slam/slam_result_tight_coupling_ate.png" alt="Tight coupling improvement and ATE comparison" width="900">
+  <img src="{{ site.baseurl }}/assets/lk_slam/final_trajectory_vs_ground_truth.png" alt="Tight coupling improvement and ATE comparison" width="900">
 </p>
 <p align="center">
   <em>IMU-assisted visual estimation reduced trajectory error significantly compared to the original visual-only baseline.</em>
