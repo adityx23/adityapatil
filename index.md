@@ -39,6 +39,7 @@ title: Aditya Patil
 ## Featured Projects
 
 - [Stereo Visual-Inertial SLAM]({{ site.baseurl }}/projects/lk-stereo-visual-slam)
+- [SmolVLA Evaluation for Language-Conditioned Robot Action Prediction]({{ site.baseurl }}/projects/smolvla-action-prediction)
 - [Closed-Loop Temperature Control (Peltier + TMP117)]({{ site.baseurl }}/projects/thermostat-closed-loop-control)
 - [MuJoCo-Based Robotic Manipulator Simulation (UR10e)]({{ site.baseurl }}/projects/mujoco-manipulator)
 
