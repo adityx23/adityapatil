@@ -9,9 +9,8 @@ title: Aditya Patil
   <p class="hero-sub">
     Robotics &amp; Mechatronics graduate student at NYU Tandon focused on
     <strong>autonomous systems</strong>, <strong>controls</strong>, and <strong>simulation-to-hardware deployment</strong>.
-    I build end-to-end robotic systems spanning <strong>state estimation</strong>, <strong>navigation</strong>, and
-    <strong>embedded actuation</strong>—from MuJoCo manipulation/control studies to visual SLAM, vision-based navigation,
-    and real-time closed-loop controllers on embedded hardware.
+    I build end-to-end robotic systems spanning <strong>state estimation</strong>, <strong>robot learning</strong>, and
+    <strong>embedded actuation</strong>—from visual-inertial SLAM and learned control policies to real-time closed-loop hardware.
   </p>
 
   <div class="hero-links">
@@ -26,20 +25,22 @@ title: Aditya Patil
 <div class="card" markdown="1">
 ## Highlights (Selected Work)
 
-- **Visual SLAM and Navigation Projects:** Recent work includes LK-based stereo visual SLAM, ORB-based visual navigation, and vision-language-action policy evaluation for perception-driven robot behavior.
- 
-- **SmolVLA Evaluation for Language-Conditioned Robot Action Prediction:** Evaluated a pretrained vision-language-action model on real robot drawer manipulation and analyzed action separation, temporal consistency, and instruction sensitivity.
+- **Stereo Visual-Inertial SLAM:** Built a stereo visual-inertial SLAM system on EuRoC MAV with LK tracking, IMU fusion, bundle adjustment, loop closure, and sparse 3D mapping.
 
-- **Closed-Loop Temperature Control (Peltier + TMP117):** Designed a continuous-time compensator, discretized it via the Tustin transform (500 ms loop), and deployed a memory-based difference-equation controller on an Arduino Mega driving PWM actuation through an H-bridge.
+- **Diffusion Policy for Robot Control — PushT Task Analysis:** Evaluated a pretrained diffusion-based control policy across 30 rollouts and analyzed success rate, efficiency, and structured failure behavior.
+
+- **SmolVLA for Language-Conditioned Robot Action Prediction:** Applied a pretrained vision-language-action model to real robot drawer manipulation and analyzed language grounding, action consistency, and temporal behavior.
+
+- **Closed-Loop Temperature Control (Peltier + TMP117):** Designed a continuous-time compensator, discretized it via the Tustin transform, and deployed a memory-based difference-equation controller on Arduino Mega driving PWM actuation through an H-bridge.
 
 - **MuJoCo-Based Robotic Manipulator Simulation (UR10e):** Compared FK vs IK control under position vs velocity command interfaces and analyzed stability, convergence, and task-space trajectory behavior in physics-based simulation.
-
 </div>
 
 <div class="card" markdown="1">
 ## Featured Projects
 
 - [Stereo Visual-Inertial SLAM]({{ site.baseurl }}/projects/lk-stereo-visual-slam)
+- [Diffusion Policy for Robot Control — PushT Task Analysis]({{ site.baseurl }}/projects/diffusion-policy-pusht)
 - [SmolVLA for Language-Conditioned Robot Action Prediction]({{ site.baseurl }}/projects/smolvla-action-prediction)
 - [Closed-Loop Temperature Control (Peltier + TMP117)]({{ site.baseurl }}/projects/thermostat-closed-loop-control)
 - [MuJoCo-Based Robotic Manipulator Simulation (UR10e)]({{ site.baseurl }}/projects/mujoco-manipulator)
@@ -49,6 +50,6 @@ title: Aditya Patil
 <div class="card" markdown="1">
 ## What I’m Looking For
 
-I’m actively applying for **Robotics / Autonomy / Controls** internships where I can contribute to
-perception, estimation, simulation, control, and embedded robotic system integration.
+I’m actively applying for **Robotics / Autonomy / Controls / Robot Learning** internships where I can contribute to
+perception, estimation, learned control, simulation, and embedded robotic system integration.
 </div>
