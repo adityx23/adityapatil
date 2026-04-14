@@ -50,19 +50,6 @@ The evaluation used **BridgeV2**, a dataset of real **WidowX** robot manipulatio
 
 ---
 
-## Task Context
-
-The evaluation was built around drawer manipulation because it provides a clean test of language grounding: opening and closing require opposite motion directions while keeping most of the scene visually similar.
-
-<p align="center">
-  <img src="{{ site.baseurl }}/assets/smolvla/smolvla_dataset_examples.png" alt="BridgeV2 drawer task examples" width="950">
-</p>
-<p align="center">
-  <em>Representative BridgeV2 drawer manipulation frames used for instruction-conditioned action prediction.</em>
-</p>
-
----
-
 ## Evaluation Focus
 
 The project evaluated four main questions:
