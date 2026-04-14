@@ -43,7 +43,7 @@ A curated set of robotics projects spanning **perception**, **simulation**, and 
   </div>
 
 <div class="project-card">
-  <img src="{{ site.baseurl }}/assets/smolvla/smolvla_evaluation.png" alt="SmolVLA evaluation preview">
+  <img src="{{ site.baseurl }}/assets/smolvla/smolvla_dataset_examples.png" alt="SmolVLA BridgeV2 drawer manipulation preview">
   <div class="project-card-body">
     <div class="project-card-title">SmolVLA Evaluation for Language-Conditioned Robot Action Prediction</div>
     <div class="project-card-desc">
