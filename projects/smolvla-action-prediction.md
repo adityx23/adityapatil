@@ -1,15 +1,15 @@
 ---
 layout: default
-title: SmolVLA Evaluation for Language-Conditioned Robot Action Prediction
+title: SmolVLA for Language-Conditioned Robot Action Prediction
 ---
 
-# SmolVLA Evaluation for Language-Conditioned Robot Action Prediction
+# SmolVLA for Language-Conditioned Robot Action Prediction
 
 <div class="project-summary">
-<strong>Type:</strong> Robot Learning / Vision-Language-Action Evaluation<br>
+<strong>Type:</strong> Robot Learning / Vision-Language-Action<br>
 <strong>Focus:</strong> Language grounding, action consistency, instruction sensitivity, temporal behavior<br>
 <strong>Platform:</strong> Python, Transformers, LeRobot, SmolVLA-450M, BridgeV2<br>
-<strong>Outcome:</strong> Evaluated a pretrained VLA model on real robot drawer manipulation and quantified action separation, temporal consistency, and instruction-conditioned behavior
+<strong>Outcome:</strong> Analyzed a pretrained VLA model on real robot drawer manipulation and quantified action separation, temporal consistency, and instruction-conditioned behavior
 </div>
 
 <div class="project-links" markdown="0">
@@ -18,22 +18,15 @@ title: SmolVLA Evaluation for Language-Conditioned Robot Action Prediction
 
 ## Overview
 
-Evaluated **SmolVLA-450M**, a pretrained vision-language-action model, on **BridgeV2** real robot manipulation trajectories to study how language instructions influence predicted actions in drawer opening and closing tasks.
+Applied **SmolVLA-450M**, a pretrained vision-language-action model, to **BridgeV2** real robot manipulation trajectories to study how language instructions influence predicted actions in drawer opening and closing tasks.
 
-The project focused on whether the model produced physically meaningful action differences across instructions, how consistent its predictions were across similar episodes, and how its action uncertainty changed over time during a manipulation sequence.
-
-<p align="center">
-  <img src="{{ site.baseurl }}/assets/smolvla/smolvla_evaluation.png" alt="SmolVLA evaluation results" width="900">
-</p>
-<p align="center">
-  <em>Evaluation summary showing action separation between open and close tasks, consistency across episodes, and instruction-conditioned action variation.</em>
-</p>
+The project focused on whether the model produced physically meaningful action differences across instructions, how consistent its predicted actions were across similar episodes, and how its temporal behavior evolved during a manipulation sequence.
 
 ---
 
 ## Dataset and Model Setup
 
-The evaluation used **BridgeV2**, a dataset of real **WidowX** robot manipulation demonstrations from UC Berkeley RAIL. The selected task was **drawer open / close** manipulation.
+The project uses **BridgeV2**, a dataset of real **WidowX** robot manipulation demonstrations from UC Berkeley RAIL, focusing on **drawer open / close** tasks.
 
 ### Dataset
 - 8 episodes total
@@ -50,9 +43,9 @@ The evaluation used **BridgeV2**, a dataset of real **WidowX** robot manipulatio
 
 ---
 
-## Evaluation Focus
+## Analysis Focus
 
-The project evaluated four main questions:
+The project explored four key questions:
 
 - Does the model separate **open** vs **close** actions in a physically meaningful way?
 - Are action predictions consistent across multiple episodes of the same task?
@@ -77,7 +70,7 @@ Additional separation was observed in:
 - `dz`
 - `grip`
 
-These dimensions further indicated that the model was not outputting generic actions, but responding meaningfully to task direction.
+These results show that the model is not producing generic actions, but adapting its outputs to task direction.
 
 ---
 
@@ -87,15 +80,15 @@ Across the 7 open-drawer episodes, the model showed varying consistency across a
 
 - **dpitch** was the most consistent dimension
 - **grip** was the most variable
-- translational components showed moderate variation depending on trajectory and object approach
+- translational components showed moderate variation depending on trajectory
 
-Instruction sensitivity analysis showed that the model produced distinct predicted action distributions for different instructions on the **same image**, indicating genuine language conditioning rather than purely visual imitation.
+Instruction sensitivity analysis showed that the model produced distinct predicted action distributions for different instructions on the **same image**, indicating genuine language conditioning.
 
 <p align="center">
   <img src="{{ site.baseurl }}/assets/smolvla/smolvla_deep_evaluation.png" alt="SmolVLA deep evaluation" width="900">
 </p>
 <p align="center">
-  <em>Deeper evaluation showing action consistency, instruction sensitivity, and separation across multiple language prompts.</em>
+  <em>Action consistency and instruction sensitivity across multiple language prompts.</em>
 </p>
 
 ### Key findings
@@ -107,21 +100,21 @@ Instruction sensitivity analysis showed that the model produced distinct predict
 
 ## Temporal Behavior Analysis
 
-Temporal analysis showed that model behavior was not static across an episode.
+Temporal analysis showed that model behavior evolved across an episode rather than remaining static.
 
 Key observations:
 - action standard deviation increased over time
 - the model appeared more certain in early frames
 - cumulative motion for **close** episodes was higher than for **open**
-- `dy` separation remained consistent across the full 10-frame window
+- `dy` separation remained consistent across all frames
 
-This suggests that SmolVLA maintained task-dependent action structure across time rather than only in the initial frame.
+This indicates that the model maintains task-specific structure throughout the sequence.
 
 <p align="center">
   <img src="{{ site.baseurl }}/assets/smolvla/smolvla_temporal_consistency.png" alt="SmolVLA temporal consistency" width="900">
 </p>
 <p align="center">
-  <em>Temporal consistency analysis showing frame-wise action behavior, variance trends, and cumulative motion differences across episodes.</em>
+  <em>Temporal trends in action predictions, variance, and cumulative motion.</em>
 </p>
 
 ---
@@ -140,8 +133,8 @@ This suggests that SmolVLA maintained task-dependent action structure across tim
 The results suggest that the pretrained SmolVLA policy:
 - captures meaningful task-direction differences
 - is sensitive to instruction semantics
-- shows structured temporal behavior across episodes
-- produces action distributions consistent with real manipulation geometry
+- exhibits structured temporal behavior
+- produces physically consistent action distributions
 
 ---
 
@@ -159,17 +152,17 @@ The results suggest that the pretrained SmolVLA policy:
 
 ## Engineering Insights
 
-- pretrained VLA policies can show meaningful language grounding even without task-specific retraining
-- action-space analysis is a useful way to evaluate language-conditioned robot behavior
-- temporal consistency reveals confidence trends that single-frame evaluation can miss
-- real manipulation tasks like drawer opening/closing are effective for testing whether action predictions match physical task structure
+- pretrained VLA models can demonstrate meaningful language grounding without task-specific retraining
+- action-space analysis is effective for evaluating robot policy behavior
+- temporal analysis reveals confidence trends that single-frame evaluation cannot capture
+- simple tasks like drawer manipulation are powerful probes for physical correctness
 
 ---
 
 ## Future Improvements
 
-- evaluate on more BridgeV2 task categories beyond drawer manipulation
-- compare SmolVLA predictions against additional VLA baselines
-- extend from action prediction analysis to rollout-level policy execution
-- test robustness under visually similar but semantically conflicting instructions
-- analyze attention or representation behavior alongside action outputs
+- evaluate additional BridgeV2 task categories
+- compare against other VLA models
+- extend from analysis to rollout-based policy evaluation
+- test robustness under ambiguous or conflicting instructions
+- analyze internal representations and attention behavior
