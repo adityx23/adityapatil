@@ -5,7 +5,7 @@ title: Projects
 
 # Projects
 
-A curated set of robotics projects spanning **perception**, **simulation**, and **embedded control**, with a focus on building complete systems from estimation and planning to real-time deployment.
+A curated set of robotics projects spanning **perception**, **robot learning**, **simulation**, and **embedded control**, with a focus on building complete systems from estimation and policy analysis to real-time deployment.
 
 <div class="project-grid">
 
@@ -17,6 +17,28 @@ A curated set of robotics projects spanning **perception**, **simulation**, and 
         Built a stereo visual-inertial SLAM system on EuRoC MAV using LK tracking, IMU fusion, bundle adjustment, loop closure, and sparse 3D mapping.
       </div>
       <a class="btn" href="{{ site.baseurl }}/projects/lk-stereo-visual-slam">View Project →</a>
+    </div>
+  </div>
+
+  <div class="project-card">
+    <img src="{{ site.baseurl }}/assets/diffusion_policy/diffusion_policy_results.png" alt="Diffusion policy PushT preview">
+    <div class="project-card-body">
+      <div class="project-card-title">Diffusion Policy for Robot Control — PushT Task Analysis</div>
+      <div class="project-card-desc">
+        Evaluated a pretrained diffusion-based control policy on the PushT task, analyzing success rate, trajectory efficiency, and failure behavior across multiple rollouts.
+      </div>
+      <a class="btn" href="{{ site.baseurl }}/projects/diffusion-policy-pusht">View Project →</a>
+    </div>
+  </div>
+
+  <div class="project-card">
+    <img src="{{ site.baseurl }}/assets/smolvla/smolvla_dataset_examples.png" alt="SmolVLA BridgeV2 drawer manipulation preview">
+    <div class="project-card-body">
+      <div class="project-card-title">SmolVLA for Language-Conditioned Robot Action Prediction</div>
+      <div class="project-card-desc">
+        Applied a pretrained 450M vision-language-action model to BridgeV2 drawer manipulation and analyzed language grounding, action consistency, and temporal behavior.
+      </div>
+      <a class="btn" href="{{ site.baseurl }}/projects/smolvla-action-prediction">View Project →</a>
     </div>
   </div>
 
@@ -42,17 +64,4 @@ A curated set of robotics projects spanning **perception**, **simulation**, and 
     </div>
   </div>
 
-<div class="project-card">
-  <img src="{{ site.baseurl }}/assets/smolvla/smolvla_dataset_examples.png" alt="SmolVLA BridgeV2 drawer manipulation preview">
-  <div class="project-card-body">
-    <div class="project-card-title">SmolVLA for Language-Conditioned Robot Action Prediction</div>
-    <div class="project-card-desc">
-      Applied a pretrained 450M vision-language-action model to BridgeV2 drawer manipulation and analyzed language grounding, action consistency, and temporal behavior.
-    </div>
-    <a class="btn" href="{{ site.baseurl }}/projects/smolvla-action-prediction">View Project →</a>
-  </div>
 </div>
-
-</div>
-
-<hr>
