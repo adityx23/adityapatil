@@ -26,13 +26,14 @@ title: Aditya Patil
 <div class="card" markdown="1">
 ## Highlights (Selected Work)
 
+- **Visual SLAM and Navigation Projects:** Recent work includes LK-based stereo visual SLAM, ORB-based visual navigation, and vision-language-action policy evaluation for perception-driven robot behavior.
+ 
+- **SmolVLA Evaluation for Language-Conditioned Robot Action Prediction:** Evaluated a pretrained vision-language-action model on real robot drawer manipulation and analyzed action separation, temporal consistency, and instruction sensitivity.
+
 - **Closed-Loop Temperature Control (Peltier + TMP117):** Designed a continuous-time compensator, discretized it via the Tustin transform (500 ms loop), and deployed a memory-based difference-equation controller on an Arduino Mega driving PWM actuation through an H-bridge.
 
 - **MuJoCo-Based Robotic Manipulator Simulation (UR10e):** Compared FK vs IK control under position vs velocity command interfaces and analyzed stability, convergence, and task-space trajectory behavior in physics-based simulation.
 
-- **Visual SLAM and Navigation Projects:** Recent work includes LK-based stereo visual SLAM, ORB-based visual navigation, and vision-language-action policy evaluation for perception-driven robot behavior.
-
-- **SmolVLA Evaluation for Language-Conditioned Robot Action Prediction:** Evaluated a pretrained vision-language-action model on real robot drawer manipulation and analyzed action separation, temporal consistency, and instruction sensitivity.
 </div>
 
 <div class="card" markdown="1">
