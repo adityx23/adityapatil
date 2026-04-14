@@ -31,6 +31,8 @@ title: Aditya Patil
 - **MuJoCo-Based Robotic Manipulator Simulation (UR10e):** Compared FK vs IK control under position vs velocity command interfaces and analyzed stability, convergence, and task-space trajectory behavior in physics-based simulation.
 
 - **Visual SLAM and Navigation Projects:** Recent work includes LK-based stereo visual SLAM, ORB-based visual navigation, and vision-language-action policy evaluation for perception-driven robot behavior.
+
+- - **SmolVLA Evaluation for Language-Conditioned Robot Action Prediction:** Evaluated a pretrained vision-language-action model on real robot drawer manipulation and analyzed action separation, temporal consistency, and instruction sensitivity.
 </div>
 
 <div class="card" markdown="1">
