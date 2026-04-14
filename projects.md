@@ -56,10 +56,3 @@ A curated set of robotics projects spanning **perception**, **simulation**, and 
 </div>
 
 <hr>
-
-## Upcoming Additions
-
-Additional perception and navigation projects currently being prepared for the site:
-
-- ORB-Based Vision Navigation
-- Vision-Language-Action Navigation Evaluation
