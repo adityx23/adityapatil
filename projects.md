@@ -42,6 +42,17 @@ A curated set of robotics projects spanning **perception**, **simulation**, and 
     </div>
   </div>
 
+<div class="project-card">
+  <img src="{{ site.baseurl }}/assets/smolvla/smolvla_evaluation.png" alt="SmolVLA evaluation preview">
+  <div class="project-card-body">
+    <div class="project-card-title">SmolVLA Evaluation for Language-Conditioned Robot Action Prediction</div>
+    <div class="project-card-desc">
+      Evaluated a pretrained 450M vision-language-action model on BridgeV2 drawer manipulation to study language grounding, action consistency, and temporal behavior.
+    </div>
+    <a class="btn" href="{{ site.baseurl }}/projects/smolvla-action-prediction">View Project →</a>
+  </div>
+</div>
+
 </div>
 
 <hr>
