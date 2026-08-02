@@ -7,9 +7,9 @@ title: Embedded ECU-Style Automatic Transmission Controller
 
 <div class="project-summary">
 <strong>Type:</strong> Embedded Drivetrain Control + Mechatronic System Integration<br>
-<strong>Focus:</strong> Concurrent sensing, automatic shift logic, encoder-based actuation, performance analysis<br>
-<strong>Platform:</strong> Parallax Propeller Activity Board, Propeller C, external ADC, Python, Jupyter<br>
-<strong>Outcome:</strong> Integrated a three-speed drivetrain test platform that measures two RPM channels and motor current, executes automatic shifts, and evaluates motor performance across operating conditions
+<strong>Focus:</strong> Concurrent sensing, gear selection, encoder-based actuation, experimental performance analysis<br>
+<strong>Platform:</strong> 24 V / 250 W DC motor, custom transmission, Parallax Propeller, Propeller C, Python<br>
+<strong>Outcome:</strong> Integrated and evaluated a three-speed drivetrain with 75:1, 45:1, and 37.5:1 total reductions across multiple loads
 </div>
 
 <div class="project-links" markdown="0">
@@ -19,17 +19,23 @@ title: Embedded ECU-Style Automatic Transmission Controller
 
 ## Overview
 
-Developed an embedded ECU-style controller for a physical drivetrain test platform. The system acquires motor RPM, output RPM, and current; applies automatic three-gear shift logic; drives a bidirectional encoder-tracked shift actuator; sweeps the operating point through a digital potentiometer; and displays live telemetry.
+Developed an embedded ECU-style controller for a physical drivetrain test platform built around a 24 V, 250 W brushed DC motor and custom 3D-printed transmission. The system acquires motor speed, output speed, current, voltage, and temperature telemetry; drives an encoder-tracked shift actuator; adjusts the operating point through a digital potentiometer; and displays system state in real time.
 
-The project combines real-time embedded control with Python analysis of motor voltage, current, speed, load, and calculated efficiency.
+The project combines real-time embedded control with approximately 33 Hz SD-card data logging and Python analysis of motor voltage, current, speed, load, transient response, and calculated efficiency.
+
+**Team 8:** Aditya Patil, Dhruv Karnik, and Mudit Adityaja
 
 **Key contributions**
 - integrated three concurrent sensing and actuation tasks on a multicore Propeller microcontroller
-- implemented thresholded pulse timing for two independent RPM channels
+- integrated dual AS5600 speed sensing, ACS712 current sensing, filtered voltage acquisition, and temperature telemetry
 - designed three-gear automatic shifting with separate upshift and downshift thresholds
 - closed the shift-position loop using motor direction and encoder ticks
 - built notebook workflows for comparing drivetrain performance and efficiency across experimental runs
-- documented the firmware, hardware interfaces, analysis dependencies, and known safety limitations in a public repository
+- documented the firmware, hardware interfaces, measured results, and known limitations in a public repository
+
+<p align="center">
+  <img src="{{ site.baseurl }}/assets/ecu/drivetrain-hardware.png" alt="Annotated top view showing the drivetrain motor, shift disks, output drum, and gear-shift actuator" width="760">
+</p>
 
 ---
 
@@ -51,7 +57,21 @@ The firmware partitions work across independent Propeller cogs:
 3. **Potentiometer task** sweeps the drivetrain operating point.
 4. **Main control loop** selects gears and refreshes the telemetry display.
 
-The external ADC receives analog motor-speed, output-speed, and current signals. The controller converts threshold crossings into RPM estimates, evaluates the active gear against calibrated thresholds, and commands a bidirectional shift motor. Encoder feedback determines when the requested gear displacement has been reached.
+The complete platform uses two AS5600 magnetic encoders for motor/output speed, an ACS712 for current, filtered voltage sensing through an ADS1115, and a thermistor for motor temperature. The Propeller coordinates sensing, display output, SD logging, digital-potentiometer commands, and a bidirectional shift motor. Encoder feedback determines when the requested gear displacement has been reached.
+
+---
+
+## Mechanical Drivetrain
+
+A fixed 45:1 primary reduction is followed by three selectable secondary stages:
+
+| Selected stage | Total reduction | Operating intent |
+|---|---:|---|
+| 0.6 | 75:1 | Highest mechanical advantage for loaded, lower-speed operation |
+| 1.0 | 45:1 | Intermediate ratio |
+| 1.2 | 37.5:1 | Highest output speed with more reflected load inertia |
+
+The interchangeable 3D-printed stages and pulley loading system make it possible to compare how ratio and external load affect acceleration, current draw, output speed, and efficiency.
 
 ---
 
@@ -75,24 +95,44 @@ The controller monitors:
 - motor-side RPM
 - output-side RPM
 - motor current
+- motor voltage
+- motor temperature
 - current gear
 - shift-motor encoder position
+- synchronized SD-card logs
 
-RPM is estimated from the time between analog threshold crossings, with separate high and low thresholds to reject repeated detections from one pulse. The live display reports both RPM values and selected gear at a fixed screen position.
+The live composite display reports drivetrain state while synchronized measurements are recorded to CSV for analysis. The archived firmware demonstrates the core RPM acquisition, encoder actuation, threshold-and-hysteresis shift logic, and display pipeline.
 
 ---
 
-## Performance and Efficiency Analysis
+## Experimental Results
 
-The analysis notebooks compare motor voltage, current, motor RPM, output RPM, load condition, and calculated system efficiency across multiple experimental logs.
+The report and notebooks compare motor voltage, current, motor RPM, output RPM, load condition, transient response, and calculated system efficiency across multiple gear configurations.
+
+### Key findings
+
+- The bare motor drew **21.28 W** at maximum no-load speed; adding the gearbox increased this to **24.37 W**, an approximately **14.5%** increase attributed to drivetrain friction.
+- The 75:1 configuration moved the motor toward higher-speed, lower-current operating regions under the tested loads.
+- Lower total reduction increased the load inertia reflected to the motor and lengthened the modeled acceleration response.
+- Efficiency-map overlays provided a data-driven basis for comparing gear operating paths; the archived firmware implements a simpler threshold-and-hysteresis controller.
+
+<p align="center">
+  <img src="{{ site.baseurl }}/assets/ecu/efficiency-map.png" alt="Multidimensional system-efficiency map with operating paths for different gear ratios and loads" width="950">
+</p>
+
+The contour map overlays measured operating paths on motor-speed and current coordinates, showing how gear ratio and load move the drivetrain through different efficiency regions.
+
+<p align="center">
+  <img src="{{ site.baseurl }}/assets/ecu/modeled-step-response.png" alt="Modeled absolute and normalized step responses for the bare motor and three drivetrain ratios" width="950">
+</p>
+
+The modeled normalized responses use characteristic times of approximately 0.70 s for 75:1, 0.85 s for 45:1, and 1.00 s for 37.5:1, illustrating the effect of reflected inertia as mechanical advantage decreases.
 
 <p align="center">
   <img src="{{ site.baseurl }}/assets/ecu/efficiency-comparison.png" alt="Comparison plots for motor voltage, current, motor RPM, output RPM, and calculated efficiency across three drivetrain runs" width="950">
 </p>
 
-The plots show how motor current rises and then levels with increasing speed, while the calculated efficiency varies across operating points and experimental conditions. These comparisons provide a basis for selecting gear and operating regions using measured drivetrain behavior instead of shift speed alone.
-
-The archived project folder did not contain the raw CSV logs referenced by the notebooks. The public repository therefore retains the notebook outputs as evidence and identifies the expected data columns, but fully regenerating the plots requires restoring those logs.
+The archived project folder did not contain the raw CSV logs referenced by the notebooks. The public repository therefore retains report figures and notebook outputs as project evidence rather than presenting the analysis as a reproducible package.
 
 ---
 
@@ -120,10 +160,14 @@ The archived project folder did not contain the raw CSV logs referenced by the n
 
 - Propeller C / SimpleIDE
 - Parallax Propeller Activity Board
-- external SPI ADC
-- analog RPM and current sensing
-- DC motor and encoder feedback
-- digital potentiometer control
+- 24 V / 250 W brushed DC motor
+- 3D-printed three-speed transmission
+- AS5600 magnetic encoders
+- ACS712 current sensing and ADS1115 voltage acquisition
+- thermistor temperature sensing
+- L298N shift-motor driver and encoder feedback
+- X9C104 digital potentiometer control
+- SD-card telemetry logging
 - multicore embedded task execution
 - Python, pandas, NumPy, Matplotlib, and SciPy
 - Jupyter notebooks

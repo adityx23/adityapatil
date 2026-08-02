@@ -21,11 +21,11 @@ A curated set of robotics projects spanning **perception**, **robot learning**, 
   </div>
 
   <div class="project-card">
-    <img src="{{ site.baseurl }}/assets/ecu/efficiency-comparison.png" alt="ECU drivetrain motor performance and efficiency plots">
+    <img src="{{ site.baseurl }}/assets/ecu/drivetrain-hardware.png" alt="Annotated three-speed ECU drivetrain test platform">
     <div class="project-card-body">
       <div class="project-card-title">Embedded ECU-Style Automatic Transmission Controller</div>
       <div class="project-card-desc">
-        Built a three-speed embedded drivetrain controller with concurrent RPM/current sensing, encoder-based shifting, hysteretic gear logic, live telemetry, and efficiency analysis.
+        Built a 24 V three-speed drivetrain test platform with concurrent sensing, encoder-based shifting, live telemetry, and data-driven efficiency analysis.
       </div>
       <a class="btn" href="{{ site.baseurl }}/projects/ecu-automatic-transmission-controller">View Project →</a>
     </div>

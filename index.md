@@ -27,7 +27,7 @@ title: Aditya Patil
 
 - **Stereo Visual-Inertial SLAM:** Built a stereo visual-inertial SLAM system on EuRoC MAV with LK tracking, IMU fusion, bundle adjustment, loop closure, and sparse 3D mapping.
 
-- **Embedded ECU-Style Automatic Transmission Controller:** Integrated concurrent RPM and current acquisition, encoder-tracked actuation, three-gear shift logic with hysteresis, live telemetry, and Python efficiency analysis on a drivetrain test platform.
+- **Embedded ECU-Style Automatic Transmission Controller:** Integrated a custom 24 V three-speed drivetrain, concurrent sensing, encoder-tracked actuation, live telemetry, and efficiency mapping across multiple gear ratios and loads.
 
 - **Diffusion Policy for Robot Control — PushT Task Analysis:** Evaluated a pretrained diffusion-based control policy across 30 rollouts and analyzed success rate, efficiency, and structured failure behavior.
 
