@@ -14,6 +14,7 @@ title: Stereo Visual-Inertial SLAM with Optimization and Loop Closure
 
 <div class="project-links" markdown="0">
   <a class="btn" href="{{ site.baseurl }}/projects">← Back to Projects</a>
+  <a class="btn" href="https://github.com/adityx23/aap-slam-orb-nomad-navigation" target="_blank" rel="noopener noreferrer">ORB + NoMaD Repository ↗</a>
 </div>
 
 ## Overview
@@ -21,6 +22,8 @@ title: Stereo Visual-Inertial SLAM with Optimization and Loop Closure
 Built a stereo visual-inertial SLAM pipeline on the EuRoC MAV dataset, starting from feature tracking and stereo geometry and extending through visual odometry, IMU-assisted estimation, local optimization, loop closure, and sparse 3D mapping.
 
 The final system combined stereo tracking, PnP-based motion estimation, IMU-informed pose refinement, bundle adjustment, and graph-based loop closure to reduce drift and improve global consistency.
+
+An additional **AAP-SLAM-ORB + NoMaD** notebook explores a related ORB-based frame-to-map frontend and converts its keyframes into a topological graph for goal-conditioned navigation. That executed run processed 3,630 EuRoC MH_01_easy frames, achieved 0.9002 m aligned SLAM ATE RMSE, and produced a graph with 244 nodes. Its recorded navigation stage used a documented lightweight NoMaD fallback, so the repository reports the navigation metrics separately from the stronger SLAM result.
 
 <p align="center">
   <img src="{{ site.baseurl }}/assets/lk_slam/slam_final_result.png" alt="Final SLAM result summary" width="900">

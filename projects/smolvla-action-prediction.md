@@ -14,6 +14,7 @@ title: SmolVLA for Language-Conditioned Robot Action Prediction
 
 <div class="project-links" markdown="0">
   <a class="btn" href="{{ site.baseurl }}/projects">← Back to Projects</a>
+  <a class="btn" href="https://github.com/adityx23/smolvla-bridgev2-action-analysis" target="_blank" rel="noopener noreferrer">GitHub Repository ↗</a>
 </div>
 
 ## Overview
@@ -56,21 +57,13 @@ The project explored four key questions:
 
 ## Open vs Close Action Separation
 
-A key result was that SmolVLA separated open and close actions most strongly along the **dy** axis.
+A key result was that SmolVLA separated the sampled open and close actions most strongly in **grip**, followed by **dz**.
 
-- **dy difference:** `0.562`
-- opening predicted negative `dy`
-- closing predicted positive `dy`
+- **grip difference:** `0.276`
+- **dz difference:** `0.166`
+- **dy difference:** `0.059`
 
-This is physically consistent with a tabletop drawer task:
-- **opening** pulls the drawer toward the robot
-- **closing** pushes it away
-
-Additional separation was observed in:
-- `dz`
-- `grip`
-
-These results show that the model is not producing generic actions, but adapting its outputs to task direction.
+These differences indicate that the model is not producing one generic action vector for both task directions. Because the evaluation includes seven open episodes but only one close episode, the comparison is exploratory rather than a balanced task benchmark.
 
 ---
 
@@ -92,8 +85,8 @@ Instruction sensitivity analysis showed that the model produced distinct predict
 </p>
 
 ### Key findings
-- mean pairwise L2 distance across instructions: **0.262**
-- max pairwise L2 distance: **0.376**
+- mean pairwise L2 distance across instructions: **0.534**
+- max pairwise L2 distance: **0.850**
 - model behavior changed meaningfully under different natural-language commands
 
 ---
@@ -103,10 +96,10 @@ Instruction sensitivity analysis showed that the model produced distinct predict
 Temporal analysis showed that model behavior evolved across an episode rather than remaining static.
 
 Key observations:
-- action standard deviation increased over time
-- the model appeared more certain in early frames
-- cumulative motion for **close** episodes was higher than for **open**
-- `dy` separation remained consistent across all frames
+- `dpitch` had the lowest mean per-frame standard deviation (`0.101`)
+- `grip` had the highest mean per-frame standard deviation (`0.274`)
+- mean cumulative motion was similar for open (`3.957`) and close (`3.925`) samples
+- action values evolved across the ten sampled frames rather than remaining constant
 
 This indicates that the model maintains task-specific structure throughout the sequence.
 
@@ -122,12 +115,13 @@ This indicates that the model maintains task-specific structure throughout the s
 ## Results Summary
 
 ### Strongest quantitative outcomes
-- **dy separation:** `0.562` between open and close
-- **mean instruction sensitivity:** `0.262` pairwise L2 distance
+- **grip separation:** `0.276` between sampled open and close actions
+- **dz separation:** `0.166`
+- **mean instruction sensitivity:** `0.534` pairwise L2 distance
 - **most consistent dimension:** `dpitch`
 - **most variable dimension:** `grip`
-- **close cumulative motion:** `7.580`
-- **open cumulative motion:** `3.623`
+- **close cumulative motion:** `3.925`
+- **open cumulative motion:** `3.957`
 
 ### Interpretation
 The results suggest that the pretrained SmolVLA policy:
