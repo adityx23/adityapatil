@@ -14,6 +14,7 @@ title: Diffusion Policy for Robot Control — PushT Task Analysis
 
 <div class="project-links" markdown="0">
   <a class="btn" href="{{ site.baseurl }}/projects">← Back to Projects</a>
+  <a class="btn" href="https://github.com/adityx23/diffusion-policy-pusht-evaluation" target="_blank" rel="noopener noreferrer">GitHub Repository ↗</a>
 </div>
 
 ## Overview
