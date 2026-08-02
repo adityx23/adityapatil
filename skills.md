@@ -1,89 +1,48 @@
 ---
 layout: default
-title: Skills
+title: Technical Skills
+description: Evidence-backed robotics skills across embedded systems, autonomy, controls, perception, simulation, and software engineering.
 ---
 
+<p class="eyebrow">Capabilities</p>
 # Technical Skills
 
-<div class="card" markdown="1">
+My strongest work sits at the interfaces between algorithms, firmware, sensors, actuators, and experimental validation. The project links below show where each capability was applied.
 
-## Robotics Software & Autonomy
-- ROS2 middleware and node-based system architecture
-- Nav2 navigation stack (planning, control, recovery behaviors)
-- SLAM using Google Cartographer
-- Sensor fusion using `robot_localization` (IMU + encoder odometry)
-- Mobile robot autonomy pipeline design and integration
-- Coordinate frame management and TF tree debugging
+<div class="skills-grid">
+  <section class="card">
+    <h2>Embedded Robotics</h2>
+    <p>Embedded C/C++, STM32, Arduino, ESP32, PWM/timers, encoders, GPIO, I²C, UART/Serial, CAN, USB CDC, SWD/ST-Link.</p>
+    <p><a href="{{ site.baseurl }}/projects/stm32-robot-control-system">Evidence: STM32 control system →</a></p>
+  </section>
 
-</div>
+  <section class="card">
+    <h2>State Estimation & SLAM</h2>
+    <p>Stereo geometry, visual odometry, PnP, IMU fusion, trajectory alignment, bundle adjustment, loop closure, sparse mapping.</p>
+    <p><a href="{{ site.baseurl }}/projects/lk-stereo-visual-slam">Evidence: visual-inertial SLAM →</a></p>
+  </section>
 
-<div class="card" markdown="1">
+  <section class="card">
+    <h2>Controls & Actuation</h2>
+    <p>Continuous/discrete control, loop shaping, Tustin discretization, PID/PD + feedforward, PWM actuation, saturation, safety interlocks.</p>
+    <p><a href="{{ site.baseurl }}/projects/thermostat-closed-loop-control">Evidence: thermal control →</a></p>
+  </section>
 
-## Simulation & Robot Modeling
-- MuJoCo physics simulation
-- Gazebo robotics simulation environment
-- Robot kinematics (Forward Kinematics and Inverse Kinematics)
-- Jacobian-based velocity control
-- Simulation-based validation prior to hardware deployment
-- Trajectory visualization and controller evaluation
+  <section class="card">
+    <h2>Robot Learning</h2>
+    <p>PyTorch, Transformers, LeRobot, diffusion policies, vision-language-action models, rollout evaluation, action-space statistics.</p>
+    <p><a href="{{ site.baseurl }}/projects/smolvla-action-prediction">Evidence: SmolVLA analysis →</a></p>
+  </section>
 
-</div>
+  <section class="card">
+    <h2>Autonomy & Simulation</h2>
+    <p>ROS2, Nav2, Cartographer, robot_localization, Gazebo, MuJoCo, UR10e kinematics, simulation-first validation.</p>
+    <p><a href="{{ site.baseurl }}/projects/slam-navigation-robot">Evidence: navigation architecture →</a></p>
+  </section>
 
-<div class="card" markdown="1">
-
-## Embedded Systems & Hardware Integration
-- Arduino Mega real-time control implementation
-- ESP32 motor control firmware development
-- PWM motor and actuator control
-- Encoder-based motor feedback integration
-- LiDAR integration (YDLiDAR X2)
-- IMU integration (BNO055, TMP117 temperature sensor)
-- Serial, I2C, and hardware-level communication protocols
-
-</div>
-
-<div class="card" markdown="1">
-
-## Control Systems Engineering
-- Continuous-time control system design
-- Discrete-time controller implementation
-- Tustin (bilinear) transform discretization
-- Closed-loop feedback control architecture
-- Stability analysis using Bode plots and step response
-- Real-time embedded control loop implementation
-
-</div>
-
-<div class="card" markdown="1">
-
-## Programming & Software Engineering
-- Python (robotics, simulation, control systems)
-- C++ and Embedded C++ (Arduino, ESP32)
-- Linux (Ubuntu 22.04 development environment)
-- Git version control
-- ROS2 package development and integration
-- Real-time data processing and control loop design
-
-</div>
-
-<div class="card" markdown="1">
-
-## Mechanical Design & Hardware Development
-- Custom robot chassis design using 3D printing
-- TurtleBot3-inspired robot mechanical architecture
-- Hardware prototyping and system assembly
-- Sensor mounting and alignment optimization
-- Thermal system design and integration
-
-</div>
-
-<div class="card" markdown="1">
-
-## Robotics Systems Engineering
-- Full-stack robotic system integration (hardware + software)
-- Simulation-to-hardware deployment workflows
-- Multi-component system debugging and validation
-- Architecture design for autonomy pipelines
-- Embedded compute constraints analysis and optimization
-
+  <section class="card">
+    <h2>Engineering Tooling</h2>
+    <p>Python, C/C++, MATLAB, Linux, Git, CMake/Ninja, Jupyter, OpenCV, NumPy, SciPy, pandas, Matplotlib.</p>
+    <p><a href="{{ site.baseurl }}/projects/ecu-automatic-transmission-controller">Evidence: embedded + analysis workflow →</a></p>
+  </section>
 </div>

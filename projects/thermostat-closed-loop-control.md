@@ -1,19 +1,20 @@
 ---
 layout: default
 title: Closed-Loop Temperature Control (Peltier + TMP117)
+description: Thermal modeling, loop-shaping controller design, Tustin discretization, and Arduino deployment for a Peltier-heated enclosure.
 ---
 
 # Closed-Loop Temperature Control (Peltier + TMP117)
 
 <div class="project-summary">
-<strong>Type:</strong> Embedded Control System + Thermal Modeling<br>
-<strong>Focus:</strong> Continuous-to-discrete control design, real-time implementation, actuation constraints<br>
-<strong>Platform:</strong> Arduino Mega, TMP117, PWM-driven Peltier modules<br>
-<strong>Outcome:</strong> Designed a continuous-time compensator, discretized it via Tustin, and deployed the resulting difference-equation controller
+  <div><strong>Role</strong><span>Controls and embedded implementation · Group 15</span></div>
+  <div><strong>Context</strong><span>NYU ROB-GY 5103 Mechatronics</span></div>
+  <div><strong>Platform</strong><span>Arduino Mega · TMP117 · Peltier heating</span></div>
+  <div><strong>Outcome</strong><span>70 °F toward 77 °F closed-loop test</span></div>
 </div>
 
 <div class="project-links" markdown="0">
-  <a class="btn" href="{{ site.baseurl }}/projects">← Back to Projects</a>
+  <a class="btn" href="{{ site.baseurl }}/projects">← All Projects</a>
   <a class="btn" href="https://github.com/adityx23/closed-loop-temperature-control-system" target="_blank" rel="noopener noreferrer">GitHub Repository ↗</a>
 </div>
 
@@ -45,7 +46,7 @@ Designed and implemented a closed-loop temperature regulation system for a custo
 - Arduino Mega executing the control loop and multiplexing two temperature displays
 
 <p align="center">
-  <img src="{{ site.baseurl }}/assets/thermostat/thermostat_build.jpg" width="750">
+  <img src="{{ site.baseurl }}/assets/thermostat/thermostat_build.jpg" alt="Completed acrylic temperature-control enclosure with Peltier modules, sensor, displays, and Arduino electronics" width="750" height="795" loading="lazy" decoding="async">
 </p>
 
 ---
@@ -54,7 +55,7 @@ Designed and implemented a closed-loop temperature regulation system for a custo
 Closed-loop feedback structure:
 
 <p align="center">
-  <img src="{{ site.baseurl }}/assets/thermostat/feedback_block_diagram.png" width="750">
+  <img src="{{ site.baseurl }}/assets/thermostat/feedback_block_diagram.png" alt="Closed-loop temperature-control block diagram" width="750" loading="lazy" decoding="async">
 </p>
 
 **Control loop**
@@ -69,7 +70,7 @@ Closed-loop feedback structure:
 Approximated the enclosure as a lumped thermal system with effective resistance and capacitance:
 
 <p align="center">
-  <img src="{{ site.baseurl }}/assets/thermostat/thermal_lumped_model.png" width="650">
+  <img src="{{ site.baseurl }}/assets/thermostat/thermal_lumped_model.png" alt="Lumped thermal resistance and capacitance model of the enclosure" width="650" loading="lazy" decoding="async">
 </p>
 
 This abstraction captures dominant thermal dynamics while remaining tractable for controller design and embedded implementation.
@@ -79,29 +80,29 @@ This abstraction captures dominant thermal dynamics while remaining tractable fo
 ## Controller Design and Discretization
 
 ### Continuous-time compensator
-\[
-C(s) = 300\frac{(s + 0.05)}{(s + 0.35)}
-\]
+<div class="equation" role="math" aria-label="C of s equals 300 times s plus 0.05 divided by s plus 0.35">
+  C(s) = 300 · (s + 0.05) / (s + 0.35)
+</div>
 
 <p align="center">
-  <img src="{{ site.baseurl }}/assets/thermostat/controller_tf.png" width="420">
+  <img src="{{ site.baseurl }}/assets/thermostat/controller_tf.png" alt="Continuous-time controller transfer function" width="420" loading="lazy" decoding="async">
 </p>
 
 ### Discretization (Tustin)
 Controller discretized using a bilinear transform with a 0.1 s design interval:
 
 <p align="center">
-  <img src="{{ site.baseurl }}/assets/thermostat/tustin_discretization.png" width="520">
+  <img src="{{ site.baseurl }}/assets/thermostat/tustin_discretization.png" alt="Tustin discretization result for the controller" width="520" loading="lazy" decoding="async">
 </p>
 
 Resulting implemented difference equation:
 
-\[
-C[k] = 0.9656\,C[k-1] + 295\,(x[k]-x[k-1])
-\]
+<div class="equation" role="math" aria-label="C at sample k equals 0.9656 times the previous C plus 295 times the change in error">
+  C[k] = 0.9656 C[k−1] + 295 (x[k] − x[k−1])
+</div>
 
 <p align="center">
-  <img src="{{ site.baseurl }}/assets/thermostat/discrete_equation.png" width="520">
+  <img src="{{ site.baseurl }}/assets/thermostat/discrete_equation.png" alt="Discrete-time controller difference equation" width="520" loading="lazy" decoding="async">
 </p>
 
 ---
@@ -114,7 +115,7 @@ Controller deployed on Arduino Mega with real-time execution:
 - Dual multiplexed displays for setpoint and measured temperature
 
 <p align="center">
-  <img src="{{ site.baseurl }}/assets/thermostat/arduino_snippet.png" width="680">
+  <img src="{{ site.baseurl }}/assets/thermostat/arduino_snippet.png" alt="Arduino implementation of the stateful controller and saturated PWM output" width="680" loading="lazy" decoding="async">
 </p>
 
 ---
@@ -123,11 +124,11 @@ Controller deployed on Arduino Mega with real-time execution:
 Validated expected closed-loop behavior using frequency and time-domain analysis:
 
 <p align="center">
-  <img src="{{ site.baseurl }}/assets/thermostat/bode_plot.png" width="720">
+  <img src="{{ site.baseurl }}/assets/thermostat/bode_plot.png" alt="Compensated open-loop Bode magnitude and phase plot" width="720" loading="lazy" decoding="async">
 </p>
 
 <p align="center">
-  <img src="{{ site.baseurl }}/assets/thermostat/step_response.png" width="720">
+  <img src="{{ site.baseurl }}/assets/thermostat/step_response.png" alt="Modeled closed-loop temperature step response" width="720" loading="lazy" decoding="async">
 </p>
 
 ---

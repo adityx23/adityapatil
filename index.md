@@ -1,58 +1,119 @@
 ---
 layout: default
 title: Aditya Patil
+description: NYU M.S. Robotics student and AI4CE researcher building embedded, autonomous, and learning-enabled robotic systems.
 ---
 
-<div class="hero" markdown="0">
-  <h1>Aditya Patil</h1>
-
+<section class="hero">
+  <p class="eyebrow">NYU M.S. Robotics · AI4CE Researcher</p>
+  <h1>Robotics systems from firmware to autonomy.</h1>
   <p class="hero-sub">
-    Robotics &amp; Mechatronics graduate student at NYU Tandon focused on
-    <strong>autonomous systems</strong>, <strong>controls</strong>, and <strong>simulation-to-hardware deployment</strong>.
-    I build end-to-end robotic systems spanning <strong>state estimation</strong>, <strong>robot learning</strong>, and
-    <strong>embedded actuation</strong>—from visual-inertial SLAM and learned control policies to real-time closed-loop hardware.
+    I build and debug complete robotic systems across <strong>embedded control</strong>,
+    <strong>state estimation</strong>, and <strong>robot learning</strong>—from STM32 bring-up and CAN-based actuation
+    to visual-inertial SLAM and language-conditioned policies.
   </p>
-
   <div class="hero-links">
-    <a class="btn" href="{{ site.baseurl }}/projects">📌 Projects</a>
-    <a class="btn" href="{{ site.baseurl }}/skills">🛠 Skills</a>
-    <a class="btn" href="{{ site.baseurl }}/resume.pdf">📄 Resume</a>
-    <a class="btn" href="mailto:aditya.a.patil2@gmail.com">✉️ Email</a>
-    <a class="btn" href="https://www.linkedin.com/in/aditya-patil-4a5735217" target="_blank" rel="noopener">🔗 LinkedIn</a>
+    <a class="btn btn-primary" href="{{ site.baseurl }}/projects">View Projects →</a>
+    <a class="btn" href="{{ site.baseurl }}/resume.pdf">Résumé</a>
+    <a class="btn" href="https://github.com/adityx23" target="_blank" rel="noopener noreferrer">GitHub</a>
+    <a class="btn" href="https://www.linkedin.com/in/aditya-patil-4a5735217" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    <a class="btn" href="mailto:aditya.a.patil2@gmail.com">Email</a>
+  </div>
+</section>
+
+<section class="metric-grid" aria-label="Selected engineering outcomes">
+  <div class="metric"><strong>0.031 m</strong><span>best reported SLAM trajectory error after optimization</span></div>
+  <div class="metric"><strong>3,630</strong><span>EuRoC frames processed in ORB frame-to-map evaluation</span></div>
+  <div class="metric"><strong>33 Hz</strong><span>embedded drivetrain telemetry logging rate</span></div>
+  <div class="metric"><strong>3 stacks</strong><span>firmware, estimation, and robot-learning depth</span></div>
+</section>
+
+<div class="section-heading">
+  <div>
+    <p class="eyebrow">Selected Work</p>
+    <h2>Systems engineering in evidence</h2>
+  </div>
+  <p>Three projects that best show hardware ownership, algorithmic depth, and end-to-end validation.</p>
+</div>
+
+<section class="featured-grid" aria-label="Featured projects">
+  <article class="project-card">
+    <a href="{{ site.baseurl }}/projects/stm32-robot-control-system">
+      <img src="{{ site.baseurl }}/assets/stm32/system-architecture.svg" alt="STM32 robot-control stack from Raspberry Pi commands to drive and steering actuation" width="1200" height="675">
+      <div class="project-card-body">
+        <div class="tag-list"><span class="tag">STM32</span><span class="tag">Embedded C</span><span class="tag">Linux</span></div>
+        <h3 class="project-card-title">STM32 MCU Bring-Up & Robot Control</h3>
+        <p class="project-card-desc">Reverse-engineered an undocumented controller, wrote safety-gated motor and servo drivers, and validated repeatable route execution.</p>
+        <span class="project-card-cta">Read case study →</span>
+      </div>
+    </a>
+  </article>
+
+  <article class="project-card">
+    <a href="{{ site.baseurl }}/projects/lk-stereo-visual-slam">
+      <img src="{{ site.baseurl }}/assets/lk_slam/slam_final_result.png" alt="Stereo visual-inertial SLAM trajectory and evaluation summary" width="2428" height="1975" loading="lazy" decoding="async">
+      <div class="project-card-body">
+        <div class="tag-list"><span class="tag">OpenCV</span><span class="tag">IMU Fusion</span><span class="tag">Optimization</span></div>
+        <h3 class="project-card-title">Stereo Visual-Inertial SLAM</h3>
+        <p class="project-card-desc">Built a full EuRoC pipeline from stereo tracking through bundle adjustment, loop closure, and sparse mapping.</p>
+        <span class="project-card-cta">Read case study →</span>
+      </div>
+    </a>
+  </article>
+
+  <article class="project-card">
+    <a href="{{ site.baseurl }}/projects/ecu-automatic-transmission-controller">
+      <img src="{{ site.baseurl }}/assets/ecu/drivetrain-hardware.png" alt="Annotated physical three-speed drivetrain and shift mechanism" width="1536" height="2040" loading="lazy" decoding="async">
+      <div class="project-card-body">
+        <div class="tag-list"><span class="tag">Embedded Control</span><span class="tag">Telemetry</span><span class="tag">Hardware</span></div>
+        <h3 class="project-card-title">Automatic Transmission Controller</h3>
+        <p class="project-card-desc">Integrated a physical 24 V drivetrain with concurrent sensing, encoder-tracked shifting, data logging, and efficiency analysis.</p>
+        <span class="project-card-cta">Read case study →</span>
+      </div>
+    </a>
+  </article>
+</section>
+
+<div class="section-heading">
+  <div>
+    <p class="eyebrow">Current Experience</p>
+    <h2>Research at NYU AI4CE</h2>
   </div>
 </div>
 
-<div class="card" markdown="1">
-## Highlights (Selected Work)
+<section class="experience-card">
+  <div>
+    <h3>Student Researcher</h3>
+    <p>AI4CE Lab · NYU</p>
+    <p>May 2026–Present</p>
+  </div>
+  <div>
+    <ul>
+      <li>Support multi-camera teleoperation dataset pipelines and Linux hardware/firmware diagnostics.</li>
+      <li>Patched a PD + feedforward-torque command path, correcting torque encoding, mode activation, and CAN frame structure for safe manipulator actuation.</li>
+      <li>Contribute to research on vision-language-action and vision-language models for a dual-arm mobile manipulator.</li>
+    </ul>
+  </div>
+</section>
 
-- **Stereo Visual-Inertial SLAM:** Built a stereo visual-inertial SLAM system on EuRoC MAV with LK tracking, IMU fusion, bundle adjustment, loop closure, and sparse 3D mapping.
-
-- **Embedded ECU-Style Automatic Transmission Controller:** Integrated a custom 24 V three-speed drivetrain, concurrent sensing, encoder-tracked actuation, live telemetry, and efficiency mapping across multiple gear ratios and loads.
-
-- **Diffusion Policy for Robot Control — PushT Task Analysis:** Evaluated a pretrained diffusion-based control policy across 30 rollouts and analyzed success rate, efficiency, and structured failure behavior.
-
-- **SmolVLA for Language-Conditioned Robot Action Prediction:** Applied a pretrained vision-language-action model to real robot drawer manipulation and analyzed language grounding, action consistency, and temporal behavior.
-
-- **Closed-Loop Temperature Control (Peltier + TMP117):** Designed a continuous-time compensator, discretized it via the Tustin transform, and deployed a memory-based difference-equation controller on Arduino Mega driving PWM actuation through an H-bridge.
-
-- **MuJoCo-Based Robotic Manipulator Simulation (UR10e):** Compared FK vs IK control under position vs velocity command interfaces and analyzed stability, convergence, and task-space trajectory behavior in physics-based simulation.
+<div class="section-heading">
+  <div>
+    <p class="eyebrow">Background</p>
+    <h2>Education and direction</h2>
+  </div>
 </div>
 
-<div class="card" markdown="1">
-## Featured Projects
-
-- [Stereo Visual-Inertial SLAM]({{ site.baseurl }}/projects/lk-stereo-visual-slam)
-- [Embedded ECU-Style Automatic Transmission Controller]({{ site.baseurl }}/projects/ecu-automatic-transmission-controller)
-- [Diffusion Policy for Robot Control — PushT Task Analysis]({{ site.baseurl }}/projects/diffusion-policy-pusht)
-- [SmolVLA for Language-Conditioned Robot Action Prediction]({{ site.baseurl }}/projects/smolvla-action-prediction)
-- [Closed-Loop Temperature Control (Peltier + TMP117)]({{ site.baseurl }}/projects/thermostat-closed-loop-control)
-- [MuJoCo-Based Robotic Manipulator Simulation (UR10e)]({{ site.baseurl }}/projects/mujoco-manipulator)
-
-</div>
-
-<div class="card" markdown="1">
-## What I’m Looking For
-
-I’m actively applying for **Robotics / Autonomy / Controls / Robot Learning** internships where I can contribute to
-perception, estimation, learned control, simulation, and embedded robotic system integration.
-</div>
+<section class="experience-card">
+  <div>
+    <h3>New York University</h3>
+    <p>M.S. Robotics, Mechatronics Track</p>
+    <p>Expected May 2027</p>
+  </div>
+  <div>
+    <p>I am targeting robotics systems, embedded robotics, autonomy, controls, and robot-learning roles where I can connect algorithms to reliable hardware behavior.</p>
+    <div class="hero-links">
+      <a class="btn" href="{{ site.baseurl }}/skills">Technical Skills</a>
+      <a class="btn" href="{{ site.baseurl }}/projects">All Projects</a>
+    </div>
+  </div>
+</section>

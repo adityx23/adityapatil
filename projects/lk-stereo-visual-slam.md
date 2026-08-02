@@ -1,19 +1,20 @@
 ---
 layout: default
 title: Stereo Visual-Inertial SLAM with Optimization and Loop Closure
+description: Stereo visual-inertial SLAM on EuRoC with feature tracking, IMU fusion, bundle adjustment, loop closure, and sparse mapping.
 ---
 
 # Stereo Visual-Inertial SLAM with Optimization and Loop Closure
 
 <div class="project-summary">
-<strong>Type:</strong> Visual SLAM / State Estimation / Optimization<br>
-<strong>Focus:</strong> Stereo visual odometry, IMU integration, bundle adjustment, loop closure, sparse mapping<br>
-<strong>Platform:</strong> Python, OpenCV, NumPy, SciPy, EuRoC MAV dataset<br>
-<strong>Outcome:</strong> Built a stereo visual-inertial SLAM pipeline and improved trajectory accuracy through tight IMU coupling, backend optimization, and loop closure
+  <div><strong>Role</strong><span>Perception pipeline and evaluation</span></div>
+  <div><strong>Context</strong><span>Independent SLAM implementation</span></div>
+  <div><strong>Platform</strong><span>Python · OpenCV · SciPy · EuRoC</span></div>
+  <div><strong>Outcome</strong><span>Reported error reduced from 0.192 m to 0.031 m</span></div>
 </div>
 
 <div class="project-links" markdown="0">
-  <a class="btn" href="{{ site.baseurl }}/projects">← Back to Projects</a>
+  <a class="btn" href="{{ site.baseurl }}/projects">← All Projects</a>
   <a class="btn" href="https://github.com/adityx23/aap-slam-orb-nomad-navigation" target="_blank" rel="noopener noreferrer">ORB + NoMaD Repository ↗</a>
 </div>
 
@@ -26,7 +27,7 @@ The final system combined stereo tracking, PnP-based motion estimation, IMU-info
 An additional **AAP-SLAM-ORB + NoMaD** notebook explores a related ORB-based frame-to-map frontend and converts its keyframes into a topological graph for goal-conditioned navigation. That executed run processed 3,630 EuRoC MH_01_easy frames, achieved 0.9002 m aligned SLAM ATE RMSE, and produced a graph with 244 nodes. Its recorded navigation stage used a documented lightweight NoMaD fallback, so the repository reports the navigation metrics separately from the stronger SLAM result.
 
 <p align="center">
-  <img src="{{ site.baseurl }}/assets/lk_slam/slam_final_result.png" alt="Final SLAM result summary" width="900">
+  <img src="{{ site.baseurl }}/assets/lk_slam/slam_final_result.png" alt="Final SLAM result summary" width="900" loading="lazy" decoding="async">
 </p>
 <p align="center">
   <em>Final result summary showing trajectory alignment, 3D motion structure, and visual-inertial performance improvement.</em>
@@ -58,7 +59,7 @@ The frontend used stereo image pairs and tracked visual features across time usi
 <div class="figure-grid">
 
   <div class="figure-card">
-    <img src="{{ site.baseurl }}/assets/lk_slam/stereo_input_pair.png" alt="Stereo input pair">
+    <img src="{{ site.baseurl }}/assets/lk_slam/stereo_input_pair.png" alt="Stereo input pair" loading="lazy" decoding="async">
     <div class="figure-card-body">
       <div class="figure-card-title">Stereo Input</div>
       <div class="figure-card-desc">
@@ -68,7 +69,7 @@ The frontend used stereo image pairs and tracked visual features across time usi
   </div>
 
   <div class="figure-card">
-    <img src="{{ site.baseurl }}/assets/lk_slam/lk_optical_flow_tracking.png" alt="LK optical flow tracking">
+    <img src="{{ site.baseurl }}/assets/lk_slam/lk_optical_flow_tracking.png" alt="LK optical flow tracking" loading="lazy" decoding="async">
     <div class="figure-card-body">
       <div class="figure-card-title">LK Optical Flow Tracking</div>
       <div class="figure-card-desc">
@@ -78,7 +79,7 @@ The frontend used stereo image pairs and tracked visual features across time usi
   </div>
 
   <div class="figure-card">
-    <img src="{{ site.baseurl }}/assets/lk_slam/epipolar_orb_validation.png" alt="Epipolar and ORB validation">
+    <img src="{{ site.baseurl }}/assets/lk_slam/epipolar_orb_validation.png" alt="Epipolar and ORB validation" loading="lazy" decoding="async">
     <div class="figure-card-body">
       <div class="figure-card-title">Epipolar Validation</div>
       <div class="figure-card-desc">
@@ -88,7 +89,7 @@ The frontend used stereo image pairs and tracked visual features across time usi
   </div>
 
   <div class="figure-card">
-    <img src="{{ site.baseurl }}/assets/lk_slam/stereo_disparity_map.png" alt="Stereo disparity map">
+    <img src="{{ site.baseurl }}/assets/lk_slam/stereo_disparity_map.png" alt="Stereo disparity map" loading="lazy" decoding="async">
     <div class="figure-card-body">
       <div class="figure-card-title">Depth from Stereo</div>
       <div class="figure-card-desc">
@@ -106,7 +107,7 @@ The frontend used stereo image pairs and tracked visual features across time usi
 Using tracked features and stereo-derived 3D structure, the baseline system estimated frame-to-frame motion and recovered a visual odometry trajectory. This baseline established the reference point for later improvements.
 
 <p align="center">
-  <img src="{{ site.baseurl }}/assets/lk_slam/baseline_vo_trajectory.png" alt="Baseline visual odometry trajectory" width="700">
+  <img src="{{ site.baseurl }}/assets/lk_slam/baseline_vo_trajectory.png" alt="Baseline visual odometry trajectory" width="700" loading="lazy" decoding="async">
 </p>
 <p align="center">
   <em>Baseline stereo visual odometry before visual-inertial refinement and backend optimization.</em>
@@ -121,7 +122,7 @@ The baseline pipeline worked, but accumulated noticeable drift over longer horiz
 To improve rotational stability and overall trajectory consistency, IMU information was incorporated into the pipeline. This produced a substantially tighter trajectory estimate than the visual-only baseline.
 
 <p align="center">
-  <img src="{{ site.baseurl }}/assets/lk_slam/final_trajectory_vs_ground_truth.png" alt="Visual-inertial trajectory alignment" width="900">
+  <img src="{{ site.baseurl }}/assets/lk_slam/final_trajectory_vs_ground_truth.png" alt="Visual-inertial trajectory alignment" width="900" loading="lazy" decoding="async">
 </p>
 <p align="center">
   <em>Visual-inertial refinement significantly improved alignment with ground truth compared to the original visual-only estimate.</em>
@@ -134,7 +135,7 @@ To improve rotational stability and overall trajectory consistency, IMU informat
 After the frontend and visual-inertial estimation stages, the trajectory was refined using bundle adjustment. Local and sliding-window optimization were used to reduce drift and improve consistency across neighboring poses.
 
 <p align="center">
-  <img src="{{ site.baseurl }}/assets/lk_slam/bundle_adjustment_trajectory.png" alt="Bundle adjustment trajectory improvement" width="700">
+  <img src="{{ site.baseurl }}/assets/lk_slam/bundle_adjustment_trajectory.png" alt="Bundle adjustment trajectory improvement" width="700" loading="lazy" decoding="async">
 </p>
 <p align="center">
   <em>Sliding-window bundle adjustment improved local pose consistency and reduced accumulated drift.</em>
@@ -147,7 +148,7 @@ After the frontend and visual-inertial estimation stages, the trajectory was ref
 To move from visual odometry toward a true SLAM system, the pipeline added loop closure using keyframes and graph-based trajectory correction. Revisited locations were detected and used to globally adjust the trajectory.
 
 <p align="center">
-  <img src="{{ site.baseurl }}/assets/lk_slam/slam_loop_closure.png" alt="Loop closure trajectory refinement" width="900">
+  <img src="{{ site.baseurl }}/assets/lk_slam/slam_loop_closure.png" alt="Loop closure trajectory refinement" width="900" loading="lazy" decoding="async">
 </p>
 <p align="center">
   <em>Loop closure introduced global consistency by reconnecting revisited parts of the trajectory and reducing long-horizon drift.</em>
@@ -160,7 +161,7 @@ To move from visual odometry toward a true SLAM system, the pipeline added loop 
 Alongside trajectory estimation, the system reconstructed a sparse 3D landmark map from tracked stereo features. This demonstrated that the pipeline was simultaneously estimating motion and building a map.
 
 <p align="center">
-  <img src="{{ site.baseurl }}/assets/lk_slam/slam_sparse_3d_map.png" alt="Sparse 3D landmark map" width="900">
+  <img src="{{ site.baseurl }}/assets/lk_slam/slam_sparse_3d_map.png" alt="Sparse 3D landmark map" width="900" loading="lazy" decoding="async">
 </p>
 <p align="center">
   <em>Sparse 3D landmark map reconstructed from stereo observations and tracked feature geometry.</em>
@@ -175,7 +176,7 @@ The final system was evaluated using aligned trajectory comparison and trajector
 <div class="figure-grid">
 
   <div class="figure-card">
-    <img src="{{ site.baseurl }}/assets/lk_slam/final_trajectory_vs_ground_truth.png" alt="Final trajectory vs ground truth">
+    <img src="{{ site.baseurl }}/assets/lk_slam/final_trajectory_vs_ground_truth.png" alt="Final trajectory vs ground truth" loading="lazy" decoding="async">
     <div class="figure-card-body">
       <div class="figure-card-title">Trajectory Alignment</div>
       <div class="figure-card-desc">
@@ -185,7 +186,7 @@ The final system was evaluated using aligned trajectory comparison and trajector
   </div>
 
   <div class="figure-card">
-    <img src="{{ site.baseurl }}/assets/lk_slam/slam_benchmark_results.png" alt="Benchmark results">
+    <img src="{{ site.baseurl }}/assets/lk_slam/slam_benchmark_results.png" alt="Benchmark results" loading="lazy" decoding="async">
     <div class="figure-card-body">
       <div class="figure-card-title">Multi-Sequence Benchmark</div>
       <div class="figure-card-desc">

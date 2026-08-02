@@ -1,19 +1,20 @@
 ---
 layout: default
 title: Embedded ECU-Style Automatic Transmission Controller
+description: Physical three-speed drivetrain with multicore embedded sensing, encoder-based shifting, telemetry logging, and efficiency analysis.
 ---
 
 # Embedded ECU-Style Automatic Transmission Controller
 
 <div class="project-summary">
-<strong>Type:</strong> Embedded Drivetrain Control + Mechatronic System Integration<br>
-<strong>Focus:</strong> Concurrent sensing, gear selection, encoder-based actuation, experimental performance analysis<br>
-<strong>Platform:</strong> 24 V / 250 W DC motor, custom transmission, Parallax Propeller, Propeller C, Python<br>
-<strong>Outcome:</strong> Integrated and evaluated a three-speed drivetrain with 75:1, 45:1, and 37.5:1 total reductions across multiple loads
+  <div><strong>Role</strong><span>Embedded integration and analysis · Team 8</span></div>
+  <div><strong>Context</strong><span>NYU Advanced Mechatronics</span></div>
+  <div><strong>Platform</strong><span>Propeller C · 24 V drivetrain · Python</span></div>
+  <div><strong>Outcome</strong><span>Three ratios evaluated across multiple loads</span></div>
 </div>
 
 <div class="project-links" markdown="0">
-  <a class="btn" href="{{ site.baseurl }}/projects">← Back to Projects</a>
+  <a class="btn" href="{{ site.baseurl }}/projects">← All Projects</a>
   <a class="btn" href="https://github.com/adityx23/ecu-automatic-transmission-controller" target="_blank" rel="noopener">GitHub Repository ↗</a>
 </div>
 
@@ -34,14 +35,14 @@ The project combines real-time embedded control with approximately 33 Hz SD-card
 - documented the firmware, hardware interfaces, measured results, and known limitations in a public repository
 
 <p align="center">
-  <img src="{{ site.baseurl }}/assets/ecu/drivetrain-hardware.png" alt="Annotated top view showing the drivetrain motor, shift disks, output drum, and gear-shift actuator" width="760">
+  <img src="{{ site.baseurl }}/assets/ecu/drivetrain-hardware.png" alt="Annotated top view showing the drivetrain motor, shift disks, output drum, and gear-shift actuator" width="760" loading="lazy" decoding="async">
 </p>
 
 ---
 
 ## Hardware Demonstration
 
-<video class="project-video" controls preload="metadata">
+<video class="project-video" controls preload="metadata" aria-label="Automatic transmission controller hardware demonstration">
   <source src="{{ site.baseurl }}/assets/ecu/demo.mp4" type="video/mp4">
   Your browser does not support embedded MP4 video. <a href="{{ site.baseurl }}/assets/ecu/demo.mp4">Download the demonstration</a>.
 </video>
@@ -117,19 +118,19 @@ The report and notebooks compare motor voltage, current, motor RPM, output RPM, 
 - Efficiency-map overlays provided a data-driven basis for comparing gear operating paths; the archived firmware implements a simpler threshold-and-hysteresis controller.
 
 <p align="center">
-  <img src="{{ site.baseurl }}/assets/ecu/efficiency-map.png" alt="Multidimensional system-efficiency map with operating paths for different gear ratios and loads" width="950">
+  <img src="{{ site.baseurl }}/assets/ecu/efficiency-map.png" alt="Multidimensional system-efficiency map with operating paths for different gear ratios and loads" width="950" loading="lazy" decoding="async">
 </p>
 
 The contour map overlays measured operating paths on motor-speed and current coordinates, showing how gear ratio and load move the drivetrain through different efficiency regions.
 
 <p align="center">
-  <img src="{{ site.baseurl }}/assets/ecu/modeled-step-response.png" alt="Modeled absolute and normalized step responses for the bare motor and three drivetrain ratios" width="950">
+  <img src="{{ site.baseurl }}/assets/ecu/modeled-step-response.png" alt="Modeled absolute and normalized step responses for the bare motor and three drivetrain ratios" width="950" loading="lazy" decoding="async">
 </p>
 
 The modeled normalized responses use characteristic times of approximately 0.70 s for 75:1, 0.85 s for 45:1, and 1.00 s for 37.5:1, illustrating the effect of reflected inertia as mechanical advantage decreases.
 
 <p align="center">
-  <img src="{{ site.baseurl }}/assets/ecu/efficiency-comparison.png" alt="Comparison plots for motor voltage, current, motor RPM, output RPM, and calculated efficiency across three drivetrain runs" width="950">
+  <img src="{{ site.baseurl }}/assets/ecu/efficiency-comparison.png" alt="Comparison plots for motor voltage, current, motor RPM, output RPM, and calculated efficiency across three drivetrain runs" width="950" loading="lazy" decoding="async">
 </p>
 
 The archived project folder did not contain the raw CSV logs referenced by the notebooks. The public repository therefore retains report figures and notebook outputs as project evidence rather than presenting the analysis as a reproducible package.
