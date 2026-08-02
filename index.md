@@ -27,6 +27,8 @@ title: Aditya Patil
 
 - **Stereo Visual-Inertial SLAM:** Built a stereo visual-inertial SLAM system on EuRoC MAV with LK tracking, IMU fusion, bundle adjustment, loop closure, and sparse 3D mapping.
 
+- **Embedded ECU-Style Automatic Transmission Controller:** Integrated a custom 24 V three-speed drivetrain, concurrent sensing, encoder-tracked actuation, live telemetry, and efficiency mapping across multiple gear ratios and loads.
+
 - **Diffusion Policy for Robot Control — PushT Task Analysis:** Evaluated a pretrained diffusion-based control policy across 30 rollouts and analyzed success rate, efficiency, and structured failure behavior.
 
 - **SmolVLA for Language-Conditioned Robot Action Prediction:** Applied a pretrained vision-language-action model to real robot drawer manipulation and analyzed language grounding, action consistency, and temporal behavior.
@@ -40,6 +42,7 @@ title: Aditya Patil
 ## Featured Projects
 
 - [Stereo Visual-Inertial SLAM]({{ site.baseurl }}/projects/lk-stereo-visual-slam)
+- [Embedded ECU-Style Automatic Transmission Controller]({{ site.baseurl }}/projects/ecu-automatic-transmission-controller)
 - [Diffusion Policy for Robot Control — PushT Task Analysis]({{ site.baseurl }}/projects/diffusion-policy-pusht)
 - [SmolVLA for Language-Conditioned Robot Action Prediction]({{ site.baseurl }}/projects/smolvla-action-prediction)
 - [Closed-Loop Temperature Control (Peltier + TMP117)]({{ site.baseurl }}/projects/thermostat-closed-loop-control)
