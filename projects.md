@@ -1,78 +1,110 @@
 ---
 layout: default
 title: Projects
+description: Robotics projects spanning embedded control, SLAM, autonomy, robot learning, and physics-based simulation.
 ---
 
+<p class="eyebrow">Engineering Portfolio</p>
 # Projects
 
-A curated set of robotics projects spanning **perception**, **robot learning**, **simulation**, and **embedded control**, with a focus on building complete systems from estimation and policy analysis to real-time deployment.
+Each case study leads with the system problem, my contribution, implementation evidence, and measured result. Projects are ordered to emphasize robotics systems and embedded engineering depth.
 
 <div class="project-grid">
 
-  <div class="project-card">
-    <img src="{{ site.baseurl }}/assets/lk_slam/slam_final_result.png" alt="Stereo Visual-Inertial SLAM preview">
-    <div class="project-card-body">
-      <div class="project-card-title">Stereo Visual-Inertial SLAM</div>
-      <div class="project-card-desc">
-        Built a stereo visual-inertial SLAM system on EuRoC MAV using LK tracking, IMU fusion, bundle adjustment, loop closure, and sparse 3D mapping.
+  <article class="project-card">
+    <a href="{{ site.baseurl }}/projects/stm32-robot-control-system">
+      <img src="{{ site.baseurl }}/assets/stm32/system-architecture.svg" alt="STM32 mobile-robot control architecture" width="1200" height="675">
+      <div class="project-card-body">
+        <div class="tag-list"><span class="tag">STM32</span><span class="tag">Embedded C</span><span class="tag">Safety</span></div>
+        <h2 class="project-card-title">STM32 MCU Bring-Up & Robot Control</h2>
+        <p class="project-card-desc">Reverse-engineered an undocumented controller, implemented safety-gated actuation, and validated repeatable route execution.</p>
+        <span class="project-card-cta">View project →</span>
       </div>
-      <a class="btn" href="{{ site.baseurl }}/projects/lk-stereo-visual-slam">View Project →</a>
-    </div>
-  </div>
+    </a>
+  </article>
 
-  <div class="project-card">
-    <img src="{{ site.baseurl }}/assets/ecu/drivetrain-hardware.png" alt="Annotated three-speed ECU drivetrain test platform">
-    <div class="project-card-body">
-      <div class="project-card-title">Embedded ECU-Style Automatic Transmission Controller</div>
-      <div class="project-card-desc">
-        Built a 24 V three-speed drivetrain test platform with concurrent sensing, encoder-based shifting, live telemetry, and data-driven efficiency analysis.
+  <article class="project-card">
+    <a href="{{ site.baseurl }}/projects/lk-stereo-visual-slam">
+      <img src="{{ site.baseurl }}/assets/lk_slam/slam_final_result.png" alt="Stereo visual-inertial SLAM result summary" width="2428" height="1975" loading="lazy" decoding="async">
+      <div class="project-card-body">
+        <div class="tag-list"><span class="tag">OpenCV</span><span class="tag">VIO</span><span class="tag">Optimization</span></div>
+        <h2 class="project-card-title">Stereo Visual-Inertial SLAM</h2>
+        <p class="project-card-desc">Stereo tracking, IMU fusion, bundle adjustment, loop closure, sparse mapping, and EuRoC trajectory evaluation.</p>
+        <span class="project-card-cta">View project →</span>
       </div>
-      <a class="btn" href="{{ site.baseurl }}/projects/ecu-automatic-transmission-controller">View Project →</a>
-    </div>
-  </div>
+    </a>
+  </article>
 
-  <div class="project-card">
-    <img src="{{ site.baseurl }}/assets/diffusion_policy/diffusion_policy_results.png" alt="Diffusion policy PushT preview">
-    <div class="project-card-body">
-      <div class="project-card-title">Diffusion Policy for Robot Control — PushT Task Analysis</div>
-      <div class="project-card-desc">
-        Evaluated a pretrained diffusion-based control policy on the PushT task, analyzing success rate, trajectory efficiency, and failure behavior across multiple rollouts.
+  <article class="project-card">
+    <a href="{{ site.baseurl }}/projects/ecu-automatic-transmission-controller">
+      <img src="{{ site.baseurl }}/assets/ecu/drivetrain-hardware.png" alt="Annotated automatic-transmission drivetrain test platform" width="1536" height="2040" loading="lazy" decoding="async">
+      <div class="project-card-body">
+        <div class="tag-list"><span class="tag">Embedded Control</span><span class="tag">Sensors</span><span class="tag">Telemetry</span></div>
+        <h2 class="project-card-title">Automatic Transmission Controller</h2>
+        <p class="project-card-desc">A physical 24 V three-speed drivetrain with concurrent sensing, encoder-based shifting, logging, and efficiency analysis.</p>
+        <span class="project-card-cta">View project →</span>
       </div>
-      <a class="btn" href="{{ site.baseurl }}/projects/diffusion-policy-pusht">View Project →</a>
-    </div>
-  </div>
+    </a>
+  </article>
 
-  <div class="project-card">
-    <img src="{{ site.baseurl }}/assets/smolvla/smolvla_dataset_examples.png" alt="SmolVLA BridgeV2 drawer manipulation preview">
-    <div class="project-card-body">
-      <div class="project-card-title">SmolVLA for Language-Conditioned Robot Action Prediction</div>
-      <div class="project-card-desc">
-        Applied a pretrained 450M vision-language-action model to BridgeV2 drawer manipulation and analyzed language grounding, action consistency, and temporal behavior.
+  <article class="project-card">
+    <a href="{{ site.baseurl }}/projects/thermostat-closed-loop-control">
+      <img src="{{ site.baseurl }}/assets/thermostat/thermostat_build.jpg" alt="Completed acrylic temperature-control enclosure and electronics" width="483" height="512" loading="lazy" decoding="async">
+      <div class="project-card-body">
+        <div class="tag-list"><span class="tag">Arduino</span><span class="tag">Controls</span><span class="tag">TMP117</span></div>
+        <h2 class="project-card-title">Closed-Loop Temperature Control</h2>
+        <p class="project-card-desc">Modeled a thermal enclosure, discretized a compensator, and deployed the controller with TMP117 feedback and PWM heating.</p>
+        <span class="project-card-cta">View project →</span>
       </div>
-      <a class="btn" href="{{ site.baseurl }}/projects/smolvla-action-prediction">View Project →</a>
-    </div>
-  </div>
+    </a>
+  </article>
 
-  <div class="project-card">
-    <img src="{{ site.baseurl }}/assets/thermostat/thermostat_build.jpg" alt="Thermostat project preview">
-    <div class="project-card-body">
-      <div class="project-card-title">Closed-Loop Temperature Control (Peltier + TMP117)</div>
-      <div class="project-card-desc">
-        Embedded thermal control system using a continuous-time compensator, Tustin discretization, and Arduino-based real-time deployment.
+  <article class="project-card">
+    <a href="{{ site.baseurl }}/projects/slam-navigation-robot">
+      <img src="{{ site.baseurl }}/assets/slam/slam_robot_system_architecture.svg" alt="ROS2 navigation robot system architecture" width="680" height="620" loading="lazy" decoding="async">
+      <div class="project-card-body">
+        <div class="tag-list"><span class="tag">ROS2</span><span class="tag">Nav2</span><span class="tag">Gazebo</span></div>
+        <h2 class="project-card-title">SLAM-Based Navigation Robot</h2>
+        <p class="project-card-desc">A simulation-first autonomy architecture spanning LiDAR SLAM, EKF fusion, planning, and embedded motor control.</p>
+        <span class="project-card-cta">View project →</span>
       </div>
-      <a class="btn" href="{{ site.baseurl }}/projects/thermostat-closed-loop-control">View Project →</a>
-    </div>
-  </div>
+    </a>
+  </article>
 
-  <div class="project-card">
-    <img src="{{ site.baseurl }}/assets/mujoco/ur10e_IK_velocity.gif" alt="MuJoCo UR10e preview">
-    <div class="project-card-body">
-      <div class="project-card-title">MuJoCo-Based Robotic Manipulator Simulation (UR10e)</div>
-      <div class="project-card-desc">
-        Physics-based simulation comparing FK and IK control under position and velocity command interfaces.
+  <article class="project-card">
+    <a href="{{ site.baseurl }}/projects/smolvla-action-prediction">
+      <img src="{{ site.baseurl }}/assets/smolvla/smolvla_dataset_examples.png" alt="BridgeV2 drawer-manipulation observations used for SmolVLA analysis" width="1589" height="740" loading="lazy" decoding="async">
+      <div class="project-card-body">
+        <div class="tag-list"><span class="tag">SmolVLA</span><span class="tag">LeRobot</span><span class="tag">BridgeV2</span></div>
+        <h2 class="project-card-title">SmolVLA Action Analysis</h2>
+        <p class="project-card-desc">Evaluated language sensitivity, open/close action separation, and temporal consistency on real robot observations.</p>
+        <span class="project-card-cta">View project →</span>
       </div>
-      <a class="btn" href="{{ site.baseurl }}/projects/mujoco-manipulator">View Project →</a>
-    </div>
-  </div>
+    </a>
+  </article>
+
+  <article class="project-card">
+    <a href="{{ site.baseurl }}/projects/diffusion-policy-pusht">
+      <img src="{{ site.baseurl }}/assets/diffusion_policy/diffusion_policy_results.png" alt="PushT diffusion-policy evaluation dashboard" width="1771" height="1280" loading="lazy" decoding="async">
+      <div class="project-card-body">
+        <div class="tag-list"><span class="tag">Diffusion Policy</span><span class="tag">PyTorch</span><span class="tag">PushT</span></div>
+        <h2 class="project-card-title">Diffusion Policy on PushT</h2>
+        <p class="project-card-desc">Measured success, efficiency, reward behavior, and failure structure across 30 manipulation rollouts.</p>
+        <span class="project-card-cta">View project →</span>
+      </div>
+    </a>
+  </article>
+
+  <article class="project-card">
+    <a href="{{ site.baseurl }}/projects/mujoco-manipulator">
+      <img src="{{ site.baseurl }}/assets/mujoco/ur10e_IK_velocity-poster.jpg" alt="UR10e inverse-kinematics velocity-control simulation" width="640" height="480" loading="lazy" decoding="async">
+      <div class="project-card-body">
+        <div class="tag-list"><span class="tag">MuJoCo</span><span class="tag">Kinematics</span><span class="tag">Control</span></div>
+        <h2 class="project-card-title">UR10e Control in MuJoCo</h2>
+        <p class="project-card-desc">Compared forward/inverse kinematics under position and velocity command interfaces in physics simulation.</p>
+        <span class="project-card-cta">View project →</span>
+      </div>
+    </a>
+  </article>
 
 </div>

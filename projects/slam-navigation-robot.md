@@ -1,19 +1,20 @@
 ---
 layout: default
 title: SLAM-Based Autonomous Navigation Robot
+description: Simulation-first ROS2 mobile-robot architecture spanning LiDAR SLAM, EKF sensor fusion, Nav2 planning, and embedded motor control.
 ---
 
 # SLAM-Based Autonomous Navigation Robot
 
 <div class="project-summary">
-<strong>Type:</strong> Autonomous Mobile Robot (ROS2)<br>
-<strong>Focus:</strong> SLAM, localization, navigation, sensor integration, embedded motor control<br>
-<strong>Platform:</strong> ROS2, Nav2, Cartographer, robot_localization, Raspberry Pi 4B, ESP32<br>
-<strong>Outcome:</strong> Full autonomy pipeline integrated and validated end-to-end in Gazebo prior to hardware deployment
+  <div><strong>Role</strong><span>Autonomy architecture and integration</span></div>
+  <div><strong>Context</strong><span>Simulation-first mobile robot design</span></div>
+  <div><strong>Platform</strong><span>ROS2 · Nav2 · Cartographer · Gazebo</span></div>
+  <div><strong>Outcome</strong><span>End-to-end autonomy pipeline validated in simulation</span></div>
 </div>
 
 <div class="project-links" markdown="0">
-  <a class="btn" href="{{ site.baseurl }}/projects">← Back to Projects</a>
+  <a class="btn" href="{{ site.baseurl }}/projects">← All Projects</a>
 </div>
 
 ---

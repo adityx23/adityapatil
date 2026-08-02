@@ -1,19 +1,20 @@
 ---
 layout: default
 title: SmolVLA for Language-Conditioned Robot Action Prediction
+description: SmolVLA-450M action consistency, instruction sensitivity, and temporal analysis on BridgeV2 drawer manipulation observations.
 ---
 
 # SmolVLA for Language-Conditioned Robot Action Prediction
 
 <div class="project-summary">
-<strong>Type:</strong> Robot Learning / Vision-Language-Action<br>
-<strong>Focus:</strong> Language grounding, action consistency, instruction sensitivity, temporal behavior<br>
-<strong>Platform:</strong> Python, Transformers, LeRobot, SmolVLA-450M, BridgeV2<br>
-<strong>Outcome:</strong> Analyzed a pretrained VLA model on real robot drawer manipulation and quantified action separation, temporal consistency, and instruction-conditioned behavior
+  <div><strong>Role</strong><span>VLA inference and behavioral analysis</span></div>
+  <div><strong>Context</strong><span>Independent robot-learning study</span></div>
+  <div><strong>Platform</strong><span>SmolVLA-450M · LeRobot · BridgeV2</span></div>
+  <div><strong>Outcome</strong><span>8 episodes · 80 frames · 6 prompts</span></div>
 </div>
 
 <div class="project-links" markdown="0">
-  <a class="btn" href="{{ site.baseurl }}/projects">← Back to Projects</a>
+  <a class="btn" href="{{ site.baseurl }}/projects">← All Projects</a>
   <a class="btn" href="https://github.com/adityx23/smolvla-bridgev2-action-analysis" target="_blank" rel="noopener noreferrer">GitHub Repository ↗</a>
 </div>
 
@@ -78,7 +79,7 @@ Across the 7 open-drawer episodes, the model showed varying consistency across a
 Instruction sensitivity analysis showed that the model produced distinct predicted action distributions for different instructions on the **same image**, indicating genuine language conditioning.
 
 <p align="center">
-  <img src="{{ site.baseurl }}/assets/smolvla/smolvla_deep_evaluation.png" alt="SmolVLA deep evaluation" width="900">
+  <img src="{{ site.baseurl }}/assets/smolvla/smolvla_deep_evaluation.png" alt="SmolVLA deep evaluation" width="900" loading="lazy" decoding="async">
 </p>
 <p align="center">
   <em>Action consistency and instruction sensitivity across multiple language prompts.</em>
@@ -104,7 +105,7 @@ Key observations:
 This indicates that the model maintains task-specific structure throughout the sequence.
 
 <p align="center">
-  <img src="{{ site.baseurl }}/assets/smolvla/smolvla_temporal_consistency.png" alt="SmolVLA temporal consistency" width="900">
+  <img src="{{ site.baseurl }}/assets/smolvla/smolvla_temporal_consistency.png" alt="SmolVLA temporal consistency" width="900" loading="lazy" decoding="async">
 </p>
 <p align="center">
   <em>Temporal trends in action predictions, variance, and cumulative motion.</em>

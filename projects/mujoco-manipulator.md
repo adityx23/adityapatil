@@ -1,19 +1,20 @@
 ---
 layout: default
 title: MuJoCo-Based Robotic Manipulator Simulation
+description: UR10e simulation comparing forward and inverse kinematics under position and velocity command interfaces.
 ---
 
 # MuJoCo-Based Robotic Manipulator Simulation (UR10e)
 
 <div class="project-summary">
-<strong>Type:</strong> Robotics Simulation + Control Evaluation<br>
-<strong>Focus:</strong> FK vs IK control behavior, position vs velocity command interfaces<br>
-<strong>Platform:</strong> MuJoCo, Python<br>
-<strong>Outcome:</strong> Implemented four control configurations and compared convergence + motion quality using end-effector trajectory visualization
+  <div><strong>Role</strong><span>Simulation and controller implementation</span></div>
+  <div><strong>Context</strong><span>Independent manipulation study</span></div>
+  <div><strong>Platform</strong><span>MuJoCo · Python · UR10e</span></div>
+  <div><strong>Outcome</strong><span>Four FK/IK command configurations compared</span></div>
 </div>
 
 <div class="project-links" markdown="0">
-  <a class="btn" href="{{ site.baseurl }}/projects">← Back to Projects</a>
+  <a class="btn" href="{{ site.baseurl }}/projects">← All Projects</a>
 </div>
 
 ## Overview
@@ -57,28 +58,36 @@ Cartesian targets (or Cartesian velocities) are mapped to joint commands using i
 ### FK — Position Control
 Direct joint position commands used to validate joint-level convergence and establish baseline behavior.
 
-![FK Position Control](../assets/mujoco/ur10e_FK_position.gif)
+<video class="project-media" controls loop muted playsinline preload="metadata" poster="{{ site.baseurl }}/assets/mujoco/ur10e_FK_position-poster.jpg" aria-label="UR10e forward-kinematics position-control simulation">
+  <source src="{{ site.baseurl }}/assets/mujoco/ur10e_FK_position.mp4" type="video/mp4">
+</video>
 
 ---
 
 ### FK — Velocity Control
 Joint velocity commands produced smoother transitions and reduced motion discontinuities compared to position control.
 
-![FK Velocity Control](../assets/mujoco/ur10e_FK_velocity.gif)
+<video class="project-media" controls loop muted playsinline preload="metadata" poster="{{ site.baseurl }}/assets/mujoco/ur10e_FK_velocity-poster.jpg" aria-label="UR10e forward-kinematics velocity-control simulation">
+  <source src="{{ site.baseurl }}/assets/mujoco/ur10e_FK_velocity.mp4" type="video/mp4">
+</video>
 
 ---
 
 ### IK — Position Control
 Task-space targets mapped to joint configurations using inverse kinematics. Enabled intuitive Cartesian targeting while requiring solver convergence and constraint awareness.
 
-![IK Position Control](../assets/mujoco/ur10e_IK_position.gif)
+<video class="project-media" controls loop muted playsinline preload="metadata" poster="{{ site.baseurl }}/assets/mujoco/ur10e_IK_position-poster.jpg" aria-label="UR10e inverse-kinematics position-control simulation">
+  <source src="{{ site.baseurl }}/assets/mujoco/ur10e_IK_position.mp4" type="video/mp4">
+</video>
 
 ---
 
 ### IK — Velocity Control
 End-effector velocity commands mapped to joint velocities using Jacobian relationships, producing smooth and continuous Cartesian trajectories.
 
-![IK Velocity Control](../assets/mujoco/ur10e_IK_velocity.gif)
+<video class="project-media" controls loop muted playsinline preload="metadata" poster="{{ site.baseurl }}/assets/mujoco/ur10e_IK_velocity-poster.jpg" aria-label="UR10e inverse-kinematics velocity-control simulation">
+  <source src="{{ site.baseurl }}/assets/mujoco/ur10e_IK_velocity.mp4" type="video/mp4">
+</video>
 
 ---
 

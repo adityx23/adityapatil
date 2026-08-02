@@ -1,19 +1,20 @@
 ---
 layout: default
 title: Diffusion Policy for Robot Control — PushT Task Analysis
+description: Evaluation of a pretrained diffusion policy across 30 PushT rollouts, including success, efficiency, reward, and failure analysis.
 ---
 
 # Diffusion Policy for Robot Control — PushT Task Analysis
 
 <div class="project-summary">
-<strong>Type:</strong> Robot Learning / Policy Evaluation<br>
-<strong>Focus:</strong> diffusion policies, control performance, success rate, trajectory efficiency<br>
-<strong>Platform:</strong> Python, PyTorch, pretrained diffusion policy, PushT environment<br>
-<strong>Outcome:</strong> Analyzed a pretrained diffusion-based control policy and quantified success rate, trajectory efficiency, and reward behavior across multiple episodes
+  <div><strong>Role</strong><span>Policy evaluation and analysis</span></div>
+  <div><strong>Context</strong><span>Independent robot-learning study</span></div>
+  <div><strong>Platform</strong><span>PyTorch · LeRobot · PushT</span></div>
+  <div><strong>Outcome</strong><span>66.7% success across 30 rollouts</span></div>
 </div>
 
 <div class="project-links" markdown="0">
-  <a class="btn" href="{{ site.baseurl }}/projects">← Back to Projects</a>
+  <a class="btn" href="{{ site.baseurl }}/projects">← All Projects</a>
   <a class="btn" href="https://github.com/adityx23/diffusion-policy-pusht-evaluation" target="_blank" rel="noopener noreferrer">GitHub Repository ↗</a>
 </div>
 
@@ -24,7 +25,7 @@ Applied a pretrained diffusion policy to the **PushT** manipulation task to stud
 The project focused on whether the policy could reliably complete the task, how successful and failed runs differed in efficiency, and how closely the observed performance matched reported benchmark results for the pretrained checkpoint.
 
 <p align="center">
-  <img src="{{ site.baseurl }}/assets/diffusion_policy/diffusion_policy_results.png" alt="Diffusion policy PushT results" width="950">
+  <img src="{{ site.baseurl }}/assets/diffusion_policy/diffusion_policy_results.png" alt="Diffusion policy PushT results" width="950" loading="lazy" decoding="async">
 </p>
 <p align="center">
   <em>Evaluation summary showing success rate trends, reward distribution, rollout efficiency, and representative successful and failed outcomes.</em>
