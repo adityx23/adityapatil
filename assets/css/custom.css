@@ -218,6 +218,17 @@ img{
   border: 1px solid var(--border);
 }
 
+.project-video{
+  display: block;
+  width: 100%;
+  max-width: 760px;
+  margin: 16px auto;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: #000;
+  box-shadow: var(--shadow);
+}
+
 /* ============================= */
 /* Projects Landing Page Cards */
 /* ============================= */

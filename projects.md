@@ -21,6 +21,17 @@ A curated set of robotics projects spanning **perception**, **robot learning**, 
   </div>
 
   <div class="project-card">
+    <img src="{{ site.baseurl }}/assets/ecu/efficiency-comparison.png" alt="ECU drivetrain motor performance and efficiency plots">
+    <div class="project-card-body">
+      <div class="project-card-title">Embedded ECU-Style Automatic Transmission Controller</div>
+      <div class="project-card-desc">
+        Built a three-speed embedded drivetrain controller with concurrent RPM/current sensing, encoder-based shifting, hysteretic gear logic, live telemetry, and efficiency analysis.
+      </div>
+      <a class="btn" href="{{ site.baseurl }}/projects/ecu-automatic-transmission-controller">View Project →</a>
+    </div>
+  </div>
+
+  <div class="project-card">
     <img src="{{ site.baseurl }}/assets/diffusion_policy/diffusion_policy_results.png" alt="Diffusion policy PushT preview">
     <div class="project-card-body">
       <div class="project-card-title">Diffusion Policy for Robot Control — PushT Task Analysis</div>
