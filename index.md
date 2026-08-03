@@ -77,14 +77,14 @@ description: NYU M.S. Robotics student and AI4CE researcher building embedded, a
 <div class="section-heading">
   <div>
     <p class="eyebrow">Current Experience</p>
-    <h2>Research at NYU AI4CE</h2>
+    <h2>Research at NYU CREO / AI4CE</h2>
   </div>
 </div>
 
 <section class="experience-card">
   <div>
     <h3>Student Researcher</h3>
-    <p>AI4CE Lab · NYU</p>
+    <p>CREO / AI4CE Lab · NYU</p>
     <p>May 2026–Present</p>
   </div>
   <div>
@@ -93,6 +93,19 @@ description: NYU M.S. Robotics student and AI4CE researcher building embedded, a
       <li>Patched a PD + feedforward-torque command path, correcting torque encoding, mode activation, and CAN frame structure for safe manipulator actuation.</li>
       <li>Contribute to research on vision-language-action and vision-language models for a dual-arm mobile manipulator.</li>
     </ul>
+  </div>
+  <div class="experience-media">
+    <figure class="experience-media-item experience-media-photo">
+      <img src="{{ site.baseurl }}/assets/ai4ce/yor-platform.jpg" alt="YOR dual-arm mobile manipulator in the NYU robotics lab" width="1200" height="1594" loading="lazy" decoding="async">
+      <figcaption>YOR, the dual-arm mobile manipulator used in CREO / AI4CE research.</figcaption>
+    </figure>
+    <figure class="experience-media-item">
+      <video controls muted playsinline preload="metadata" poster="{{ site.baseurl }}/assets/ai4ce/yor-manipulation-poster.jpg" aria-label="YOR dual-arm robot manipulation demonstration">
+        <source src="{{ site.baseurl }}/assets/ai4ce/yor-manipulation-demo.mp4" type="video/mp4">
+        Your browser does not support embedded video.
+      </video>
+      <figcaption>YOR manipulation demonstration during lab integration and testing.</figcaption>
+    </figure>
   </div>
 </section>
 
