@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">Ackermann robot system architecture</title>
+  <desc id="desc">RPLIDAR, OAK-D Lite, and Jetson connect to a Raspberry Pi supervisor. Safety gates protect commands sent to the C30D vehicle controller, which interfaces with motors, encoders, steering, and IMU.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#38bdf8"/>
+    </marker>
+    <style>
+      .bg{fill:#0b1220}.panel{fill:#111c2f;stroke:#334155;stroke-width:2}.accent{fill:#0c4a6e;stroke:#38bdf8;stroke-width:2}.label{fill:#e2e8f0;font:600 22px system-ui,sans-serif;text-anchor:middle}.small{fill:#94a3b8;font:16px system-ui,sans-serif;text-anchor:middle}.line{fill:none;stroke:#38bdf8;stroke-width:4;marker-end:url(#arrow)}.bi{fill:none;stroke:#38bdf8;stroke-width:4;marker-start:url(#arrow);marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <rect class="bg" width="1200" height="675" rx="30"/>
+  <text x="600" y="55" class="label" font-size="28">Native Ackermann Autonomy Stack</text>
+
+  <rect class="panel" x="55" y="105" width="220" height="95" rx="16"/>
+  <text class="label" x="165" y="145">RPLIDAR C1</text><text class="small" x="165" y="174">2D range sensing</text>
+  <rect class="panel" x="55" y="290" width="220" height="95" rx="16"/>
+  <text class="label" x="165" y="330">OAK-D Lite</text><text class="small" x="165" y="359">RGB-D perception</text>
+  <rect class="panel" x="55" y="475" width="220" height="95" rx="16"/>
+  <text class="label" x="165" y="515">Jetson Orin Nano</text><text class="small" x="165" y="544">Edge compute</text>
+
+  <rect class="accent" x="385" y="245" width="270" height="145" rx="20"/>
+  <text class="label" x="520" y="295">Raspberry Pi 5</text><text class="small" x="520" y="328">Native Python supervisor</text><text class="small" x="520" y="355">state, logging, interfaces</text>
+  <rect class="accent" x="755" y="245" width="270" height="145" rx="20"/>
+  <text class="label" x="890" y="295">C30D Controller</text><text class="small" x="890" y="328">motor + steering control</text><text class="small" x="890" y="355">encoder + IMU feedback</text>
+
+  <rect class="panel" x="750" y="90" width="280" height="90" rx="16"/>
+  <text class="label" x="890" y="127">Safety Boundary</text><text class="small" x="890" y="155">arming, limits, freshness</text>
+  <rect class="panel" x="755" y="480" width="270" height="105" rx="16"/>
+  <text class="label" x="890" y="520">Vehicle Hardware</text><text class="small" x="890" y="549">motors, encoders, steering, IMU</text>
+
+  <path class="line" d="M275 152 H340 Q365 152 365 177 V275 H385"/>
+  <path class="line" d="M275 337 H385"/>
+  <path class="bi" d="M275 522 H340 Q365 522 365 497 V365 H385"/>
+  <path class="line" d="M655 318 H755"/>
+  <path class="line" d="M890 180 V245"/>
+  <path class="bi" d="M890 390 V480"/>
+</svg>

@@ -12,6 +12,18 @@ Each case study leads with the system problem, my contribution, implementation e
 <div class="project-grid">
 
   <article class="project-card">
+    <a href="{{ site.baseurl }}/projects/ackermann-autonomous-robot">
+      <img src="{{ site.baseurl }}/assets/ackermann/robot-overview.jpeg" alt="Ackermann autonomous robot with Raspberry Pi, Jetson, lidar, and RGB-D camera" width="1373" height="1831">
+      <div class="project-card-body">
+        <div class="tag-list"><span class="tag">Autonomy</span><span class="tag">Embedded Python</span><span class="tag">Sensor Fusion</span></div>
+        <h2 class="project-card-title">Native Ackermann Autonomous Robot</h2>
+        <p class="project-card-desc">A safety-first robot stack spanning C30D protocol research, multi-sensor capture, provisional odometry, and mapping foundations.</p>
+        <span class="project-card-cta">View project &rarr;</span>
+      </div>
+    </a>
+  </article>
+
+  <article class="project-card">
     <a href="{{ site.baseurl }}/projects/stm32-robot-control-system">
       <img src="{{ site.baseurl }}/assets/stm32/system-architecture.svg" alt="STM32 mobile-robot control architecture" width="1200" height="675">
       <div class="project-card-body">
