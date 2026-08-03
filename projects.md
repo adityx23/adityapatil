@@ -16,21 +16,9 @@ Each case study leads with the system problem, my contribution, implementation e
       <img src="{{ site.baseurl }}/assets/ackermann/robot-overview.jpeg" alt="Ackermann autonomous robot with Raspberry Pi, Jetson, lidar, and RGB-D camera" width="1373" height="1831">
       <div class="project-card-body">
         <div class="tag-list"><span class="tag">Autonomy</span><span class="tag">Embedded Python</span><span class="tag">Sensor Fusion</span></div>
-        <h2 class="project-card-title">Native Ackermann Autonomous Robot</h2>
-        <p class="project-card-desc">A safety-first robot stack spanning C30D protocol research, multi-sensor capture, provisional odometry, and mapping foundations.</p>
+        <h2 class="project-card-title">Ackermann Robot Bring-Up & Native Autonomy</h2>
+        <p class="project-card-desc">STM32/C30D bring-up, validated motion primitives, safety-gated control, multi-sensor capture, odometry, and mapping foundations.</p>
         <span class="project-card-cta">View project &rarr;</span>
-      </div>
-    </a>
-  </article>
-
-  <article class="project-card">
-    <a href="{{ site.baseurl }}/projects/stm32-robot-control-system">
-      <img src="{{ site.baseurl }}/assets/stm32/system-architecture.svg" alt="STM32 mobile-robot control architecture" width="1200" height="675">
-      <div class="project-card-body">
-        <div class="tag-list"><span class="tag">STM32</span><span class="tag">Embedded C</span><span class="tag">Safety</span></div>
-        <h2 class="project-card-title">STM32 MCU Bring-Up & Robot Control</h2>
-        <p class="project-card-desc">Reverse-engineered an undocumented controller, implemented safety-gated actuation, and validated repeatable route execution.</p>
-        <span class="project-card-cta">View project →</span>
       </div>
     </a>
   </article>

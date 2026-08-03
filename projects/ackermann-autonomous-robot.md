@@ -1,17 +1,17 @@
 ---
 layout: default
-title: Native Ackermann Autonomous Robot
-description: Safety-first native Python autonomy stack integrating Raspberry Pi supervision, Jetson edge compute, C30D vehicle control, lidar, and RGB-D perception.
+title: Ackermann Robot Bring-Up & Native Autonomy
+description: End-to-end Ackermann robot project spanning STM32/C30D bring-up, safety-gated actuation, Raspberry Pi supervision, Jetson edge compute, sensing, odometry, and mapping.
 ---
 
 <p class="eyebrow">Mobile Robotics &middot; Embedded Autonomy</p>
-# Native Ackermann Autonomous Robot
+# Ackermann Robot Bring-Up & Native Autonomy
 
 <div class="project-summary">
   <div><strong>Role</strong><span>Robotics systems developer</span></div>
   <div><strong>Context</strong><span>Independent autonomy platform</span></div>
   <div><strong>Platform</strong><span>Python &middot; Raspberry Pi 5 &middot; Jetson Orin Nano</span></div>
-  <div><strong>Outcome</strong><span>Safety-gated sensing, control, and mapping foundation</span></div>
+  <div><strong>Outcome</strong><span>Validated motion primitives plus an autonomy foundation</span></div>
 </div>
 
 <div class="project-links" markdown="0">
@@ -21,7 +21,7 @@ description: Safety-first native Python autonomy stack integrating Raspberry Pi 
 
 ## Overview
 
-Built a native, non-ROS software stack for a four-wheel Ackermann-steering research robot. A Raspberry Pi 5 owns low-level supervision, safety, hardware interfaces, and logging, while a Jetson Orin Nano provides additional compute for vision, mapping, and future learned navigation workloads.
+This is one continuous hardware-and-software project: I first brought up the robot's STM32-based C30D controller and established safety-gated motor, steering, encoder, and route control, then expanded the platform into a native, non-ROS autonomy stack. A Raspberry Pi 5 owns low-level supervision, safety, hardware interfaces, and logging, while a Jetson Orin Nano provides additional compute for vision, mapping, and future learned navigation workloads.
 
 The platform integrates an OAK-D Lite RGB-D camera, an RPLIDAR C1, and a C30D controller connected to the drive motors, steering servo, wheel encoders, and onboard IMU. The repository captures the engineering path from hardware discovery and passive protocol analysis through guarded control experiments, provisional odometry, synchronized sensor recording, and occupancy-grid generation.
 
@@ -42,6 +42,31 @@ The architecture keeps the safety boundary local to the Raspberry Pi. Commands f
 - Added bounded RPLIDAR and OAK-D capture utilities plus synchronized read-only sensor-run recording.
 - Implemented offline run validation, lidar visualization, ray-traced occupancy grids, and provisional straight-line dead reckoning.
 - Developed guarded diagnostic utilities for neutral-frame and low-speed command research with explicit physical-safety requirements.
+- Reverse-engineered motor, steering, and electrical-polarity mappings through controlled hardware tests and STM32 documentation.
+- Configured the timer, PWM, encoder, GPIO, build, and SWD-flashing path needed for deterministic low-level actuation.
+- Built calibrated Raspberry Pi motion primitives and a route executor, then logged repeated multi-segment runs.
+
+## STM32/C30D Bring-Up and Route Validation
+
+The C30D is the robot's STM32-based integrated vehicle controller. Initial bring-up required identifying its motor, steering-servo, encoder, IMU, power, and host communication paths before higher-level autonomy work could proceed.
+
+<img class="project-media" src="{{ site.baseurl }}/assets/stm32/system-architecture.svg" alt="Initial Raspberry Pi and STM32 C30D control path with safety gating, encoder feedback, drive motor, and steering servo" width="1200" height="675" loading="lazy" decoding="async">
+
+Two faults illustrate the system-level debugging involved:
+
+1. A timer-prescaler value of 83 prevented the steering servo from responding. Correcting it to 15 restored the intended PWM timing.
+2. Intermittent USB serial command corruption initially appeared mechanical. Reproducible logs isolated the fault to communication rather than the drivetrain.
+
+The calibrated bring-up path produced the following results in its controlled test setup:
+
+| Test | Observed result |
+|---|---:|
+| Straight motion primitive | Approximately 15.24 cm increments |
+| Turn primitive | Approximately 59.73 degrees |
+| Drift | Near zero in the calibrated setup |
+| Route reliability exercise | 3 consecutive full runs within a 5-run test |
+
+These measurements validate the original safety-gated command path and calibrated primitives under the tested conditions. They are not a full statistical characterization across surfaces, payloads, battery states, or controller modes. The newer native Python stack extends that work toward a generalized sensor and autonomy architecture; its broader C30D command interface remains under validation.
 
 ## Safety-First Control
 
@@ -78,20 +103,22 @@ Reference firmware also informed an 11-byte host-command candidate. The frame re
 | RPLIDAR and OAK-D bounded capture | Implemented |
 | Sensor-run validation, replay, and occupancy grids | Implemented |
 | Straight-line dead reckoning | Provisional; calibration required |
-| Reliable closed-loop C30D drive and steering | In validation |
+| Calibrated STM32/C30D motion primitives and route execution | Validated in the documented test setup |
+| Generalized native Python C30D drive and steering interface | In validation |
 | Multi-sensor SLAM and autonomous navigation | Planned |
 
 ## Engineering Takeaways
 
-- Unknown embedded interfaces should be approached through passive observation before actuation.
+- Unknown embedded interfaces should be approached through passive observation and bounded bring-up tests before broader actuation.
 - Safety gates belong near the hardware boundary, not only in high-level autonomy code.
 - Candidate protocol fields must stay explicitly labeled until controlled experiments establish their physical meaning.
 - Unified capture and offline replay make sensor and state-estimation work testable without repeatedly operating the robot.
 - Separating real hardware drivers from control logic makes meaningful mock-based testing possible.
+- Build, flash, serial, electrical, and mechanical behavior must be debugged as one system when failures cross subsystem boundaries.
 
 ## Technical Stack
 
-Python &middot; Raspberry Pi 5 &middot; Jetson Orin Nano &middot; C30D/STM32 vehicle controller &middot; OAK-D Lite &middot; RPLIDAR C1 &middot; serial protocols &middot; RGB-D perception &middot; occupancy grids &middot; dead reckoning &middot; pytest &middot; YAML configuration
+Python &middot; Embedded C &middot; Raspberry Pi 5 &middot; Jetson Orin Nano &middot; STM32/C30D vehicle controller &middot; PWM/timers &middot; quadrature encoders &middot; SWD/ST-Link &middot; OAK-D Lite &middot; RPLIDAR C1 &middot; serial protocols &middot; RGB-D perception &middot; occupancy grids &middot; dead reckoning &middot; pytest &middot; YAML configuration
 
 ## Next Steps
 

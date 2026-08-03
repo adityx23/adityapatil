@@ -13,7 +13,7 @@ My strongest work sits at the interfaces between algorithms, firmware, sensors, 
   <section class="card">
     <h2>Embedded Robotics</h2>
     <p>Embedded C/C++, STM32, Arduino, ESP32, PWM/timers, encoders, GPIO, I²C, UART/Serial, CAN, USB CDC, SWD/ST-Link.</p>
-    <p><a href="{{ site.baseurl }}/projects/stm32-robot-control-system">Evidence: STM32 control system →</a></p>
+    <p><a href="{{ site.baseurl }}/projects/ackermann-autonomous-robot">Evidence: Ackermann robot bring-up and autonomy stack →</a></p>
   </section>
 
   <section class="card">

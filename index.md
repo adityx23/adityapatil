@@ -38,12 +38,12 @@ description: NYU M.S. Robotics student and AI4CE researcher building embedded, a
 
 <section class="featured-grid" aria-label="Featured projects">
   <article class="project-card">
-    <a href="{{ site.baseurl }}/projects/stm32-robot-control-system">
-      <img src="{{ site.baseurl }}/assets/stm32/system-architecture.svg" alt="STM32 robot-control stack from Raspberry Pi commands to drive and steering actuation" width="1200" height="675">
+    <a href="{{ site.baseurl }}/projects/ackermann-autonomous-robot">
+      <img src="{{ site.baseurl }}/assets/ackermann/robot-overview.jpeg" alt="Ackermann robot with STM32 C30D control, Raspberry Pi and Jetson compute, lidar, and RGB-D perception" width="1373" height="1831">
       <div class="project-card-body">
-        <div class="tag-list"><span class="tag">STM32</span><span class="tag">Embedded C</span><span class="tag">Linux</span></div>
-        <h3 class="project-card-title">STM32 MCU Bring-Up & Robot Control</h3>
-        <p class="project-card-desc">Reverse-engineered an undocumented controller, wrote safety-gated motor and servo drivers, and validated repeatable route execution.</p>
+        <div class="tag-list"><span class="tag">STM32/C30D</span><span class="tag">Embedded Control</span><span class="tag">Autonomy</span></div>
+        <h3 class="project-card-title">Ackermann Robot Bring-Up & Native Autonomy</h3>
+        <p class="project-card-desc">Brought up the vehicle controller, validated safety-gated motion, and built the sensing, odometry, and mapping foundation for autonomy.</p>
         <span class="project-card-cta">Read case study →</span>
       </div>
     </a>
