@@ -2,6 +2,18 @@
 layout: default
 title: SmolVLA for Language-Conditioned Robot Action Prediction
 description: SmolVLA-450M action consistency, instruction sensitivity, and temporal analysis on BridgeV2 drawer manipulation observations.
+project: true
+image: /assets/thumbnails/smolvla.webp
+repository: https://github.com/adityx23/smolvla-bridgev2-action-analysis
+date_modified: 2026-08-03
+technologies: [PyTorch, SmolVLA, LeRobot, BridgeV2, Robot Learning]
+built: An inference and analysis workflow for testing language sensitivity and temporal action consistency on real robot observations.
+validated: Eight BridgeV2 episodes, 80 frames, and six prompts across drawer-opening and drawer-closing behaviors.
+why: Evaluates whether a vision-language-action model is physically and linguistically meaningful rather than relying on qualitative demos alone.
+previous_project_url: /projects/slam-navigation-robot
+previous_project_title: SLAM-Based Navigation Robot
+next_project_url: /projects/diffusion-policy-pusht
+next_project_title: Diffusion Policy on PushT
 ---
 
 # SmolVLA for Language-Conditioned Robot Action Prediction
@@ -17,6 +29,8 @@ description: SmolVLA-450M action consistency, instruction sensitivity, and tempo
   <a class="btn" href="{{ site.baseurl }}/projects">← All Projects</a>
   <a class="btn" href="https://github.com/adityx23/smolvla-bridgev2-action-analysis" target="_blank" rel="noopener noreferrer">GitHub Repository ↗</a>
 </div>
+
+{% include project-tldr.html %}
 
 ## Overview
 
@@ -161,3 +175,5 @@ The results suggest that the pretrained SmolVLA policy:
 - extend from analysis to rollout-based policy evaluation
 - test robustness under ambiguous or conflicting instructions
 - analyze internal representations and attention behavior
+
+{% include project-footer.html %}

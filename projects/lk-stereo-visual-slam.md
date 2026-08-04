@@ -2,6 +2,18 @@
 layout: default
 title: Stereo Visual-Inertial SLAM with Optimization and Loop Closure
 description: Stereo visual-inertial SLAM on EuRoC with feature tracking, IMU fusion, bundle adjustment, loop closure, and sparse mapping.
+project: true
+image: /assets/thumbnails/lk-slam.webp
+repository: https://github.com/adityx23/aap-slam-orb-nomad-navigation
+date_modified: 2026-08-03
+technologies: [Python, OpenCV, SciPy, EuRoC, Visual-Inertial Odometry]
+built: A stereo visual-inertial pipeline covering tracking, geometry, PnP motion estimation, optimization, loop closure, and sparse mapping.
+validated: Reported trajectory error improved from 0.192 m to 0.031 m, with an additional 3,630-frame ORB evaluation.
+why: Shows algorithmic depth from perception frontend through estimation backend and quantitative trajectory evaluation.
+previous_project_url: /projects/ackermann-autonomous-robot
+previous_project_title: Ackermann Robot Bring-Up & Native Autonomy
+next_project_url: /projects/ecu-automatic-transmission-controller
+next_project_title: Automatic Transmission Controller
 ---
 
 # Stereo Visual-Inertial SLAM with Optimization and Loop Closure
@@ -17,6 +29,8 @@ description: Stereo visual-inertial SLAM on EuRoC with feature tracking, IMU fus
   <a class="btn" href="{{ site.baseurl }}/projects">← All Projects</a>
   <a class="btn" href="https://github.com/adityx23/aap-slam-orb-nomad-navigation" target="_blank" rel="noopener noreferrer">ORB + NoMaD Repository ↗</a>
 </div>
+
+{% include project-tldr.html %}
 
 ## Overview
 
@@ -239,3 +253,5 @@ The final system was evaluated using aligned trajectory comparison and trajector
 - extend from sparse mapping toward denser scene reconstruction
 - benchmark more rigorously across additional EuRoC sequences and failure cases
 - compare alternative visual-inertial fusion strategies for long-horizon drift reduction
+
+{% include project-footer.html %}

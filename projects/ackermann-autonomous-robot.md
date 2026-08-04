@@ -2,6 +2,18 @@
 layout: default
 title: Ackermann Robot Bring-Up & Native Autonomy
 description: End-to-end Ackermann robot project spanning STM32/C30D bring-up, safety-gated actuation, Raspberry Pi supervision, Jetson edge compute, sensing, odometry, and mapping.
+project: true
+image: /assets/thumbnails/ackermann.webp
+repository: https://github.com/adityx23/ackermann-autonomous-robot
+date_modified: 2026-08-03
+technologies: [Python, Embedded C, STM32, Raspberry Pi, Jetson, RPLIDAR, OAK-D]
+built: A safety-gated Ackermann robot stack spanning STM32/C30D bring-up, native supervision, multi-sensor capture, odometry, and mapping.
+validated: Calibrated motion primitives, repeated route execution, C30D feedback framing, sensor capture, and offline mapping tools.
+why: Demonstrates ownership across undocumented embedded hardware, safe physical testing, systems software, and autonomy foundations.
+previous_project_url: /projects/mujoco-manipulator
+previous_project_title: UR10e Control in MuJoCo
+next_project_url: /projects/lk-stereo-visual-slam
+next_project_title: Stereo Visual-Inertial SLAM
 ---
 
 <p class="eyebrow">Mobile Robotics &middot; Embedded Autonomy</p>
@@ -18,6 +30,8 @@ description: End-to-end Ackermann robot project spanning STM32/C30D bring-up, sa
   <a class="btn" href="{{ site.baseurl }}/projects">&larr; All Projects</a>
   <a class="btn" href="https://github.com/adityx23/ackermann-autonomous-robot" target="_blank" rel="noopener">GitHub Repository &nearr;</a>
 </div>
+
+{% include project-tldr.html %}
 
 ## Overview
 
@@ -128,3 +142,5 @@ Python &middot; Embedded C &middot; Raspberry Pi 5 &middot; Jetson Orin Nano &mi
 - Add scan matching and pose-aware occupancy mapping.
 - Connect Jetson perception through a bounded, freshness-checked command interface.
 - Evaluate closed-loop waypoint following and obstacle-aware planning.
+
+{% include project-footer.html %}

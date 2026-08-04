@@ -8,13 +8,14 @@ description: NYU M.S. Robotics student and AI4CE researcher building embedded, a
   <p class="eyebrow">NYU M.S. Robotics · AI4CE Researcher</p>
   <h1>Robotics systems from firmware to autonomy.</h1>
   <p class="hero-sub">
-    I build and debug complete robotic systems across <strong>embedded control</strong>,
+    I am a robotics systems engineer who builds and debugs complete robotic systems across <strong>embedded control</strong>,
     <strong>state estimation</strong>, and <strong>robot learning</strong>—from STM32 bring-up and CAN-based actuation
     to visual-inertial SLAM and language-conditioned policies.
   </p>
+  <p class="availability">Seeking robotics software, embedded robotics, autonomy, controls, and robot-learning internship opportunities.</p>
   <div class="hero-links">
     <a class="btn btn-primary" href="{{ site.baseurl }}/projects">View Projects →</a>
-    <a class="btn" href="{{ site.baseurl }}/resume.pdf">Résumé</a>
+    <a class="btn" href="{{ site.baseurl }}/resume.pdf">Résumé <span class="btn-note">Updated Aug 2026</span></a>
     <a class="btn" href="https://github.com/adityx23" target="_blank" rel="noopener noreferrer">GitHub</a>
     <a class="btn" href="https://www.linkedin.com/in/aditya-patil-4a5735217" target="_blank" rel="noopener noreferrer">LinkedIn</a>
     <a class="btn" href="mailto:aditya.a.patil2@gmail.com">Email</a>
@@ -25,7 +26,23 @@ description: NYU M.S. Robotics student and AI4CE researcher building embedded, a
   <div class="metric"><strong>0.031 m</strong><span>best reported SLAM trajectory error after optimization</span></div>
   <div class="metric"><strong>3,630</strong><span>EuRoC frames processed in ORB frame-to-map evaluation</span></div>
   <div class="metric"><strong>33 Hz</strong><span>embedded drivetrain telemetry logging rate</span></div>
-  <div class="metric"><strong>3 stacks</strong><span>firmware, estimation, and robot-learning depth</span></div>
+  <div class="metric"><strong>30</strong><span>diffusion-policy evaluation rollouts with failure analysis</span></div>
+</section>
+
+<div class="section-heading" id="about">
+  <div>
+    <p class="eyebrow">How I Work</p>
+    <h2>Evidence before claims</h2>
+  </div>
+</div>
+
+<section class="about-card">
+  <p>I enjoy robotics problems that cross boundaries between firmware, sensors, controls, estimation, and learned behavior. My work emphasizes safe hardware bring-up, explicit system architecture, reproducible experiments, and honest separation between measured results and planned capability.</p>
+  <p>I am currently completing an M.S. in Robotics at NYU and contributing to CREO / AI4CE research on mobile manipulation and vision-language-action systems.</p>
+  <div class="hero-links">
+    <a class="btn btn-primary" href="mailto:aditya.a.patil2@gmail.com">Discuss an opportunity</a>
+    <a class="btn" href="{{ site.baseurl }}/skills">View technical skills</a>
+  </div>
 </section>
 
 <div class="section-heading">
@@ -39,7 +56,7 @@ description: NYU M.S. Robotics student and AI4CE researcher building embedded, a
 <section class="featured-grid" aria-label="Featured projects">
   <article class="project-card">
     <a href="{{ site.baseurl }}/projects/ackermann-autonomous-robot">
-      <img src="{{ site.baseurl }}/assets/ackermann/robot-overview.jpeg" alt="Ackermann robot with STM32 C30D control, Raspberry Pi and Jetson compute, lidar, and RGB-D perception" width="1373" height="1831">
+      <img src="{{ site.baseurl }}/assets/thumbnails/ackermann.webp" srcset="{{ site.baseurl }}/assets/thumbnails/ackermann-480.webp 480w, {{ site.baseurl }}/assets/thumbnails/ackermann.webp 960w" sizes="(max-width: 820px) 100vw, 33vw" alt="Ackermann robot with STM32 C30D control, Raspberry Pi and Jetson compute, lidar, and RGB-D perception" width="960" height="540" fetchpriority="high">
       <div class="project-card-body">
         <div class="tag-list"><span class="tag">STM32/C30D</span><span class="tag">Embedded Control</span><span class="tag">Autonomy</span></div>
         <h3 class="project-card-title">Ackermann Robot Bring-Up & Native Autonomy</h3>
@@ -51,7 +68,7 @@ description: NYU M.S. Robotics student and AI4CE researcher building embedded, a
 
   <article class="project-card">
     <a href="{{ site.baseurl }}/projects/lk-stereo-visual-slam">
-      <img src="{{ site.baseurl }}/assets/lk_slam/slam_final_result.png" alt="Stereo visual-inertial SLAM trajectory and evaluation summary" width="2428" height="1975" loading="lazy" decoding="async">
+      <img src="{{ site.baseurl }}/assets/thumbnails/lk-slam.webp" srcset="{{ site.baseurl }}/assets/thumbnails/lk-slam-480.webp 480w, {{ site.baseurl }}/assets/thumbnails/lk-slam.webp 960w" sizes="(max-width: 820px) 100vw, 33vw" alt="Stereo visual-inertial SLAM trajectory and evaluation summary" width="960" height="540" loading="lazy" decoding="async">
       <div class="project-card-body">
         <div class="tag-list"><span class="tag">OpenCV</span><span class="tag">IMU Fusion</span><span class="tag">Optimization</span></div>
         <h3 class="project-card-title">Stereo Visual-Inertial SLAM</h3>
@@ -63,7 +80,7 @@ description: NYU M.S. Robotics student and AI4CE researcher building embedded, a
 
   <article class="project-card">
     <a href="{{ site.baseurl }}/projects/ecu-automatic-transmission-controller">
-      <img src="{{ site.baseurl }}/assets/ecu/drivetrain-hardware.png" alt="Annotated physical three-speed drivetrain and shift mechanism" width="1536" height="2040" loading="lazy" decoding="async">
+      <img src="{{ site.baseurl }}/assets/thumbnails/ecu.webp" srcset="{{ site.baseurl }}/assets/thumbnails/ecu-480.webp 480w, {{ site.baseurl }}/assets/thumbnails/ecu.webp 960w" sizes="(max-width: 820px) 100vw, 33vw" alt="Annotated physical three-speed drivetrain and shift mechanism" width="960" height="540" loading="lazy" decoding="async">
       <div class="project-card-body">
         <div class="tag-list"><span class="tag">Embedded Control</span><span class="tag">Telemetry</span><span class="tag">Hardware</span></div>
         <h3 class="project-card-title">Automatic Transmission Controller</h3>

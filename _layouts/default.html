@@ -8,16 +8,32 @@
     <link rel="canonical" href="{{ page.url | absolute_url }}">
     <link rel="icon" href="{{ site.baseurl }}/assets/favicon.svg" type="image/svg+xml">
 
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="{% if page.project %}article{% else %}website{% endif %}">
     <meta property="og:title" content="{{ page.title | default: site.title | escape }}">
     <meta property="og:description" content="{{ page.description | default: site.description | escape }}">
     <meta property="og:url" content="{{ page.url | absolute_url }}">
-    <meta property="og:image" content="{{ '/assets/og-cover.png' | absolute_url }}">
+    <meta property="og:image" content="{{ page.image | default: '/assets/og-cover.png' | absolute_url }}">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ page.title | default: site.title | escape }}">
     <meta name="twitter:description" content="{{ page.description | default: site.description | escape }}">
-    <meta name="twitter:image" content="{{ '/assets/og-cover.png' | absolute_url }}">
+    <meta name="twitter:image" content="{{ page.image | default: '/assets/og-cover.png' | absolute_url }}">
 
+    {% if page.project %}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareSourceCode",
+      "name": {{ page.title | jsonify }},
+      "description": {{ page.description | jsonify }},
+      "url": {{ page.url | absolute_url | jsonify }},
+      "image": {{ page.image | absolute_url | jsonify }},
+      "dateModified": {{ page.date_modified | jsonify }},
+      "programmingLanguage": {{ page.technologies | join: ', ' | jsonify }},
+      {% if page.repository %}"codeRepository": {{ page.repository | jsonify }},{% endif %}
+      "author": {"@type": "Person", "name": "Aditya Patil", "url": "{{ site.url }}{{ site.baseurl }}/"}
+    }
+    </script>
+    {% else %}
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -36,9 +52,11 @@
       ]
     }
     </script>
+    {% endif %}
 
     <title>{% if page.title and page.title != site.title %}{{ page.title }} &middot; {% endif %}{{ site.title }}</title>
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=4">
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=5">
+    {% if site.cloudflare_analytics_token %}<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"{{ site.cloudflare_analytics_token }}"}'></script>{% endif %}
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
@@ -53,6 +71,7 @@
           <a href="{{ site.baseurl }}/">Home</a>
           <a href="{{ site.baseurl }}/projects">Projects</a>
           <a href="{{ site.baseurl }}/skills">Skills</a>
+          <a href="{{ site.baseurl }}/#about">About</a>
           <a href="{{ site.baseurl }}/resume.pdf">R&eacute;sum&eacute;</a>
           <a href="https://github.com/adityx23" target="_blank" rel="noopener noreferrer">GitHub</a>
         </nav>
@@ -68,6 +87,7 @@
         <div>
           <strong>Aditya Patil</strong>
           <p>NYU M.S. Robotics &middot; Robotics systems, embedded control, and autonomy</p>
+          <p class="footer-status">Seeking robotics internships &middot; R&eacute;sum&eacute; updated August 2026</p>
         </div>
         <div class="footer-links">
           <a href="mailto:aditya.a.patil2@gmail.com">Email</a>

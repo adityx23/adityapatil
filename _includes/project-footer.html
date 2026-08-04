@@ -1,0 +1,16 @@
+<section class="project-end" aria-label="Project navigation and contact">
+  <div>
+    <p class="eyebrow">Continue Exploring</p>
+    <h2>See another system</h2>
+    <p>Interested in the engineering behind this work? I am available to discuss robotics software, embedded systems, autonomy, controls, and robot-learning opportunities.</p>
+    <div class="hero-links">
+      <a class="btn btn-primary" href="mailto:aditya.a.patil2@gmail.com?subject={{ page.title | url_encode }}">Contact me about this work</a>
+      <a class="btn" href="{{ site.baseurl }}/resume.pdf">Résumé <span class="btn-note">Updated Aug 2026</span></a>
+    </div>
+  </div>
+  <nav class="project-pagination" aria-label="Project case studies">
+    {% if page.previous_project_url %}<a href="{{ site.baseurl }}{{ page.previous_project_url }}"><span>Previous project</span><strong>{{ page.previous_project_title }}</strong></a>{% endif %}
+    <a href="{{ site.baseurl }}/projects"><span>Portfolio</span><strong>All projects</strong></a>
+    {% if page.next_project_url %}<a href="{{ site.baseurl }}{{ page.next_project_url }}"><span>Next project</span><strong>{{ page.next_project_title }}</strong></a>{% endif %}
+  </nav>
+</section>

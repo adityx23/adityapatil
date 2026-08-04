@@ -4,3 +4,6 @@ theme: minima
 baseurl: "/adityapatil"
 url: "https://adityx23.github.io"
 
+# Set this to a Cloudflare Web Analytics token to enable cookieless aggregate analytics.
+cloudflare_analytics_token:
+

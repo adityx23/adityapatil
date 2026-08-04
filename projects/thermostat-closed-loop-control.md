@@ -2,6 +2,18 @@
 layout: default
 title: Closed-Loop Temperature Control (Peltier + TMP117)
 description: Thermal modeling, loop-shaping controller design, Tustin discretization, and Arduino deployment for a Peltier-heated enclosure.
+project: true
+image: /assets/thumbnails/thermostat.webp
+repository: https://github.com/adityx23/closed-loop-temperature-control-system
+date_modified: 2026-08-03
+technologies: [Arduino, Embedded C++, TMP117, Control Systems, Peltier]
+built: A modeled and instrumented thermal enclosure with TMP117 feedback, a discretized compensator, and PWM Peltier actuation.
+validated: Closed-loop heating from approximately 70 °F toward a 77 °F setpoint and a modeled response approximately twenty times faster than uncompensated behavior.
+why: Demonstrates the complete controls workflow from plant model and loop shaping to embedded implementation and physical validation.
+previous_project_url: /projects/ecu-automatic-transmission-controller
+previous_project_title: Automatic Transmission Controller
+next_project_url: /projects/slam-navigation-robot
+next_project_title: SLAM-Based Navigation Robot
 ---
 
 # Closed-Loop Temperature Control (Peltier + TMP117)
@@ -17,6 +29,8 @@ description: Thermal modeling, loop-shaping controller design, Tustin discretiza
   <a class="btn" href="{{ site.baseurl }}/projects">← All Projects</a>
   <a class="btn" href="https://github.com/adityx23/closed-loop-temperature-control-system" target="_blank" rel="noopener noreferrer">GitHub Repository ↗</a>
 </div>
+
+{% include project-tldr.html %}
 
 ## Overview
 Designed and implemented a closed-loop temperature regulation system for a custom acrylic enclosure using Peltier thermoelectric modules and a discrete-time controller derived from continuous-time control theory. The controller was discretized using the **Tustin transform** and deployed on an embedded microcontroller, enabling stable real-time regulation without relying on a standard PID formulation.
@@ -174,3 +188,5 @@ Validated expected closed-loop behavior using frequency and time-domain analysis
 - Benchmark against PID baseline under identical constraints  
 - Add actuator thermal monitoring and protection  
 - Add active cooling to reduce overshoot and support bidirectional regulation
+
+{% include project-footer.html %}

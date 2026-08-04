@@ -2,6 +2,18 @@
 layout: default
 title: Embedded ECU-Style Automatic Transmission Controller
 description: Physical three-speed drivetrain with multicore embedded sensing, encoder-based shifting, telemetry logging, and efficiency analysis.
+project: true
+image: /assets/thumbnails/ecu.webp
+repository: https://github.com/adityx23/ecu-automatic-transmission-controller
+date_modified: 2026-08-03
+technologies: [Propeller C, Python, Encoders, Telemetry, Embedded Control]
+built: A physical three-speed drivetrain with concurrent sensing, automatic shifting, encoder feedback, display output, and SD logging.
+validated: Three ratios across multiple loads with approximately 33 Hz telemetry and measured drivetrain power and efficiency behavior.
+why: Connects embedded concurrency, electromechanical control, instrumentation, and experimental analysis in one physical platform.
+previous_project_url: /projects/lk-stereo-visual-slam
+previous_project_title: Stereo Visual-Inertial SLAM
+next_project_url: /projects/thermostat-closed-loop-control
+next_project_title: Closed-Loop Temperature Control
 ---
 
 # Embedded ECU-Style Automatic Transmission Controller
@@ -16,7 +28,10 @@ description: Physical three-speed drivetrain with multicore embedded sensing, en
 <div class="project-links" markdown="0">
   <a class="btn" href="{{ site.baseurl }}/projects">← All Projects</a>
   <a class="btn" href="https://github.com/adityx23/ecu-automatic-transmission-controller" target="_blank" rel="noopener">GitHub Repository ↗</a>
+  <a class="btn" href="#hardware-demonstration">Hardware Demo ↓</a>
 </div>
+
+{% include project-tldr.html %}
 
 ## Overview
 
@@ -183,3 +198,5 @@ The archived project folder did not contain the raw CSV logs referenced by the n
 - snapshot shared sensor state explicitly before control decisions
 - restore the raw CSV logs and formalize the efficiency calculation pipeline
 - separate hardware drivers, transmission control, and telemetry into testable firmware modules
+
+{% include project-footer.html %}

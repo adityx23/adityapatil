@@ -2,6 +2,17 @@
 layout: default
 title: SLAM-Based Autonomous Navigation Robot
 description: Simulation-first ROS2 mobile-robot architecture spanning LiDAR SLAM, EKF sensor fusion, Nav2 planning, and embedded motor control.
+project: true
+image: /assets/thumbnails/slam-navigation.png
+date_modified: 2026-08-03
+technologies: [ROS2, Nav2, Cartographer, Gazebo, ESP32, EKF]
+built: An end-to-end ROS2 autonomy architecture connecting LiDAR mapping, EKF fusion, planning, simulation, and embedded motor control.
+validated: The complete autonomy pipeline was exercised in Gazebo before the proposed custom hardware deployment.
+why: Shows system-level decomposition across high-level navigation, state estimation, simulation, and dedicated embedded actuation.
+previous_project_url: /projects/thermostat-closed-loop-control
+previous_project_title: Closed-Loop Temperature Control
+next_project_url: /projects/smolvla-action-prediction
+next_project_title: SmolVLA Action Analysis
 ---
 
 # SLAM-Based Autonomous Navigation Robot
@@ -15,7 +26,10 @@ description: Simulation-first ROS2 mobile-robot architecture spanning LiDAR SLAM
 
 <div class="project-links" markdown="0">
   <a class="btn" href="{{ site.baseurl }}/projects">← All Projects</a>
+  <span class="artifact-note">Architecture case study · source available on request</span>
 </div>
+
+{% include project-tldr.html %}
 
 ---
 
@@ -176,3 +190,5 @@ LiDAR scans feed Cartographer for occupancy mapping; IMU and encoder odometry ar
 ## Technical Stack
 
 ROS2 · Nav2 · Cartographer · robot_localization (EKF) · Gazebo · Raspberry Pi 4B · ESP32 · YDLiDAR X2 · BNO055 IMU · Cytron MD10C · Python · C++
+
+{% include project-footer.html %}

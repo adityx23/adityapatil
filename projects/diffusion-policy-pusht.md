@@ -2,6 +2,18 @@
 layout: default
 title: Diffusion Policy for Robot Control — PushT Task Analysis
 description: Evaluation of a pretrained diffusion policy across 30 PushT rollouts, including success, efficiency, reward, and failure analysis.
+project: true
+image: /assets/thumbnails/diffusion-policy.webp
+repository: https://github.com/adityx23/diffusion-policy-pusht-evaluation
+date_modified: 2026-08-03
+technologies: [PyTorch, Diffusion Policy, LeRobot, PushT, Robot Learning]
+built: A repeatable rollout-evaluation workflow measuring success, trajectory efficiency, reward behavior, and failure structure.
+validated: A 66.7% success rate across 30 rollouts, consistent with the approximately 70% reported checkpoint benchmark.
+why: Demonstrates disciplined evaluation of a learned controller across repeated trials instead of selecting a single successful episode.
+previous_project_url: /projects/smolvla-action-prediction
+previous_project_title: SmolVLA Action Analysis
+next_project_url: /projects/mujoco-manipulator
+next_project_title: UR10e Control in MuJoCo
 ---
 
 # Diffusion Policy for Robot Control — PushT Task Analysis
@@ -17,6 +29,8 @@ description: Evaluation of a pretrained diffusion policy across 30 PushT rollout
   <a class="btn" href="{{ site.baseurl }}/projects">← All Projects</a>
   <a class="btn" href="https://github.com/adityx23/diffusion-policy-pusht-evaluation" target="_blank" rel="noopener noreferrer">GitHub Repository ↗</a>
 </div>
+
+{% include project-tldr.html %}
 
 ## Overview
 
@@ -160,3 +174,5 @@ rather than relying on reward alone.
 - analyze action trajectories directly instead of only episode-level metrics
 - test recovery-aware variants under perturbations
 - visualize latent sampling behavior for deeper interpretation
+
+{% include project-footer.html %}

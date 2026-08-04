@@ -2,6 +2,17 @@
 layout: default
 title: MuJoCo-Based Robotic Manipulator Simulation
 description: UR10e simulation comparing forward and inverse kinematics under position and velocity command interfaces.
+project: true
+image: /assets/thumbnails/mujoco.webp
+date_modified: 2026-08-03
+technologies: [Python, MuJoCo, UR10e, Kinematics, Robot Control]
+built: Four UR10e simulation configurations spanning forward and inverse kinematics with position and velocity command interfaces.
+validated: Controller behavior was compared through convergence, trajectory smoothness, and Cartesian end-effector visualization in four recorded demonstrations.
+why: Makes command-interface and kinematic-control tradeoffs visible in a controlled physics environment before hardware deployment.
+previous_project_url: /projects/diffusion-policy-pusht
+previous_project_title: Diffusion Policy on PushT
+next_project_url: /projects/ackermann-autonomous-robot
+next_project_title: Ackermann Robot Bring-Up & Native Autonomy
 ---
 
 # MuJoCo-Based Robotic Manipulator Simulation (UR10e)
@@ -15,7 +26,11 @@ description: UR10e simulation comparing forward and inverse kinematics under pos
 
 <div class="project-links" markdown="0">
   <a class="btn" href="{{ site.baseurl }}/projects">← All Projects</a>
+  <a class="btn" href="#control-experiments-and-results">Four Video Demos ↓</a>
+  <span class="artifact-note">Source available on request</span>
 </div>
+
+{% include project-tldr.html %}
 
 ## Overview
 Developed a physics-based simulation of a 6-DOF UR10e manipulator in MuJoCo to compare **joint-space vs task-space control** and study how **position vs velocity command interfaces** affect stability, convergence, and trajectory smoothness.
@@ -114,3 +129,5 @@ End-effector velocity commands mapped to joint velocities using Jacobian relatio
 - Quantitatively benchmark tracking error and convergence across trajectories  
 - Extend to contact-rich manipulation tasks (object interaction)  
 - Evaluate controller behavior under dynamic loading and constraint variation  
+
+{% include project-footer.html %}
