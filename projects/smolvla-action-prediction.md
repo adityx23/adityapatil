@@ -1,15 +1,15 @@
 ---
 layout: default
 title: SmolVLA for Language-Conditioned Robot Action Prediction
-description: SmolVLA-450M action consistency, instruction sensitivity, and temporal analysis on BridgeV2 drawer manipulation observations.
+description: Open-loop SmolVLA-450M action variation, prompt sensitivity, and temporal analysis on sampled BridgeV2 drawer observations.
 project: true
 image: /assets/thumbnails/smolvla.webp
 repository: https://github.com/adityx23/smolvla-bridgev2-action-analysis
-date_modified: 2026-08-03
+date_modified: 2026-08-08
 technologies: [PyTorch, SmolVLA, LeRobot, BridgeV2, Robot Learning]
-built: An inference and analysis workflow for testing language sensitivity and temporal action consistency on real robot observations.
-validated: Eight BridgeV2 episodes, 80 frames, and six prompts across drawer-opening and drawer-closing behaviors.
-why: Evaluates whether a vision-language-action model is physically and linguistically meaningful rather than relying on qualitative demos alone.
+built: An open-loop inference workflow for measuring prompt sensitivity and temporal variation in predicted actions on real robot observations.
+validated: Eight BridgeV2 episodes, 80 sampled frames, and six prompts, with seven open examples and one exploratory close example.
+why: Quantifies how a pretrained vision-language-action model's predictions vary with observations and prompts without claiming closed-loop task success.
 previous_project_url: /projects/slam-navigation-robot
 previous_project_title: SLAM-Based Navigation Robot
 next_project_url: /projects/diffusion-policy-pusht
@@ -34,9 +34,9 @@ next_project_title: Diffusion Policy on PushT
 
 ## Overview
 
-Applied **SmolVLA-450M**, a pretrained vision-language-action model, to **BridgeV2** real robot manipulation trajectories to study how language instructions influence predicted actions in drawer opening and closing tasks.
+Applied **SmolVLA-450M**, a pretrained vision-language-action model, to sampled **BridgeV2** real-robot observations to study how prompts influence open-loop action predictions for drawer-opening and drawer-closing examples.
 
-The project focused on whether the model produced physically meaningful action differences across instructions, how consistent its predicted actions were across similar episodes, and how its temporal behavior evolved during a manipulation sequence.
+The project measures whether predicted actions differ across prompts, how much they vary across similar episodes, and how they evolve over a sampled sequence. It does not execute the predictions on a robot or measure task success.
 
 ---
 
@@ -63,8 +63,8 @@ The project uses **BridgeV2**, a dataset of real **WidowX** robot manipulation d
 
 The project explored four key questions:
 
-- Does the model separate **open** vs **close** actions in a physically meaningful way?
-- Are action predictions consistent across multiple episodes of the same task?
+- How do predicted **open** and **close** action vectors differ in this sample?
+- How variable are action predictions across multiple episodes with the same label?
 - Does the model respond differently to semantically different language instructions on the same image?
 - How does action behavior evolve over time during an episode?
 
@@ -72,13 +72,13 @@ The project explored four key questions:
 
 ## Open vs Close Action Separation
 
-A key result was that SmolVLA separated the sampled open and close actions most strongly in **grip**, followed by **dz**.
+A key result in the supplied run was that sampled open and close predictions differed most strongly in **dy** (0.562), followed by **grip** (0.461) and **dz** (0.458).
 
-- **grip difference:** `0.276`
-- **dz difference:** `0.166`
-- **dy difference:** `0.059`
+- **dy difference:** `0.562`
+- **grip difference:** `0.461`
+- **dz difference:** `0.458`
 
-These differences indicate that the model is not producing one generic action vector for both task directions. Because the evaluation includes seven open episodes but only one close episode, the comparison is exploratory rather than a balanced task benchmark.
+These differences show that the model did not produce one identical mean action vector for both sampled task labels. Because the evaluation includes seven open episodes but only one close episode—and uses a zero-valued state placeholder—the comparison is exploratory rather than a balanced physical-control benchmark.
 
 ---
 
@@ -100,8 +100,8 @@ Instruction sensitivity analysis showed that the model produced distinct predict
 </p>
 
 ### Key findings
-- mean pairwise L2 distance across instructions: **0.534**
-- max pairwise L2 distance: **0.850**
+- mean pairwise L2 distance across prompts: **0.262**
+- max pairwise L2 distance: **0.376**
 - model behavior changed meaningfully under different natural-language commands
 
 ---
@@ -111,12 +111,12 @@ Instruction sensitivity analysis showed that the model produced distinct predict
 Temporal analysis showed that model behavior evolved across an episode rather than remaining static.
 
 Key observations:
-- `dpitch` had the lowest mean per-frame standard deviation (`0.101`)
-- `grip` had the highest mean per-frame standard deviation (`0.274`)
-- mean cumulative motion was similar for open (`3.957`) and close (`3.925`) samples
+- `dpitch` had the lowest mean per-frame standard deviation (`0.048`)
+- `grip` had the highest mean per-frame standard deviation (`0.393`)
+- cumulative motion magnitude was `3.623` for the mean open trajectory and `7.580` for the single close trajectory
 - action values evolved across the ten sampled frames rather than remaining constant
 
-This indicates that the model maintains task-specific structure throughout the sequence.
+This shows temporal structure in the predicted action sequence; it does not establish closed-loop task completion.
 
 <p align="center">
   <img src="{{ site.baseurl }}/assets/smolvla/smolvla_temporal_consistency.png" alt="SmolVLA temporal consistency" width="900" loading="lazy" decoding="async">
@@ -130,20 +130,21 @@ This indicates that the model maintains task-specific structure throughout the s
 ## Results Summary
 
 ### Strongest quantitative outcomes
-- **grip separation:** `0.276` between sampled open and close actions
-- **dz separation:** `0.166`
-- **mean instruction sensitivity:** `0.534` pairwise L2 distance
+- **dy separation:** `0.562` between sampled open and close predictions
+- **grip separation:** `0.461`
+- **dz separation:** `0.458`
+- **mean prompt sensitivity:** `0.262` pairwise L2 distance
 - **most consistent dimension:** `dpitch`
 - **most variable dimension:** `grip`
-- **close cumulative motion:** `3.925`
-- **open cumulative motion:** `3.957`
+- **close cumulative motion:** `7.580`
+- **open cumulative motion:** `3.623`
 
 ### Interpretation
-The results suggest that the pretrained SmolVLA policy:
-- captures meaningful task-direction differences
-- is sensitive to instruction semantics
+The sampled predictions suggest that the pretrained SmolVLA policy:
+- produces different mean vectors for the sampled task labels
+- is sensitive to prompt changes in the sampled image
 - exhibits structured temporal behavior
-- produces physically consistent action distributions
+- produces structured but variable action distributions
 
 ---
 
@@ -161,10 +162,10 @@ The results suggest that the pretrained SmolVLA policy:
 
 ## Engineering Insights
 
-- pretrained VLA models can demonstrate meaningful language grounding without task-specific retraining
+- pretrained VLA predictions can be measurably prompt-sensitive without task-specific retraining; closed-loop tests are still required to establish language grounding and task success
 - action-space analysis is effective for evaluating robot policy behavior
 - temporal analysis reveals confidence trends that single-frame evaluation cannot capture
-- simple tasks like drawer manipulation are powerful probes for physical correctness
+- simple tasks like drawer manipulation are useful probes for prediction structure before closed-loop evaluation
 
 ---
 
