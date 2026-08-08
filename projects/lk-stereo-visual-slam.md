@@ -5,10 +5,10 @@ description: Stereo visual-inertial SLAM on EuRoC with feature tracking, IMU fus
 project: true
 image: /assets/thumbnails/lk-slam.webp
 repository: https://github.com/adityx23/aap-slam-orb-nomad-navigation
-date_modified: 2026-08-03
+date_modified: 2026-08-08
 technologies: [Python, OpenCV, SciPy, EuRoC, Visual-Inertial Odometry]
-built: A stereo visual-inertial pipeline covering tracking, geometry, PnP motion estimation, optimization, loop closure, and sparse mapping.
-validated: Reported trajectory error improved from 0.192 m to 0.031 m, with an additional 3,630-frame ORB evaluation.
+built: Stereo visual-inertial and ORB frame-to-map evaluation notebooks covering tracking, geometry, PnP motion estimation, optimization, loop closure, sparse mapping, and topological navigation.
+validated: A tightly coupled 200-frame run improved ATE from 0.1924 m to 0.0305 m; separate full-sequence experiments report approximately 0.23 m ATE and a 3,630-frame ORB run reports 0.9002 m.
 why: Shows algorithmic depth from perception frontend through estimation backend and quantitative trajectory evaluation.
 previous_project_url: /projects/ackermann-autonomous-robot
 previous_project_title: Ackermann Robot Bring-Up & Native Autonomy
@@ -22,7 +22,7 @@ next_project_title: Automatic Transmission Controller
   <div><strong>Role</strong><span>Perception pipeline and evaluation</span></div>
   <div><strong>Context</strong><span>Independent SLAM implementation</span></div>
   <div><strong>Platform</strong><span>Python · OpenCV · SciPy · EuRoC</span></div>
-  <div><strong>Outcome</strong><span>Reported error reduced from 0.192 m to 0.031 m</span></div>
+  <div><strong>Outcome</strong><span>0.0305 m ATE on a scoped 200-frame run</span></div>
 </div>
 
 <div class="project-links" markdown="0">
@@ -36,9 +36,9 @@ next_project_title: Automatic Transmission Controller
 
 Built a stereo visual-inertial SLAM pipeline on the EuRoC MAV dataset, starting from feature tracking and stereo geometry and extending through visual odometry, IMU-assisted estimation, local optimization, loop closure, and sparse 3D mapping.
 
-The final system combined stereo tracking, PnP-based motion estimation, IMU-informed pose refinement, bundle adjustment, and graph-based loop closure to reduce drift and improve global consistency.
+The notebooks combine stereo tracking, PnP-based motion estimation, IMU-informed pose refinement, bundle adjustment, and graph-based loop-closure experiments. They retain both improvements and negative results: the strongest short-window run improves substantially, while some full-sequence optimization variants provide little benefit or increase error.
 
-An additional **AAP-SLAM-ORB + NoMaD** notebook explores a related ORB-based frame-to-map frontend and converts its keyframes into a topological graph for goal-conditioned navigation. That executed run processed 3,630 EuRoC MH_01_easy frames, achieved 0.9002 m aligned SLAM ATE RMSE, and produced a graph with 244 nodes. Its recorded navigation stage used a documented lightweight NoMaD fallback, so the repository reports the navigation metrics separately from the stronger SLAM result.
+An additional **AAP-SLAM-ORB + NoMaD** notebook explores a related ORB-based frame-to-map frontend and converts its keyframes into a topological graph for goal-conditioned navigation. Its executed run processed 3,630 EuRoC MH_01_easy frames, achieved 0.9002 m aligned SLAM ATE RMSE, and produced a graph with 244 nodes. The repository includes both the supplied real-`nomad.pth` run and an alternate architecture notebook documenting the earlier lightweight fallback.
 
 <p align="center">
   <img src="{{ site.baseurl }}/assets/lk_slam/slam_final_result.png" alt="Final SLAM result summary" width="900" loading="lazy" decoding="async">
@@ -185,7 +185,7 @@ Alongside trajectory estimation, the system reconstructed a sparse 3D landmark m
 
 ## Results and Validation
 
-The final system was evaluated using aligned trajectory comparison and trajectory-error metrics on EuRoC MAV sequences.
+The pipelines were evaluated using aligned trajectory comparison and trajectory-error metrics on EuRoC MAV sequences. Results depend strongly on evaluation length and configuration: the 0.0305 m tightly coupled result covers frames 50–249, while the full 3,630-frame MH_01 runs are approximately 0.23 m ATE. The recorded full-sequence loop-closure experiment increased ATE from 0.2451 m to 0.3125 m, so it is retained as a negative result rather than presented as an improvement.
 
 <div class="figure-grid">
 

@@ -5,10 +5,10 @@ description: Evaluation of a pretrained diffusion policy across 30 PushT rollout
 project: true
 image: /assets/thumbnails/diffusion-policy.webp
 repository: https://github.com/adityx23/diffusion-policy-pusht-evaluation
-date_modified: 2026-08-03
+date_modified: 2026-08-08
 technologies: [PyTorch, Diffusion Policy, LeRobot, PushT, Robot Learning]
 built: A repeatable rollout-evaluation workflow measuring success, trajectory efficiency, reward behavior, and failure structure.
-validated: A 66.7% success rate across 30 rollouts, consistent with the approximately 70% reported checkpoint benchmark.
+validated: The recorded notebook run achieved a 66.7% success rate across 30 stochastic rollouts; completion and step count were analyzed separately from accumulated reward.
 why: Demonstrates disciplined evaluation of a learned controller across repeated trials instead of selecting a single successful episode.
 previous_project_url: /projects/smolvla-action-prediction
 previous_project_title: SmolVLA Action Analysis
@@ -69,7 +69,7 @@ The evaluation was performed on the **PushT** task, a planar manipulation enviro
 
 The policy achieved a **66.7% success rate (20/30)** across 30 rollout episodes.
 
-Performance is consistent with the reported benchmark (~70%), indicating correct implementation and stable policy behavior.
+The recorded rate is close to the approximately 70% reference value cited in the notebook, although a 30-episode stochastic evaluation is too small to establish equivalence or long-run stability.
 
 ---
 
@@ -87,7 +87,7 @@ Performance is consistent with the reported benchmark (~70%), indicating correct
 | Inference time        | ~3.2s/chunk   |
 | Total eval time       | 6.6 min       |
 
-Paper-reported success rate: **~70%** — the observed result of **66.7%** is consistent with expected checkpoint performance.
+Reference success rate cited in the notebook: **~70%**. The observed **66.7%** is nearby, but should be interpreted as one finite stochastic run rather than a reproduction confidence interval.
 
 The gap between successful and failed episodes is clearly reflected in both step count and reward distribution, reinforcing that trajectory efficiency is the dominant factor in task completion.
 
