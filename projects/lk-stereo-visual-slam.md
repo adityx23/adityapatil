@@ -8,7 +8,7 @@ repository: https://github.com/adityx23/aap-slam-orb-nomad-navigation
 date_modified: 2026-08-08
 technologies: [Python, OpenCV, SciPy, EuRoC, Visual-Inertial Odometry]
 built: Stereo visual-inertial and ORB frame-to-map evaluation notebooks covering tracking, geometry, PnP motion estimation, optimization, loop closure, sparse mapping, and topological navigation.
-validated: A tightly coupled 200-frame run improved ATE from 0.1924 m to 0.0305 m; separate full-sequence experiments report approximately 0.23 m ATE and a 3,630-frame ORB run reports 0.9002 m.
+validated: A fresh 29-cell rerun completed without errors: the scoped 200-frame run improved ATE from 0.1924 m to 0.0304 m, while the three-sequence benchmark measured 0.2364 m, 0.1690 m, and 0.3405 m ATE.
 why: Shows algorithmic depth from perception frontend through estimation backend and quantitative trajectory evaluation.
 previous_project_url: /projects/ackermann-autonomous-robot
 previous_project_title: Ackermann Robot Bring-Up & Native Autonomy
@@ -22,7 +22,7 @@ next_project_title: Automatic Transmission Controller
   <div><strong>Role</strong><span>Perception pipeline and evaluation</span></div>
   <div><strong>Context</strong><span>Independent SLAM implementation</span></div>
   <div><strong>Platform</strong><span>Python · OpenCV · SciPy · EuRoC</span></div>
-  <div><strong>Outcome</strong><span>0.0305 m ATE on a scoped 200-frame run</span></div>
+  <div><strong>Outcome</strong><span>0.0304 m scoped ATE · 0.2486 m three-sequence mean</span></div>
 </div>
 
 <div class="project-links" markdown="0">
@@ -146,26 +146,26 @@ To improve rotational stability and overall trajectory consistency, IMU informat
 
 ## Backend Optimization
 
-After the frontend and visual-inertial estimation stages, the trajectory was refined using bundle adjustment. Local and sliding-window optimization were used to reduce drift and improve consistency across neighboring poses.
+After the frontend and visual-inertial estimation stages, local and sliding-window bundle adjustment reduced reprojection error in the optimized windows. In the fresh run, this did not improve global ATE, reinforcing the distinction between local objective improvement and trajectory accuracy.
 
 <p align="center">
   <img src="{{ site.baseurl }}/assets/lk_slam/bundle_adjustment_trajectory.png" alt="Bundle adjustment trajectory improvement" width="700" loading="lazy" decoding="async">
 </p>
 <p align="center">
-  <em>Sliding-window bundle adjustment improved local pose consistency and reduced accumulated drift.</em>
+  <em>Sliding-window bundle adjustment reduced local reprojection error; global ATE remained approximately unchanged.</em>
 </p>
 
 ---
 
 ## Loop Closure and Pose Graph Refinement
 
-To move from visual odometry toward a true SLAM system, the pipeline added loop closure using keyframes and graph-based trajectory correction. Revisited locations were detected and used to globally adjust the trajectory.
+The pipeline also evaluates loop closure using keyframes and graph-based trajectory correction. The fresh run detected 65 loop edges, but the resulting optimization worsened aligned MH_01 trajectory error from 0.2317 m to 0.3300 m. This identifies loop validation and constraint weighting as unresolved engineering work.
 
 <p align="center">
   <img src="{{ site.baseurl }}/assets/lk_slam/slam_loop_closure.png" alt="Loop closure trajectory refinement" width="900" loading="lazy" decoding="async">
 </p>
 <p align="center">
-  <em>Loop closure introduced global consistency by reconnecting revisited parts of the trajectory and reducing long-horizon drift.</em>
+  <em>Negative result: graph cost fell by 60%, while aligned ATE increased by 42.4%.</em>
 </p>
 
 ---
@@ -185,7 +185,9 @@ Alongside trajectory estimation, the system reconstructed a sparse 3D landmark m
 
 ## Results and Validation
 
-The pipelines were evaluated using aligned trajectory comparison and trajectory-error metrics on EuRoC MAV sequences. Results depend strongly on evaluation length and configuration: the 0.0305 m tightly coupled result covers frames 50–249, while the full 3,630-frame MH_01 runs are approximately 0.23 m ATE. The recorded full-sequence loop-closure experiment increased ATE from 0.2451 m to 0.3125 m, so it is retained as a negative result rather than presented as an improvement.
+The notebook was rerun from a fresh kernel on August 8, 2026; all 29 cells completed without an error output. Results depend strongly on evaluation length and configuration. The tightly coupled 200-frame run over frames 50–249 improved ATE from 0.1924 m to 0.0304 m. The full-sequence benchmark measured 0.2364 m on MH_01_easy, 0.1690 m on MH_02_easy, and 0.3405 m on MH_03_medium, for a mean of 0.2486 m.
+
+The fresh full-sequence loop-closure experiment found 65 loop edges but worsened MH_01 ATE from 0.2317 m to 0.3300 m (+42.4%). It is retained as a negative result showing that reducing an internal pose-graph cost does not guarantee better aligned trajectory accuracy.
 
 <div class="figure-grid">
 
@@ -194,7 +196,7 @@ The pipelines were evaluated using aligned trajectory comparison and trajectory-
     <div class="figure-card-body">
       <div class="figure-card-title">Trajectory Alignment</div>
       <div class="figure-card-desc">
-        Final estimated trajectory aligned against ground truth to assess positional consistency.
+        Fresh 200-frame tightly coupled evaluation: 0.1924 m baseline ATE reduced to 0.0304 m.
       </div>
     </div>
   </div>
@@ -204,7 +206,7 @@ The pipelines were evaluated using aligned trajectory comparison and trajectory-
     <div class="figure-card-body">
       <div class="figure-card-title">Multi-Sequence Benchmark</div>
       <div class="figure-card-desc">
-        Evaluation across EuRoC Machine Hall sequences to test consistency beyond a single run.
+        Fresh full-sequence results: 0.2364 m on MH_01, 0.1690 m on MH_02, and 0.3405 m on MH_03.
       </div>
     </div>
   </div>
@@ -213,9 +215,9 @@ The pipelines were evaluated using aligned trajectory comparison and trajectory-
 
 ### Key validated outcomes
 - built a full stereo visual-inertial SLAM pipeline from frontend tracking through backend optimization
-- improved trajectory quality significantly over the baseline visual-only odometry pipeline
+- improved trajectory quality significantly in the scoped 200-frame tightly coupled experiment
 - demonstrated the effect of IMU-assisted estimation on drift reduction
-- added loop closure to enforce global consistency
+- evaluated loop closure and documented that the current constraint design worsens full-sequence ATE
 - generated a sparse 3D landmark map from stereo observations
 
 ---
@@ -241,8 +243,8 @@ The pipelines were evaluated using aligned trajectory comparison and trajectory-
 - frontend quality matters: stable tracking and stereo consistency strongly affect everything downstream
 - stereo rectification quality is critical for reliable depth estimation
 - IMU information is especially valuable for improving rotational stability and trajectory consistency
-- backend optimization adds substantial value beyond raw frame-to-frame odometry
-- loop closure is the key transition point from VO to a more complete SLAM system
+- backend optimization can add value, but must be validated against trajectory metrics rather than internal cost alone
+- loop closure requires stronger geometric validation and weighting before it improves this full-sequence result
 
 ---
 
