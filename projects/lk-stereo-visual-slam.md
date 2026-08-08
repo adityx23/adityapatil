@@ -192,7 +192,7 @@ The fresh full-sequence loop-closure experiment found 65 loop edges but worsened
 <div class="figure-grid">
 
   <div class="figure-card">
-    <img src="{{ site.baseurl }}/assets/lk_slam/final_trajectory_vs_ground_truth.png" alt="Final trajectory vs ground truth" loading="lazy" decoding="async">
+    <img src="{{ site.baseurl }}/assets/lk_slam/slam_final_result.png" alt="Fresh scoped SLAM v3 evaluation" loading="lazy" decoding="async">
     <div class="figure-card-body">
       <div class="figure-card-title">Trajectory Alignment</div>
       <div class="figure-card-desc">
